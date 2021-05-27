@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Wall
+  - Floor
+  - HealthBar
+  - Enemy
+  - Door
+  - StaminaBar
+  - StaminaEffect
+  - StrengthEffect
+  - SpeedEffect
+  - StaminaTimer
+  - StrengthTimer
+  - SpeedTimer
+  - PauseMenu
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - BlockingLayer
+  - Water
+  - UI
+  - Enemy
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 1827602111
+    locked: 0
+  - name: Items
+    uniqueID: 2603193917
+    locked: 0
+  - name: Walls
+    uniqueID: 3865772413
+    locked: 0
+  - name: Enemies
+    uniqueID: 3524139545
+    locked: 0
+  - name: DoorFront
+    uniqueID: 2856452793
+    locked: 0
+  - name: Player
+    uniqueID: 839852155
+    locked: 0
+  - name: DoorTop
+    uniqueID: 4039751053
+    locked: 0

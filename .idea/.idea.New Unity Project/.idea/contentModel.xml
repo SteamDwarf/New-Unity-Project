@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Dmitriy\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Dmitriy\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_New Unity Project.-108010097.00" t="ExcludeRecursive" />
+    <e p="D:\Dima\Programming\NewRoguelike\New Unity Project" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Samples" t="Include">
+          <e p="2D Animation" t="Include">
+            <e p="5.0.4" t="Include">
+              <e p="Samples" t="Include">
+                <e p="5 SpriteSwap" t="Include">
+                  <e p="Scripts" t="Include">
+                    <e p="Editor" t="Include">
+                      <e p="BuildAssetBundle.cs" t="Include" />
+                      <e p="Unity.2D.Animation.Samples.Editor.asmdef" t="Include" />
+                    </e>
+                    <e p="Runtime" t="Include">
+                      <e p="LoadSwapDLC.cs" t="Include" />
+                      <e p="SwapFullSkin.cs" t="Include" />
+                      <e p="SwapPart.cs" t="Include" />
+                      <e p="Unity.2D.Animation.Samples.Runtime.asmdef" t="Include" />
+                    </e>
+                  </e>
+                </e>
+                <e p="Scripts" t="Include">
+                  <e p="AnimationSampleDependency.cs" t="Include" />
+                  <e p="Unity.2D.Animation.Samples.Dependency.asmdef" t="Include" />
+                </e>
+              </e>
+            </e>
+          </e>
+          <e p="2D Pixel Perfect" t="Include">
+            <e p="4.0.1" t="Include">
+              <e p="Sample Scenes and Extras" t="Include">
+                <e p="Extras" t="Include">
+                  <e p="Custom Canvas Scaler" t="Include">
+                    <e p="CustomCanvasScaler.cs" t="Include" />
+                  </e>
+                </e>
+                <e p="Scenes" t="Include">
+                  <e p="Fonts" t="Include">
+                    <e p="LICENSE.txt" t="Include" />
+                  </e>
+                  <e p="RoboHero" t="Include">
+                    <e p="Scripts" t="Include">
+                      <e p="Hero.cs" t="Include" />
+                    </e>
+                  </e>
+                  <e p="Rule Tiles" t="Include">
+                    <e p="Scripts" t="Include">
+                      <e p="Editor" t="Include">
+                        <e p="RuleTileEditor.cs" t="Include" />
+                        <e p="Unity.2D.PixelPerfect.Samples.Editor.asmdef" t="Include" />
+                      </e>
+                      <e p="RuleTile.cs" t="Include" />
+                    </e>
+                  </e>
+                  <e p="Scripts" t="Include">
+                    <e p="BasicCameraFollow.cs" t="Include" />
+                    <e p="CameraManager.cs" t="Include" />
+                    <e p="HeroMover.cs" t="Include" />
+                  </e>
+                </e>
+                <e p="Unity.2D.PixelPerfect.Samples.asmdef" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="DungeonGenerator.cs" t="Include" />
+          <e p="GameManager.cs" t="Include" />
+          <e p="MapDrawer.cs" t="Include" />
+          <e p="MapManager.cs" t="Include" />
+          <e p="PlayerMovement.cs" t="Include" />
+          <e p="TileInfo.cs" t="Include" />
+        </e>
+      </e>
+      <e p="New Unity Project.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\Bin" t="ExcludeRecursive" />
+      <e p="Unity.2D.Animation.Samples.Dependency.csproj" t="IncludeRecursive" />
+      <e p="Unity.2D.Animation.Samples.Editor.csproj" t="IncludeRecursive" />
+      <e p="Unity.2D.Animation.Samples.Runtime.csproj" t="IncludeRecursive" />
+      <e p="Unity.2D.PixelPerfect.Samples.csproj" t="IncludeRecursive" />
+      <e p="Unity.2D.PixelPerfect.Samples.Editor.csproj" t="IncludeRecursive" />
+    </e>
+  </component>
+</project>
