@@ -217,7 +217,7 @@ MonoBehaviour:
   attackRanges:
   - 1
   attackDamages: 02000000
-  defaultSpeed: 4
+  defaultSpeed: 2
   maxHealth: 8
   sawPlayer: 0
   startAgroTime: 15
@@ -258,7 +258,7 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &1409112493381739040

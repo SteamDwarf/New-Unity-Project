@@ -145,7 +145,7 @@ MonoBehaviour:
   attackRanges:
   - 2
   attackDamages: 02000000
-  defaultSpeed: 4
+  defaultSpeed: 2
   maxHealth: 25
   sawPlayer: 0
   startAgroTime: 15
@@ -170,7 +170,7 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &5488267402758062522
@@ -293,8 +293,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 3.0742188, y: 2.2714233}
-      - {x: -1.7890625, y: 2.4887085}
+    - - {x: 3.0180054, y: 1.8780518}
+      - {x: -1.0305176, y: 1.7863159}
       - {x: 0.77245426, y: 0.14739588}
       - {x: -1.9749312, y: -2.6287804}
       - {x: 3.7309127, y: -2.701656}

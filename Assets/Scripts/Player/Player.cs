@@ -110,7 +110,6 @@ public class Player : MonoBehaviour
                 Actions();
                 StaminaRefresh();
                 EffectRefresh();
-                NoiseFOVCheck(curX, curY);
             }
 
             StatBarChange();
@@ -123,9 +122,11 @@ public class Player : MonoBehaviour
         if(!GM.isPaused)
         {
             if (!isDied)
+            {
                 Move();
+                NoiseFOVCheck(curX, curY);
+            }
         }
-        
     }
 
     //////////////////Интерактивные методы////////////////////
@@ -513,7 +514,7 @@ public class Player : MonoBehaviour
                         //enemy.savedPlayerPosition = transform.position;
                         //Debug.Log("Тут враг");
 
-                        //Debug.Log(MapManager.map[xCord, yCord].enemy.name);
+                        Debug.Log(MapManager.map[xCord, yCord].enemy.name);
                     }
                 }
                 catch (System.Exception)

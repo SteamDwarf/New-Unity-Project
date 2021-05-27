@@ -136,15 +136,26 @@ public class Enemy : MonoBehaviour
                 Flip();
             }
 
-            rB.MovePosition(rB.position + moveVelocity * Time.deltaTime);
+            //rB.MovePosition(rB.position + moveVelocity * Time.deltaTime);
 
-            xCord = Mathf.FloorToInt(transform.position.x / mapk + 0.5f);
+            /*xCord = Mathf.FloorToInt(transform.position.x / mapk + 0.5f);
             yCord = Mathf.FloorToInt(transform.position.y / mapk + 0.5f);
             MapManager.map[xCord, yCord].hasEnemy = false;
             MapManager.map[xCord, yCord].enemy = null;
             transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
             xCord = Mathf.FloorToInt(transform.position.x / mapk + 0.5f);
             yCord = Mathf.FloorToInt(transform.position.y / mapk + 0.5f);
+            MapManager.map[xCord, yCord].hasEnemy = true;
+            MapManager.map[xCord, yCord].enemy = this.gameObject;*/
+
+            xCord = Mathf.FloorToInt(rB.position.x / mapk + 0.5f);
+            yCord = Mathf.FloorToInt(rB.position.y / mapk + 0.5f);
+            MapManager.map[xCord, yCord].hasEnemy = false;
+            MapManager.map[xCord, yCord].enemy = null;
+            rB.MovePosition(rB.position + moveVelocity * Time.deltaTime);
+            //rB.position = Vector2.MoveTowards(rB.position, target, moveSpeed * Time.deltaTime);
+            xCord = Mathf.FloorToInt(rB.position.x / mapk + 0.5f);
+            yCord = Mathf.FloorToInt(rB.position.y / mapk + 0.5f);
             MapManager.map[xCord, yCord].hasEnemy = true;
             MapManager.map[xCord, yCord].enemy = this.gameObject;
         }

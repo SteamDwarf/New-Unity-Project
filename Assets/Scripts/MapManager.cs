@@ -20,6 +20,7 @@ public class Tile
     public string typeItem;
     public string furniture;
     public bool hasEnemy = false;
+    public string typeEnemy;
     public string type; // The type of the tile, if it is wall, floor, etc
     public bool hasPlayer = false;
 }
