@@ -18,11 +18,7 @@ public class HitBox : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         MakeAttack(collision);
-        if (coll != null)
-        {
-            coll.isTrigger = false;
-            coll.isTrigger = true;
-        }
+        
     }
 
     /*private void OnTriggerStay2D(Collider2D collision)
