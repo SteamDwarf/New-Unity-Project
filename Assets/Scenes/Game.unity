@@ -1701,8 +1701,14 @@ MonoBehaviour:
   mapTransform: {fileID: 0}
   floorPrefab:
   - {fileID: 4249247623920392998, guid: 952aab719934a7c4292ad3ffb8942d5c, type: 3}
-  enemies:
+  easyEnemies:
+  - {fileID: 402101762110853534, guid: 3893cd0bda392644bbacf14536527737, type: 3}
+  - {fileID: 5515676657946057538, guid: 863c8012a9c50d94b930ef16302cf729, type: 3}
+  - {fileID: 709441570316782483, guid: 4d725cc79432b564ea793ed148410015, type: 3}
+  - {fileID: 2789097173508193592, guid: 2e6c0262eff6b5840a03da0383dcab6c, type: 3}
   - {fileID: 1159044994371163267, guid: 30a1968b45e81c841b6ac98da7cbbac6, type: 3}
+  hardEnemies:
+  - {fileID: 83011688861814122, guid: 972ee6a116e27af4eb7d0c0cd27b8c56, type: 3}
   spawnedEnemies: []
   momentaryPotions:
   - {fileID: 7829524504692794807, guid: a511a6a9c9bcf6f4090f249a4fd975f1, type: 3}

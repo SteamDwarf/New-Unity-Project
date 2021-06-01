@@ -378,6 +378,7 @@ public class DungeonGenerator : MonoBehaviour
             for (int j = room.enemyInRoom; j < enemiesSpawn;)
             {
                 int tileInd = Random.Range(0, room.positions.Count - 1);
+                int typeEnemy = Random.Range(0, 5);
                 //int enemyInd = Random.Range(0, enemies.Count);
 
                 Vector2Int spawnPoint = room.positions[tileInd];
@@ -390,9 +391,21 @@ public class DungeonGenerator : MonoBehaviour
                 {
                     MapManager.map[spawnPoint.x, spawnPoint.y].hasEnemy = true;
                     //spawnedEnemies.Add(enemies[enemyInd]);
-                    room.enemyInRoom++;
-                    j++;
-                    aliveEnemiesCount++;
+
+                    if (typeEnemy == 4 && room.enemyInRoom >= 2)
+                    {
+                        MapManager.map[spawnPoint.x, spawnPoint.y].typeEnemy = "Hard";
+                        room.enemyInRoom += 2;
+                        j += 2;
+                        aliveEnemiesCount++;
+                    }
+                    else
+                    {
+                        MapManager.map[spawnPoint.x, spawnPoint.y].typeEnemy = "Easy";
+                        room.enemyInRoom++;
+                        j++;
+                        aliveEnemiesCount++;
+                    } 
                 }
             }
         }

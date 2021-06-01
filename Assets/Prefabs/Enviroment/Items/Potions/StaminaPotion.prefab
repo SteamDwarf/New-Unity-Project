@@ -114,5 +114,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   increase: 2
-  timeEffect: 0.2
+  timeEffect: 1
   type: 2

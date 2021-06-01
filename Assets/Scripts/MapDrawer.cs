@@ -14,7 +14,8 @@ public class MapDrawer : MonoBehaviour
 
     public Transform mapTransform;
     public List<GameObject> floorPrefab;
-    public List<GameObject> enemies;
+    public List<GameObject> easyEnemies;
+    public List<GameObject> hardEnemies;
     public List<GameObject> spawnedEnemies;
     public List<GameObject> momentaryPotions;
     public List<GameObject> continiousPotions;
@@ -68,14 +69,25 @@ public class MapDrawer : MonoBehaviour
 
                 if (MapManager.map[x, y].hasEnemy)
                 {
-                    int enemyInd = Random.Range(0, enemies.Count);
+                    int enemyInd;
+                    GameObject enemy;
+                    if (MapManager.map[x, y].typeEnemy == "Easy")
+                    {
+                        enemyInd = Random.Range(0, easyEnemies.Count);
+                        enemy = easyEnemies[enemyInd];
+                        spawnedEnemies.Add(easyEnemies[enemyInd]);
+                    }
+                    else
+                    {
+                        enemyInd = Random.Range(0, hardEnemies.Count);
+                        enemy = hardEnemies[enemyInd];
+                        spawnedEnemies.Add(hardEnemies[enemyInd]);
+                    }
+                    
                     //Vector2Int spawnPoint = new Vector2Int(x, y);
-
-                    GameObject enemy = enemies[enemyInd];
                     GameObject enemyToInst = Instantiate(enemy, new Vector3(x * mapk, y * mapk, 0), Quaternion.identity);
-
                     MapManager.map[x, y].enemy = enemyToInst;
-                    spawnedEnemies.Add(enemies[enemyInd]);
+                    
                     //GameObject enemy = MapManager.map[x, y].enemy;
 
                 }

@@ -323,7 +323,7 @@ MonoBehaviour:
   - 1
   - 1
   attackDamages: 0200000002000000
-  defaultSpeed: 2
+  defaultSpeed: 4
   maxHealth: 15
   sawPlayer: 0
   startAgroTime: 10
