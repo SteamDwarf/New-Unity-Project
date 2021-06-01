@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
             if (!isDied)
             {
                 Move();
-                NoiseFOVCheck(curX, curY);
+                //NoiseFOVCheck(curX, curY);
             }
         }
     }
@@ -227,7 +227,7 @@ public class Player : MonoBehaviour
             StartCoroutine(Dying());
         }*/
 
-        if (Input.GetKeyDown("j"))
+        /*if (Input.GetKeyDown("j"))
         {
             GetDamage(damage);
         }
@@ -235,7 +235,7 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown("h"))
         {
             health.curValue = health.curMaxValue;
-        }
+        }*/
     }
     ////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////
@@ -273,11 +273,13 @@ public class Player : MonoBehaviour
 
     private IEnumerator Dying()
     {
+        rB.isKinematic = true;
         isDied = true;
+        anim.isDied = true;
         anim.isActing = true;
         anim.isMoving = false;
         anim.act = "Died";
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         anim.act = "Die";
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(2);
@@ -459,9 +461,9 @@ public class Player : MonoBehaviour
         else
             health.curValue -= damage;
 
-        /*if(health.curValue <= 0)
+        if(health.curValue <= 0)
             StartCoroutine(Dying());
-        else*/
+        else
             StartCoroutine(Hurting());
 
     }

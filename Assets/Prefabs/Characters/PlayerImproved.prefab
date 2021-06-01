@@ -144,6 +144,7 @@ MonoBehaviour:
   faceTo: 
   isActing: 0
   isMoving: 0
+  isDied: 0
   act: 
   animIsBlocked: 0
 --- !u!61 &1072617321315262203
@@ -406,23 +407,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5607547519073843734, guid: a7968f90772769a408ea13d69d86b745, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
-      value: -5.120697
+      value: -4.847351
       objectReference: {fileID: 0}
     - target: {fileID: 5607547519073843734, guid: a7968f90772769a408ea13d69d86b745, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
-      value: 4.1295166
+      value: 4.027008
       objectReference: {fileID: 0}
     - target: {fileID: 5607547519073843734, guid: a7968f90772769a408ea13d69d86b745, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
-      value: -6.8241034
+      value: -6.209113
       objectReference: {fileID: 0}
     - target: {fileID: 5607547519073843734, guid: a7968f90772769a408ea13d69d86b745, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
-      value: 2.6536522
+      value: 2.5511436
       objectReference: {fileID: 0}
     - target: {fileID: 5607547519073843734, guid: a7968f90772769a408ea13d69d86b745, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].x
-      value: -7.856004
+      value: -6.8310103
       objectReference: {fileID: 0}
     - target: {fileID: 5607547519073843734, guid: a7968f90772769a408ea13d69d86b745, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].y
@@ -878,11 +879,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3539907658916492527, guid: 97e9840986c2db44b9dc03b3f580a5dd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
-      value: 4.677826
+      value: 4.472809
       objectReference: {fileID: 0}
     - target: {fileID: 3539907658916492527, guid: 97e9840986c2db44b9dc03b3f580a5dd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
-      value: 4.3138123
+      value: 4.1771393
       objectReference: {fileID: 0}
     - target: {fileID: 3539907658916492527, guid: 97e9840986c2db44b9dc03b3f580a5dd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
@@ -934,27 +935,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3539907658916492527, guid: 97e9840986c2db44b9dc03b3f580a5dd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[7].x
-      value: 8.379168
+      value: 7.285845
       objectReference: {fileID: 0}
     - target: {fileID: 3539907658916492527, guid: 97e9840986c2db44b9dc03b3f580a5dd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[7].y
-      value: -1.4141653
+      value: -1.4483297
       objectReference: {fileID: 0}
     - target: {fileID: 3539907658916492527, guid: 97e9840986c2db44b9dc03b3f580a5dd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[8].x
-      value: 7.8158264
+      value: 7.029999
       objectReference: {fileID: 0}
     - target: {fileID: 3539907658916492527, guid: 97e9840986c2db44b9dc03b3f580a5dd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[8].y
-      value: 1.8496552
+      value: 1.7471466
       objectReference: {fileID: 0}
     - target: {fileID: 3539907658916492527, guid: 97e9840986c2db44b9dc03b3f580a5dd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[9].x
-      value: 6.847785
+      value: 6.3011236
       objectReference: {fileID: 0}
     - target: {fileID: 3539907658916492527, guid: 97e9840986c2db44b9dc03b3f580a5dd, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[9].y
-      value: 3.0511284
+      value: 2.9144554
       objectReference: {fileID: 0}
     - target: {fileID: 3568985769297791868, guid: 97e9840986c2db44b9dc03b3f580a5dd, type: 3}
       propertyPath: m_SortingLayer
@@ -1198,7 +1199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7398443142258720897, guid: 97e9840986c2db44b9dc03b3f580a5dd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7500224171213579393, guid: 97e9840986c2db44b9dc03b3f580a5dd, type: 3}
       propertyPath: m_SortingLayer

@@ -1382,7 +1382,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12
+  orthographic size: 17
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1651,8 +1651,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e36bb1c036ba34a828b77f4b245375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapWidth: 300
-  mapHeight: 300
+  mapWidth: 100
+  mapHeight: 100
   widthMinRoom: 6
   widthMaxRoom: 8
   heightMinRoom: 6
@@ -1698,6 +1698,7 @@ MonoBehaviour:
   wallPrefab: {fileID: 3230763805461413522, guid: aa225afd2b608414c9c9137d7912238d, type: 3}
   frontDoorPrefab: {fileID: 5592801470273566117, guid: 930e5f0ec6d4de14088d57d290b5d5ff, type: 3}
   topDoorPrefab: {fileID: 7829000894740871458, guid: 4b336959c9c658742953c25e772bf0a6, type: 3}
+  backStone: {fileID: 6669985880660991850, guid: 3e0bcf361ed587c46857b8d32bf0b356, type: 3}
   mapTransform: {fileID: 0}
   floorPrefab:
   - {fileID: 4249247623920392998, guid: 952aab719934a7c4292ad3ffb8942d5c, type: 3}

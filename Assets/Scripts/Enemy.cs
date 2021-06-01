@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     public List<GameObject> attackPoses;
     public List<float> attackRanges;
     public List<int> attackDamages;
+    public float agroRange;
     //public EnemyState currentState;
 
 
@@ -41,6 +42,7 @@ public class Enemy : MonoBehaviour
     protected Vector2 target;
     protected List<Attack> enemyAttacks;
     protected GameManager GM;
+    protected GameObject player;
 
 
     protected int xCord;
@@ -63,6 +65,7 @@ public class Enemy : MonoBehaviour
     protected void Start()
     {
         gameManager = GameObject.Find("GameManager");
+        player = GameObject.FindGameObjectWithTag("Player");
         rB = GetComponent<Rigidbody2D>();
         anim = GetComponent<EnemyAnimator>();
         DG = gameManager.GetComponent<DungeonGenerator>();
@@ -73,6 +76,7 @@ public class Enemy : MonoBehaviour
         mapk = DG.mapk;
         //enemyName = gameObject.name.Split('(')[0];
         startPosition = transform.position;
+        agroRange = 4 * mapk;
         speed = defaultSpeed;
         faceTo = "Right";
         //currentState = EnemyState.idle;
@@ -98,6 +102,7 @@ public class Enemy : MonoBehaviour
         //attackTime -= Time.deltaTime;
         //AnimPlay();
         RefreshStamina();
+        PlayerFind();
     }
 
     private void CreateAttacksList()
@@ -200,6 +205,16 @@ public class Enemy : MonoBehaviour
     protected virtual void MakeAttack()
     {
         //Debug.Log("Враг атакует");
+    }
+
+    private void PlayerFind()
+    {
+        if(Vector3.Distance(player.transform.position, this.gameObject.transform.position) < agroRange)
+        {
+            currentPlayerPosition = player.transform.position;
+            currentAgroTime = startAgroTime;
+            sawPlayer = true;
+        }
     }
 
     public void SawPlayer(Vector2 playerPos)

@@ -11,6 +11,7 @@ public class MapDrawer : MonoBehaviour
     public GameObject wallPrefab;
     public GameObject frontDoorPrefab;
     public GameObject topDoorPrefab;
+    public GameObject backStone;
 
     public Transform mapTransform;
     public List<GameObject> floorPrefab;
@@ -33,8 +34,13 @@ public class MapDrawer : MonoBehaviour
             for (int x = 0; x < dG.mapWidth - 1; x++)
             {
                 if (MapManager.map[x, y] == null)
+                {
+                    GameObject toInstantiate = backStone;
+                    GameObject instance = Instantiate(toInstantiate, new Vector3(x * mapk, y * mapk, 0), Quaternion.identity) as GameObject;
+                    instance.transform.SetParent(mapTransform);
                     continue;
-                if (MapManager.map[x, y].type == "Wall")
+                }
+                else if (MapManager.map[x, y].type == "Wall")
                 {
                     GameObject toInstantiate = wallPrefab;
                     GameObject instance = Instantiate(toInstantiate, new Vector3(x * mapk, y * mapk, 0), Quaternion.identity) as GameObject;

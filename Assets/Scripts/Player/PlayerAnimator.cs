@@ -20,6 +20,7 @@ public class PlayerAnimator : MonoBehaviour
     public string faceTo;
     public bool isActing;
     public bool isMoving;
+    public bool isDied;
     public string act;
     /*public bool isAttacking;
     public bool isBlocking;
@@ -48,6 +49,7 @@ public class PlayerAnimator : MonoBehaviour
         isActing = false;
         isMoving = false;
         animIsBlocked = false;
+        isDied = false;
         prevFaceTo = faceTo;
         curAnimator = playerFrontAnim;
     }
@@ -110,35 +112,25 @@ public class PlayerAnimator : MonoBehaviour
 
     private void AnimationPlay()
     {
-        if (!isActing && !isMoving)
-            curAnimator.Play("player" + "Idle" + faceTo);
-        else if (act == "Hurt")
-            curAnimator.Play("player" + "Hurt" + faceTo);
-        else if (isActing && isMoving)
-            curAnimator.Play("player" + act + curState + faceTo);
-        else if (isActing)
-            curAnimator.Play("player" + act + faceTo);
-        else if (isMoving)
-            curAnimator.Play("player" + curState + faceTo);
-        /*if (isAttacking)
-            curAnimator.Play("player" + curAttack + faceTo);
-        else if (isHurting)
-            curAnimator.Play("player" + "Hurt" + faceTo);
-        else if (getBlocking)
+        if(!isDied)
         {
-            animIsBlocked = true;
-            curAnimator.Play("player" + "Block" + faceTo);
-            getBlocking = false;
-            isBlocking = true;
-            AnimationPlay();
+            if (!isActing && !isMoving)
+                curAnimator.Play("player" + "Idle" + faceTo);
+            else if (act == "Hurt")
+                curAnimator.Play("player" + "Hurt" + faceTo);
+            else if (isActing && isMoving)
+                curAnimator.Play("player" + act + curState + faceTo);
+            else if (isActing)
+                curAnimator.Play("player" + act + faceTo);
+            else if (isMoving)
+                curAnimator.Play("player" + curState + faceTo);
         }
-        else if (isBlocking)
+
+        if(isDied)
         {
-            curAnimator.Play("player" + "Blocking" + faceTo);
-            animIsBlocked = false;
+            if(isActing && (act == "Die" || act == "Died"))
+                curAnimator.Play("player" + act + faceTo);
         }
-        else
-            curAnimator.Play("player" + curState + faceTo);*/
     }
 
 }
