@@ -247,7 +247,6 @@ public class Enemy : MonoBehaviour
 
     public void GetDamage(float damage)
     {
-        Debug.Log(damage);
         StartCoroutine(Hurting());
         health -= damage;
         currentAgroTime = startAgroTime;

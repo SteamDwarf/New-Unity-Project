@@ -401,8 +401,6 @@ public class Player : MonoBehaviour
                     strength.curValue += increase;
                     strength.timeEffect = time;
                     RefreshHitBoxDamage();
-                    Debug.Log(strength.curValue);
-                    Debug.Log(increase);
                 }
                 break;
             case typeEnum.stamina:
