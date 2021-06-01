@@ -145,10 +145,11 @@ MonoBehaviour:
   attackRanges:
   - 2
   attackDamages: 02000000
+  agroRange: 0
   defaultSpeed: 3
   maxHealth: 25
   sawPlayer: 0
-  startAgroTime: 15
+  startAgroTime: 7
   maxStamina: 100
   attackRadius: 5
   isDied: 0

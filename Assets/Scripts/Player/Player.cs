@@ -193,17 +193,6 @@ public class Player : MonoBehaviour
         {
             isDefending = true;
             StartCoroutine(Blocking());
-
-            /*int x = Mathf.FloorToInt(rB.position.x / mapk + 0.5f);
-            int y = Mathf.FloorToInt(rB.position.y / mapk + 0.5f);
-
-            for (int i = x - 4; i < x + 4; i++)
-            {
-                for (int j = y - 4; j < y + 4; j++)
-                {
-                    Debug.Log(MapManager.map[x, y].hasPlayer);
-                }
-            }*/
         }
 
         if (Input.GetMouseButton(1))
@@ -216,26 +205,7 @@ public class Player : MonoBehaviour
         {
             anim.isActing = false;
             isDefending = false;
-            /*anim.isBlocking = false;
-            anim.curState = "Idle";
-            defence = 1;
-            anim.animIsBlocked = false;*/
         }
-
-        /*if(Input.GetMouseButtonDown(2))
-        {
-            StartCoroutine(Dying());
-        }*/
-
-        /*if (Input.GetKeyDown("j"))
-        {
-            GetDamage(damage);
-        }
-
-        if(Input.GetKeyDown("h"))
-        {
-            health.curValue = health.curMaxValue;
-        }*/
     }
     ////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////
@@ -382,7 +352,13 @@ public class Player : MonoBehaviour
 
     public void UpdateHealth(float healthIncr)
     {
-        health.curValue += healthIncr;
+        if (health.curValue < health.curMaxValue)
+        {
+            if (health.curValue + healthIncr > health.curMaxValue)
+                health.curValue += health.curMaxValue - health.curValue;
+            else
+                health.curValue += healthIncr;
+        }
     }
 
     public void GetContiniousEffect(float increase, float time, typeEnum effect)

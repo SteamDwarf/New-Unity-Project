@@ -327,7 +327,7 @@ MonoBehaviour:
   defaultSpeed: 4
   maxHealth: 20
   sawPlayer: 0
-  startAgroTime: 10
+  startAgroTime: 7
   maxStamina: 100
   attackRadius: 3
   isDied: 0

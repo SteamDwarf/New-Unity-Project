@@ -44,7 +44,6 @@ public class MeleeEnemy : Enemy
         if (sawPlayer)
         {
             target = currentPlayerPosition;
-            //currentState = EnemyState.run;
             anim.curState = "Run";
             speed = defaultSpeed * 2;
             currentAgroTime -= Time.deltaTime;
@@ -58,16 +57,12 @@ public class MeleeEnemy : Enemy
         else
         {
             target = startPosition;
-            //currentState = EnemyState.walk;
             anim.curState = "Walk";
             speed = defaultSpeed;
 
             if (Vector2.Distance(transform.position, target) < 1)
                 anim.curState = "Idle";
-            //currentState = EnemyState.idle;
         }
-
-        //anim.Play(currentAnimation + enemyName);
 
         if (currentAgroTime <= 0)
         {
