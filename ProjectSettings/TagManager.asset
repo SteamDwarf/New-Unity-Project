@@ -17,6 +17,7 @@ TagManager:
   - StrengthTimer
   - SpeedTimer
   - PauseMenu
+  - Potion
   layers:
   - Default
   - TransparentFX

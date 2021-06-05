@@ -146,7 +146,7 @@ MonoBehaviour:
   sawPlayer: 0
   startAgroTime: 7
   maxStamina: 100
-  attackRadius: 6
+  attackRadius: 7
   isDied: 0
 --- !u!114 &1194993420228449296
 MonoBehaviour:

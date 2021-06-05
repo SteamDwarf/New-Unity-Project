@@ -26,8 +26,7 @@ public class DoorOpening : MonoBehaviour
         {
             colliderDoor.isTrigger = true;
             spriteRend.sortingLayerName = "DoorTop";
-            anim.Play(typeDoor + "_open");
-            anim.Play(typeDoor + "_opened");
+            StartCoroutine(openDoor());
             doorState = "Opened";
 
         }
@@ -35,15 +34,24 @@ public class DoorOpening : MonoBehaviour
         {
             colliderDoor.isTrigger = false;
             spriteRend.sortingLayerName = "DoorFront";
-            anim.Play(typeDoor + "_close");
-            anim.Play(typeDoor + "_closed");
+            StartCoroutine(closeDoor());
             doorState = "Closed";
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator openDoor()
     {
-        
+        anim.Play(typeDoor + "_open");
+        yield return new WaitForSeconds(0.15f);
+        anim.Play(typeDoor + "_opened");
     }
+
+    private IEnumerator closeDoor()
+    {
+        anim.Play(typeDoor + "_close");
+        yield return new WaitForSeconds(0.15f);
+        anim.Play(typeDoor + "_closed");
+    }
+
+    // Update is called once per frame
 }

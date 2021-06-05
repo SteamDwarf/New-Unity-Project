@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 1072617321315262203}
   - component: {fileID: 1946505139924328582}
   - component: {fileID: -4435130541680791243}
+  - component: {fileID: 7191619522442141948}
   m_Layer: 0
   m_Name: PlayerImproved
   m_TagString: Player
@@ -210,6 +211,23 @@ SortingGroup:
   m_SortingLayerID: 839852155
   m_SortingLayer: 6
   m_SortingOrder: 0
+--- !u!114 &7191619522442141948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694865263422745704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd9036d64b11a9640a8dfdb69c94d78a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cells:
+  - {fileID: 11400000, guid: 615a7f2530fe30b4da3e64530520c0d5, type: 2}
+  - {fileID: 11400000, guid: 174c06573c9fc8147b8f9b0aa3f16b9a, type: 2}
+  - {fileID: 11400000, guid: 1cfe7e168ea1892468223cb4049bc220, type: 2}
+  - {fileID: 11400000, guid: c4bac54f8ff5bf245b141c809497f851, type: 2}
 --- !u!1001 &2700617517035678163
 PrefabInstance:
   m_ObjectHideFlags: 0
