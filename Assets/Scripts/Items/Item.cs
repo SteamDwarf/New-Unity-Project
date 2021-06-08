@@ -4,26 +4,22 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public Sprite sprite;
-    private SpriteRenderer spriteRend;
-    private string spriteName;
-    private Inventory inventory;
+    public int id;
+    private bool isPicked;
 
     protected void Start()
     {
-        spriteRend = GetComponent<SpriteRenderer>();
-        sprite = spriteRend.sprite;
+        isPicked = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if(collision.CompareTag("Player") && !isPicked)
         {
-            Debug.Log(spriteRend);
-            inventory = collision.GetComponent<Inventory>();
-            inventory.GetItem(this);
+            Inventory inventory = collision.GetComponent<Inventory>();
+            inventory.GetItem(this.gameObject);
             this.gameObject.SetActive(false);
+            isPicked = true;
         }
     }
-
 }

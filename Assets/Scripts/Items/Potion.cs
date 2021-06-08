@@ -15,12 +15,11 @@ public class Potion : Item
 
     new void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         base.Start();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
     public void GetEffect()
     {
-
         switch (type)
         {
             case typeEnum.health:
@@ -37,7 +36,7 @@ public class Potion : Item
                 break;
         }
 
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
     }
     /*private void OnTriggerEnter2D(Collider2D other)
     {

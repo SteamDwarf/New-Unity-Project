@@ -363,6 +363,8 @@ public class Player : MonoBehaviour
 
     public void GetContiniousEffect(float increase, float time, typeEnum effect)
     {
+        Debug.Log("Заюзал зелье");
+
         switch (effect)
         {
             case typeEnum.strength:
@@ -372,7 +374,6 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log(strength.curValue);
                     strength.curMaxValue += increase;
                     strength.curValue += increase;
                     strength.timeEffect = time;
@@ -444,7 +445,6 @@ public class Player : MonoBehaviour
 
     private void RefreshHitBoxDamage()
     {
-        Debug.Log(strength.curValue);
         damage = strength.curValue + weaponDamage;
         foreach (var hitBox in hitBoxes)
         {
@@ -490,7 +490,6 @@ public class Player : MonoBehaviour
                         //enemy.savedPlayerPosition = transform.position;
                         //Debug.Log("Тут враг");
 
-                        Debug.Log(MapManager.map[xCord, yCord].enemy.name);
                     }
                 }
                 catch (System.Exception)
