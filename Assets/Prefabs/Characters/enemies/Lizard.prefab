@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 4233899763378260295}
   - component: {fileID: 2911409282580579713}
   - component: {fileID: 1682495204359246237}
+  - component: {fileID: 8735055253708331635}
   m_Layer: 6
   m_Name: Lizard
   m_TagString: Enemy
@@ -206,14 +207,16 @@ MonoBehaviour:
   attackRanges:
   - 1
   attackDamages: 02000000
-  agroRange: 0
-  defaultSpeed: 4
+  agroRange: 2
+  defaultSpeed: 400
   maxHealth: 15
   sawPlayer: 0
   startAgroTime: 7
   maxStamina: 100
   attackRadius: 4
   isDied: 0
+  isBig: 0
+  nextWaypiontDistance: 2
 --- !u!114 &4790938499447787279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,8 +245,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10000
-  m_LinearDrag: 0
+  m_Mass: 1
+  m_LinearDrag: 1.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -264,7 +267,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.20440674, y: -0.20031738}
+  m_Offset: {x: -0.20575048, y: -0.17848705}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -275,7 +278,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.37390137, y: 0.1809082}
+  m_Size: {x: 0.23964843, y: 0.13724753}
   m_EdgeRadius: 0
 --- !u!61 &2911409282580579713
 BoxCollider2D:
@@ -314,3 +317,31 @@ SortingGroup:
   m_SortingLayerID: 839852155
   m_SortingLayer: 6
   m_SortingOrder: 0
+--- !u!114 &8735055253708331635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709441570316782483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1

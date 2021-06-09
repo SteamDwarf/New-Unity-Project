@@ -88,9 +88,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 0.01
+  m_LinearDrag: 100
+  m_AngularDrag: 100
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   hitRange: 0
   weaponDamage: 1
   isDied: 0
-  staminaPerSec: 10
+  staminaPerSec: 20
 --- !u!114 &-7152940365025018608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +228,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 174c06573c9fc8147b8f9b0aa3f16b9a, type: 2}
   - {fileID: 11400000, guid: 1cfe7e168ea1892468223cb4049bc220, type: 2}
   - {fileID: 11400000, guid: c4bac54f8ff5bf245b141c809497f851, type: 2}
+  cellIcons: []
 --- !u!1001 &2700617517035678163
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -361,7 +362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3478164760466956474, guid: a7968f90772769a408ea13d69d86b745, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3709959293025058169, guid: a7968f90772769a408ea13d69d86b745, type: 3}
       propertyPath: m_IsActive

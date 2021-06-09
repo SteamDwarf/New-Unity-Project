@@ -4,28 +4,6 @@ using UnityEngine;
 
 public class MeleeEnemy : Enemy
 {
-    
-    new void Start()
-    {
-        base.Start();
-    }
-
-    new void Update()
-    {
-        if(!GM.isPaused)
-            base.Update();
-
-        /*if (sawPlayer)
-        {
-            if (stamina >= 30f && !anim.isAttacking && Vector2.Distance(transform.position, target) <= attackRadius)
-            {
-                currentAgroTime = startAgroTime;
-                StartCoroutine(Attacking());
-                MakeAttack();
-            }
-        }*/
-    }
-
 
     protected override void MakeAttack()
     {

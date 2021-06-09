@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca93cddf99df3364191add4cdca4cb46, type: 3}
   m_Name: Cell_1
   m_EditorClassIdentifier: 
-  item: {fileID: 4838784104326345665, guid: 6062dfca202d50c48ab1b595d451807f, type: 3}
-  isEmpty: 1
-  sprite: {fileID: 21300000, guid: 5b4038434d000ca4fbb56b484c7fa35a, type: 3}
+  item: {fileID: 0}
+  countItem: 0
+  idItem: 0

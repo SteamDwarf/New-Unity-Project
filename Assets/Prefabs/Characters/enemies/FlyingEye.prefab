@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1658691218087145767}
   - component: {fileID: -3988980287453211736}
   - component: {fileID: 7433143988672437460}
+  - component: {fileID: -8213884208049034607}
   m_Layer: 6
   m_Name: FlyingEye
   m_TagString: Enemy
@@ -140,14 +141,16 @@ MonoBehaviour:
   attackRanges:
   - 1
   attackDamages: 01000000
-  agroRange: 0
-  defaultSpeed: 4
+  agroRange: 2
+  defaultSpeed: 500
   maxHealth: 10
   sawPlayer: 0
   startAgroTime: 7
   maxStamina: 100
   attackRadius: 5
   isDied: 0
+  isBig: 0
+  nextWaypiontDistance: 2
 --- !u!114 &7004126774665987247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +180,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.032982647, y: -0.016892277}
+  m_Offset: {x: 0.04588549, y: -0.038730666}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -188,7 +191,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.42303467, y: 0.35128176}
+  m_Size: {x: 0.15902096, y: 0.20042726}
   m_EdgeRadius: 0
 --- !u!50 &-3988980287453211736
 Rigidbody2D:
@@ -202,8 +205,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10000
-  m_LinearDrag: 0
+  m_Mass: 1
+  m_LinearDrag: 1.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -237,6 +240,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5164306, y: 0.4826538}
   m_EdgeRadius: 0
+--- !u!114 &-8213884208049034607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402101762110853534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!1 &409426421473087247
 GameObject:
   m_ObjectHideFlags: 0

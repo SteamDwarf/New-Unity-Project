@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 3757927779297027617}
   - component: {fileID: 7024103523485275802}
   - component: {fileID: 8428393037162314014}
+  - component: {fileID: -355134574447198117}
   m_Layer: 6
   m_Name: SkeletonMacer
   m_TagString: Enemy
@@ -323,14 +324,16 @@ MonoBehaviour:
   - 1
   - 1
   attackDamages: 0200000002000000
-  agroRange: 0
-  defaultSpeed: 4
+  agroRange: 2
+  defaultSpeed: 400
   maxHealth: 20
   sawPlayer: 0
   startAgroTime: 7
   maxStamina: 100
   attackRadius: 3
   isDied: 0
+  isBig: 0
+  nextWaypiontDistance: 2
 --- !u!50 &3757927779297027617
 Rigidbody2D:
   serializedVersion: 4
@@ -343,8 +346,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10000
-  m_LinearDrag: 0
+  m_Mass: 1
+  m_LinearDrag: 1.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -365,7 +368,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.030456543, y: -0.11065674}
+  m_Offset: {x: -0.028343692, y: -0.10361084}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -376,7 +379,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16711426, y: 0.12902832}
+  m_Size: {x: 0.13472903, y: 0.08679199}
   m_EdgeRadius: 0
 --- !u!61 &8428393037162314014
 BoxCollider2D:
@@ -404,3 +407,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.26257324, y: 0.40344238}
   m_EdgeRadius: 0
+--- !u!114 &-355134574447198117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2789097173508193592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1

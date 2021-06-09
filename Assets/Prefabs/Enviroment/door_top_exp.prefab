@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3518103222560024606}
   - component: {fileID: 8995061101196920091}
   - component: {fileID: 4878439250549484246}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: down_leaf
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1691773379
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e93ba75ed96eaf94eabe3572cf3ad2b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -122,7 +122,6 @@ GameObject:
   - component: {fileID: 7086342577735995801}
   - component: {fileID: 2381907277513314739}
   - component: {fileID: 6010450285606836637}
-  - component: {fileID: 8431652723603111072}
   - component: {fileID: 175744787488089180}
   m_Layer: 0
   m_Name: door_top_exp
@@ -140,7 +139,7 @@ Transform:
   m_GameObject: {fileID: 1087826751882979179}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 443.8012, y: 480.3102, z: -74.57065}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 10, y: 11, z: 1}
   m_Children:
   - {fileID: 3518103222560024606}
   - {fileID: 7897641631077998023}
@@ -185,8 +184,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 839852155
-  m_SortingLayer: 6
+  m_SortingLayerID: -255216243
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a9fd3b8c07f588149bcbe242a7bd662f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -198,7 +197,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &2381907277513314739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,17 +236,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2671814, y: 0.96}
   m_EdgeRadius: 0
---- !u!210 &8431652723603111072
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087826751882979179}
-  m_Enabled: 1
-  m_SortingLayerID: 839852155
-  m_SortingLayer: 6
-  m_SortingOrder: 0
 --- !u!95 &175744787488089180
 Animator:
   serializedVersion: 3
@@ -278,10 +266,9 @@ GameObject:
   - component: {fileID: 7897641631077998023}
   - component: {fileID: 6155280391625563271}
   - component: {fileID: 5664118793520681401}
-  - component: {fileID: 7976239599389283768}
   m_Layer: 0
   m_Name: top_leaf
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -338,8 +325,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1691773379
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e93ba75ed96eaf94eabe3572cf3ad2b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -365,7 +352,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.036727145, y: 0}
+  m_Offset: {x: -0.036727145, y: -0.013973091}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -376,16 +363,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.39341524, y: 0.03}
+  m_Size: {x: 0.39341524, y: 0.057946175}
   m_EdgeRadius: 0
---- !u!210 &7976239599389283768
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6980371052956396896}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7719527521649259443}
   - component: {fileID: 5155137998326810125}
   - component: {fileID: 9124048651726724117}
+  - component: {fileID: -3657304322395747397}
   m_Layer: 6
   m_Name: Orc_3
   m_TagString: Enemy
@@ -140,14 +141,16 @@ MonoBehaviour:
   attackRanges:
   - 1
   attackDamages: 03000000
-  agroRange: 0
-  defaultSpeed: 2
+  agroRange: 2
+  defaultSpeed: 300
   maxHealth: 25
   sawPlayer: 0
   startAgroTime: 7
   maxStamina: 100
   attackRadius: 7
   isDied: 0
+  isBig: 1
+  nextWaypiontDistance: 2
 --- !u!114 &1194993420228449296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +180,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.023498535, y: -3.333435}
+  m_Offset: {x: -0.107595146, y: -3.9686558}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -188,7 +191,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.986206, y: 3.2039795}
+  m_Size: {x: 1.600351, y: 1.4073691}
   m_EdgeRadius: 0
 --- !u!61 &5155137998326810125
 BoxCollider2D:
@@ -228,8 +231,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10000
-  m_LinearDrag: 0
+  m_Mass: 1
+  m_LinearDrag: 1.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -237,6 +240,34 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-3657304322395747397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83011688861814122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!1 &2528667927367591899
 GameObject:
   m_ObjectHideFlags: 0

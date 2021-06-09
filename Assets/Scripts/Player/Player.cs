@@ -124,6 +124,7 @@ public class Player : MonoBehaviour
             if (!isDied)
             {
                 Move();
+                rB.velocity = new Vector2(0, 0);
                 //NoiseFOVCheck(curX, curY);
             }
         }
@@ -254,8 +255,36 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(2);
     }
+
     /////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////
+
+
+    /////////// COLLISION, COLLIDER TRIGGER, COLLIDE ///////////
+    ////////////////////////////////////////////////////////////
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        ConnectWithDoor(collision.collider);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        ConnectWithDoor(collision.collider);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        ConnectWithDoor(collision);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        ConnectWithDoor(collision);
+    }
+
+    ////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////
 
 
     ////////////////Взаимодействие с интерфейсом////////////////
@@ -436,11 +465,10 @@ public class Player : MonoBehaviour
         else
             health.curValue -= damage;
 
-        if(health.curValue <= 0)
+        /*if(health.curValue <= 0)
             StartCoroutine(Dying());
-        else
+        else*/
             StartCoroutine(Hurting());
-
     }
 
     private void RefreshHitBoxDamage()
@@ -500,9 +528,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void ConnectWithDoor(Collider2D collision)
     {
-        if (collision.collider.tag == "Door")
+        if (collision.CompareTag("Door"))
         {
             door = collision.gameObject;
             doorScript = door.GetComponent<DoorOpening>();

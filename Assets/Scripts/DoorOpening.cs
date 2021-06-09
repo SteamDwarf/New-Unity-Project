@@ -5,8 +5,10 @@ using UnityEngine;
 public class DoorOpening : MonoBehaviour
 {
     private Animator anim;
+    //private LayerMask layerM;
     private SpriteRenderer spriteRend;
     private BoxCollider2D colliderDoor;
+    private Player player;
     private string typeDoor;
     private string doorState;
 
@@ -16,6 +18,8 @@ public class DoorOpening : MonoBehaviour
         anim = GetComponent<Animator>();
         colliderDoor = GetComponent<BoxCollider2D>();
         spriteRend = GetComponent<SpriteRenderer>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        //layerM = GameObject.GetComponent<LayerMask>();
         typeDoor = gameObject.name.Split('(')[0];
         doorState = "Closed";
     }
@@ -28,6 +32,8 @@ public class DoorOpening : MonoBehaviour
             spriteRend.sortingLayerName = "DoorTop";
             StartCoroutine(openDoor());
             doorState = "Opened";
+            LayerMask.LayerToName(0);
+            //layerM.value = 0;
 
         }
         else if(doorState == "Opened")
@@ -36,6 +42,8 @@ public class DoorOpening : MonoBehaviour
             spriteRend.sortingLayerName = "DoorFront";
             StartCoroutine(closeDoor());
             doorState = "Closed";
+            LayerMask.LayerToName(3);
+            //layerM.value = 0;
         }
     }
 
@@ -53,5 +61,20 @@ public class DoorOpening : MonoBehaviour
         anim.Play(typeDoor + "_closed");
     }
 
-    // Update is called once per frame
+    /*private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            player.TriggerDoor(this.gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            player.TriggerDoor(this.gameObject);
+        }
+    }*/
+
 }

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8855325681538122765}
   - component: {fileID: 7932877231864922364}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: col_right
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +44,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.026824757, y: -0.031847075}
+  m_Offset: {x: -0.00196819, y: -0.031847075}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.18870035, y: 0.4200236}
+  m_Size: {x: 0.13898721, y: 0.4200236}
   m_EdgeRadius: 0
 --- !u!1 &5592801470273566117
 GameObject:
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 8604241582568225408}
   - component: {fileID: 8803486060102936493}
   - component: {fileID: 6954269684641158758}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: door_front
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -224,9 +224,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4113467448770227209}
   - component: {fileID: 3605430553841959843}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: col_left
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,7 +258,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0167671, y: 0.041908823}
+  m_Offset: {x: -0.005470041, y: 0.04190883}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -269,5 +269,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.18200684, y: 0.44014484}
+  m_Size: {x: 0.13753256, y: 0.44014484}
   m_EdgeRadius: 0

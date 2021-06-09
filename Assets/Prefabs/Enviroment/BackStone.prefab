@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4546495305447952202}
   - component: {fileID: 1016185521683134975}
   - component: {fileID: 7574506346861609362}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BackStone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
