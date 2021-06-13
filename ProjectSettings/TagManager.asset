@@ -18,6 +18,8 @@ TagManager:
   - SpeedTimer
   - PauseMenu
   - Potion
+  - InventoryItem
+  - Inventory
   layers:
   - Default
   - TransparentFX

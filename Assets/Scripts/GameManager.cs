@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     private AstarPath pathfinder;
     //public PlayerMovement player;
     public int aliveEnemies;
-    public bool isPaused = false;
+    public bool isPaused { get; set; }
 
     void Start() {
         dungeonGenerator = GetComponent<DungeonGenerator>();
@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
         dungeonGenerator.InitializeDungeon();
         dungeonGenerator.GenerateDungeon();
 
-        pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
         pathfinder = GameObject.Find("A*").GetComponent<AstarPath>();
         pathfinder.Scan();
     }
@@ -31,22 +30,15 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(3);
         }
 
-        if (isPaused)
+        /*if (isPaused)
             pauseMenu.SetActive(true);
         else
-            pauseMenu.SetActive(false);
-
-        if (Input.GetKeyDown(KeyCode.Escape)) 
-        {
-            if (isPaused)
-                ResumeGame();
-            else
-                isPaused = true;
-        }
+            pauseMenu.SetActive(false);*/
     }
 
     public void ResumeGame()
     {
         isPaused = false;
     }
+
 }

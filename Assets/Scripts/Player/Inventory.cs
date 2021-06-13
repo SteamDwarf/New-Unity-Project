@@ -5,63 +5,43 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Inventory : MonoBehaviour
 {
-    public List<InventoryCell> cells;
-    public List<Image> cellIcons;
+    public List<GameObject> inventoryItemInterface;
+    public List<InventoryCell> inventoryItemsObj;
+    private Color defaultCellColor;
 
-    private int inventorySize;
-    private Color cellColor;
-    //private Regex numKeyCheck;
-
-    /// <summary>
-    /// ƒобавить список предметов, чтобы они уничтожались при использовании
-    /// </summary>
-
+    private void Awake()
+    {
+        inventoryItemInterface = new List<GameObject>(GameObject.FindGameObjectsWithTag("InventoryItem"));
+        defaultCellColor = new Color(204, 153, 74, 0);
+        ClearCells();
+    }
 
     private void Start()
     {
-        //numKeyCheck = new Regex(@"\d");
-        inventorySize = 4;
-        GetCellsIcons();
-        ClearCells();
-        cellColor = cellIcons[0].color;
+
     }
 
     private void Update()
     {
-        UseCell();
+        /*itemImage.color = Color.red;
+        countItemText.text = 9.ToString();*/
     }
 
-    private void GetCellsIcons()
+    private void ClearCells()
     {
-        for (int i = 0; i < inventorySize; i++)
+        for (int i = 0; i < inventoryItemInterface.Count; i++)
         {
-            cellIcons.Add(GameObject.Find($"item_{i + 1}").GetComponent<Image>());
-        }
-    }
-
-    private void AddItem(int idCell, int idItem, GameObject item, Sprite sprite)
-    {
-        cells[idCell].idItem = idItem;
-        cells[idCell].item = item;
-        cells[idCell].countItem++;
-        cellIcons[idCell].sprite = sprite;
-        cellIcons[idCell].color = Color.white;
-        cellIcons[idCell].GetComponentInChildren<TextMeshProUGUI>().text = cells[idCell].countItem.ToString();
-    }
-
-    private void UseItem(int idCell)
-    {
-        cells[idCell].countItem--;
-        cellIcons[idCell].GetComponentInChildren<TextMeshProUGUI>().text = cells[idCell].countItem.ToString();
-
-        if (cells[idCell].countItem == 0)
-        {
-            cells[idCell].idItem = 0;
-            cells[idCell].item = null;
-            cellIcons[idCell].sprite = null;
-            cellIcons[idCell].color = cellColor;
+            inventoryItemInterface[i].GetComponent<Image>().color = defaultCellColor;
+            inventoryItemInterface[i].GetComponentInChildren<TextMeshProUGUI>().text = 0.ToString();
+            inventoryItemsObj[i].countItem = 0;
+            inventoryItemsObj[i].description = "";
+            inventoryItemsObj[i].idItem = 0;
+            inventoryItemsObj[i].item = null;
+            inventoryItemsObj[i].itemName = "";
+            inventoryItemsObj[i].sprite = null;
         }
     }
 
@@ -70,9 +50,9 @@ public class Inventory : MonoBehaviour
         Sprite sprite = item.GetComponent<SpriteRenderer>().sprite;
         int idItem = item.GetComponent<Item>().id;
 
-        for (int i = 0; i < cells.Count; i++)
+        for (int i = 0; i < inventoryItemsObj.Count; i++)
         {
-            if (cells[i].countItem == 0 || cells[i].idItem == idItem)
+            if (inventoryItemsObj[i].countItem == 0 || inventoryItemsObj[i].idItem == idItem)
             {
                 AddItem(i, idItem, item, sprite);
                 break;
@@ -81,55 +61,14 @@ public class Inventory : MonoBehaviour
 
     }
 
-    private void ClearCells()
+    private void AddItem(int idCell, int idItem, GameObject item, Sprite sprite)
     {
-        for (int i = 0; i < inventorySize; i++)
-        {
-            cells[i].countItem = 0;
-            cells[i].item = null;
-            cells[i].idItem = 0;
-            cellIcons[i].sprite = null;
-            cellIcons[i].color = cellColor;
-        }
+        inventoryItemsObj[idCell].idItem = idItem;
+        inventoryItemsObj[idCell].item = item;
+        inventoryItemsObj[idCell].countItem++;
+        inventoryItemInterface[idCell].GetComponent<Image>().sprite = sprite;
+        inventoryItemInterface[idCell].GetComponent<Image>().color = Color.white;
+        inventoryItemInterface[idCell].GetComponentInChildren<TextMeshProUGUI>().text = inventoryItemsObj[idCell].countItem.ToString();
     }
-
-    private void UseCell()
-    {
-        int cellInd;
-
-        if (Input.GetKeyDown("1"))
-            cellInd = 0;
-        else if (Input.GetKeyDown("2"))
-            cellInd = 1;
-        else if (Input.GetKeyDown("3"))
-            cellInd = 2;
-        else if (Input.GetKeyDown("4"))
-            cellInd = 3;
-        else
-        {
-            return;
-        }
-
-        if (cells[cellInd].countItem > 0)
-        {
-            if (cells[cellInd].item.CompareTag("Potion"))
-            {
-                Potion potion = cells[cellInd].item.GetComponent<Potion>();
-                potion.GetEffect();
-                /*cells[cellInd].countItem--;
-
-                if(cells[cellInd].countItem == 0)
-                {
-                    cells[cellInd].item = null;
-                    cellIcons[cellInd].sprite = null;
-                    cellIcons[cellInd].color = cellColor;
-
-                }*/
-
-                UseItem(cellInd);
-            }
-        }
-    }
-
 
 }

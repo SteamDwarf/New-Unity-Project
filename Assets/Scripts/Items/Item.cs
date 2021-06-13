@@ -16,6 +16,8 @@ public class Item : MonoBehaviour
     {
         if(collision.CompareTag("Player") && !isPicked)
         {
+            //HotBar hotBar = collision.GetComponent<HotBar>();
+            // hotBar.GetItem(this.gameObject);
             Inventory inventory = collision.GetComponent<Inventory>();
             inventory.GetItem(this.gameObject);
             this.gameObject.SetActive(false);
