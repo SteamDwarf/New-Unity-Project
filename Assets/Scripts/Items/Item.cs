@@ -6,6 +6,7 @@ public class Item : MonoBehaviour
 {
     public int id;
     private bool isPicked;
+    private Inventory inventory;
 
     protected void Start()
     {
@@ -18,7 +19,8 @@ public class Item : MonoBehaviour
         {
             //HotBar hotBar = collision.GetComponent<HotBar>();
             // hotBar.GetItem(this.gameObject);
-            Inventory inventory = collision.GetComponent<Inventory>();
+            //Inventory inventory = collision.GetComponent<Inventory>();
+            inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
             inventory.GetItem(this.gameObject);
             this.gameObject.SetActive(false);
             isPicked = true;

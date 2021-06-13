@@ -9,22 +9,18 @@ public class InventoryCellScript : MonoBehaviour
     [SerializeField] private GameObject useBtn;
     [SerializeField] private GameObject descriptionBtn;
     [SerializeField] private GameObject dropBtn;
+    [SerializeField] private int cellId;
 
+    private Inventory inventory;
     private bool contextMenuShowed = false;
-    
+
+    private void Start()
+    {
+        inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
+    }
 
     public void ShowContextMenu()
     {
-        if (!contextMenuShowed)
-        {
-            contextMenu.SetActive(true);
-            contextMenuShowed = true;
-        }
-        else
-        {
-            contextMenu.SetActive(false);
-            contextMenuShowed = false;
-        }
-           
+        inventory.ShowContextMenu(cellId);
     }
 }
