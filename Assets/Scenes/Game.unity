@@ -339,6 +339,14 @@ PrefabInstance:
       propertyPath: cellId
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_TagString
+      value: InventoryContextMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 5312770269671070596, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -854,7 +862,7 @@ RectTransform:
   m_GameObject: {fileID: 296721760}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.725, y: 0.7125, z: 1}
   m_Children:
   - {fileID: 1124593188}
   - {fileID: 1101171913}
@@ -863,7 +871,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 31.3, y: 37.6}
+  m_AnchoredPosition: {x: 20.2, y: 38.5}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &296721762
@@ -934,7 +942,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296721760}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd9036d64b11a9640a8dfdb69c94d78a, type: 3}
   m_Name: 
@@ -987,6 +995,7 @@ MonoBehaviour:
   - {fileID: 1555420833}
   - {fileID: 8767657}
   - {fileID: 757598738}
+  saveCell_1: {fileID: 0}
 --- !u!225 &296721766
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1008,7 +1017,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2758111045947409972, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2758111045947409972, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -1033,6 +1042,18 @@ PrefabInstance:
     - target: {fileID: 2758111045947409972, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430522922260198265, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: cellId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_TagString
+      value: InventoryContextMenu
       objectReference: {fileID: 0}
     - target: {fileID: 5312770269671070596, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_Pivot.x
@@ -1409,6 +1430,14 @@ PrefabInstance:
       propertyPath: cellId
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_TagString
+      value: InventoryContextMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 5312770269671070596, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1599,6 +1628,14 @@ PrefabInstance:
       propertyPath: cellId
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_TagString
+      value: InventoryContextMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 5312770269671070596, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1779,6 +1816,14 @@ PrefabInstance:
     - target: {fileID: 3430522922260198265, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: cellId
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_TagString
+      value: InventoryContextMenu
       objectReference: {fileID: 0}
     - target: {fileID: 5312770269671070596, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_Pivot.x
@@ -2065,6 +2110,14 @@ PrefabInstance:
       propertyPath: cellId
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_TagString
+      value: InventoryContextMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 5312770269671070596, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2340,6 +2393,14 @@ PrefabInstance:
     - target: {fileID: 3430522922260198265, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: cellId
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_TagString
+      value: InventoryContextMenu
       objectReference: {fileID: 0}
     - target: {fileID: 5312770269671070596, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_Pivot.x
@@ -3243,6 +3304,14 @@ PrefabInstance:
       propertyPath: cellId
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_TagString
+      value: InventoryContextMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 5312770269671070596, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3359,6 +3428,14 @@ PrefabInstance:
     - target: {fileID: 3430522922260198265, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: cellId
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_TagString
+      value: InventoryContextMenu
       objectReference: {fileID: 0}
     - target: {fileID: 5312770269671070596, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_Pivot.x
@@ -4012,6 +4089,14 @@ PrefabInstance:
       propertyPath: cellId
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_TagString
+      value: InventoryContextMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 5312770269671070596, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4444,6 +4529,14 @@ PrefabInstance:
     - target: {fileID: 3430522922260198265, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: cellId
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_TagString
+      value: InventoryContextMenu
       objectReference: {fileID: 0}
     - target: {fileID: 5312770269671070596, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_Pivot.x
@@ -4972,6 +5065,14 @@ PrefabInstance:
     - target: {fileID: 3430522922260198265, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: cellId
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_TagString
+      value: InventoryContextMenu
       objectReference: {fileID: 0}
     - target: {fileID: 5312770269671070596, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_Pivot.x
@@ -5637,6 +5738,14 @@ PrefabInstance:
       propertyPath: cellId
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_TagString
+      value: InventoryContextMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 5312770269671070596, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5814,6 +5923,14 @@ PrefabInstance:
       propertyPath: cellId
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_TagString
+      value: InventoryContextMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 5312770269671070596, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5914,6 +6031,14 @@ PrefabInstance:
     - target: {fileID: 3430522922260198265, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: cellId
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184531202691464710, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
+      propertyPath: m_TagString
+      value: InventoryContextMenu
       objectReference: {fileID: 0}
     - target: {fileID: 5312770269671070596, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_Pivot.x

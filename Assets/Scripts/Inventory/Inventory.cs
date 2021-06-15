@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
@@ -12,15 +14,22 @@ public class Inventory : MonoBehaviour
     public List<InventoryCell> cellObject;
     public List<GameObject> contextMenus;
 
+    public InventoryCell saveCell_1;
+    private InventoryCell saveCell_2;
     private Color defaultCellColor;
     private int showedContextmenu = -1;
+    private int copiedCell = -1;
 
     //При закытии инвентаря все контекстные менюшк должны закрываться
 
-
     private void Awake()
     {
-        //inventoryItemInterface = new List<GameObject>(GameObject.FindGameObjectsWithTag("InventoryItem"));
+        cellInterface = GameObject.FindGameObjectsWithTag("InventoryItem").ToList<GameObject>();
+        contextMenus = GameObject.FindGameObjectsWithTag("InventoryContextMenu").ToList<GameObject>();
+
+        Debug.Log(cellInterface.Count);
+        Debug.Log(contextMenus.Count);
+
 
     }
 
@@ -28,6 +37,9 @@ public class Inventory : MonoBehaviour
     {
         defaultCellColor = new Color(204, 153, 74, 0);
         ClearCells();
+        HideContextMenu();
+        //saveCell_1 = ScriptableObject.CreateInstance<InventoryCell>();
+        //saveCell_2 = ScriptableObject.CreateInstance<InventoryCell>();
     }
 
     private void Update()
@@ -36,18 +48,20 @@ public class Inventory : MonoBehaviour
         countItemText.text = 9.ToString();*/
     }
 
+
     private void ClearCells()
     {
         for (int i = 0; i < cellInterface.Count; i++)
         {
             cellInterface[i].GetComponent<Image>().color = defaultCellColor;
             cellInterface[i].GetComponentInChildren<TextMeshProUGUI>().text = 0.ToString();
-            cellObject[i].countItem = 0;
+            /*cellObject[i].countItem = 0;
             cellObject[i].description = "";
             cellObject[i].idItem = 0;
             cellObject[i].item = null;
             cellObject[i].itemName = "";
-            cellObject[i].sprite = null;
+            cellObject[i].sprite = null;*/
+            cellObject[i].Clear();
         }
     }
 
@@ -72,6 +86,7 @@ public class Inventory : MonoBehaviour
         cellObject[idCell].idItem = idItem;
         cellObject[idCell].item = item;
         cellObject[idCell].countItem++;
+        cellObject[idCell].sprite = sprite;
         cellInterface[idCell].GetComponent<Image>().sprite = sprite;
         cellInterface[idCell].GetComponent<Image>().color = Color.white;
         cellInterface[idCell].GetComponentInChildren<TextMeshProUGUI>().text = cellObject[idCell].countItem.ToString();
@@ -150,4 +165,29 @@ public class Inventory : MonoBehaviour
             potion.GetEffect();
         }
     }
+
+    public void MoveItem(int id)
+    {
+        if(saveCell_1.item == null)
+        {
+            saveCell_1 = cellObject[id].Clone();
+            copiedCell = id;
+        } 
+        else if(saveCell_1.item != null)
+        {
+            cellObject[id] = saveCell_1.Clone();
+            saveCell_1.Clear();
+
+            cellInterface[id].GetComponent<Image>().sprite = cellObject[id].sprite;
+            cellInterface[id].GetComponent<Image>().color = Color.white;
+            cellInterface[id].GetComponentInChildren<TextMeshProUGUI>().text = cellObject[id].countItem.ToString();
+
+            cellObject[copiedCell].Clear();
+            cellInterface[copiedCell].GetComponent<Image>().sprite = null;
+            cellInterface[copiedCell].GetComponent<Image>().color = defaultCellColor;
+            cellInterface[copiedCell].GetComponentInChildren<TextMeshProUGUI>().text = "0";
+
+        }
+    }
+
 }

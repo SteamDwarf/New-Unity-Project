@@ -237,13 +237,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694865263422745704}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd9036d64b11a9640a8dfdb69c94d78a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryItemInterface: []
-  inventoryItemsObj:
+  cellInterface: []
+  cellObject:
   - {fileID: 11400000, guid: 615a7f2530fe30b4da3e64530520c0d5, type: 2}
   - {fileID: 11400000, guid: 174c06573c9fc8147b8f9b0aa3f16b9a, type: 2}
   - {fileID: 11400000, guid: 1cfe7e168ea1892468223cb4049bc220, type: 2}
@@ -259,6 +259,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 432accf0f322ce1448db8fc680f1145c, type: 2}
   - {fileID: 11400000, guid: 6e84421e864023a4c92cbbfecd445322, type: 2}
   - {fileID: 11400000, guid: d0929c43ce582f245920a18272c8f6a1, type: 2}
+  contextMenus: []
+  saveCell_1: {fileID: 0}
 --- !u!1001 &2700617517035678163
 PrefabInstance:
   m_ObjectHideFlags: 0
