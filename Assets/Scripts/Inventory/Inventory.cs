@@ -8,46 +8,37 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour, IMenu
 {
     public List<GameObject> cellInterface;
     public List<InventoryCell> cellObject;
-    public List<GameObject> contextMenus;
 
-    public InventoryCell saveCell_1;
-    private InventoryCell saveCell_2;
+    [SerializeField] private GameObject contextMenu;
+    [SerializeField] private InventoryCell saveCell_1;
+    [SerializeField] private InventoryCell saveCell_2;
+    [SerializeField] private GameObject cellCursorImage;
+
+    private int choosenCellId = -1; 
+    private GameObject currentItem;
+    private Image currentItemImage;
+    private GameObject instantiatedContextMenu;
+    private GameObject instantiatedCursorImage;
     private Color defaultCellColor;
-    private int showedContextmenu = -1;
     private int copiedCell = -1;
-
-    //При закытии инвентаря все контекстные менюшк должны закрываться
 
     private void Awake()
     {
         cellInterface = GameObject.FindGameObjectsWithTag("InventoryItem").ToList<GameObject>();
-        contextMenus = GameObject.FindGameObjectsWithTag("InventoryContextMenu").ToList<GameObject>();
-
-        Debug.Log(cellInterface.Count);
-        Debug.Log(contextMenus.Count);
-
-
+        currentItem = GameObject.FindGameObjectWithTag("CurrentItem");
+        currentItemImage = currentItem.GetComponent<Image>();
     }
 
     private void Start()
     {
         defaultCellColor = new Color(204, 153, 74, 0);
+        currentItem.SetActive(false);
         ClearCells();
-        HideContextMenu();
-        //saveCell_1 = ScriptableObject.CreateInstance<InventoryCell>();
-        //saveCell_2 = ScriptableObject.CreateInstance<InventoryCell>();
     }
-
-    private void Update()
-    {
-        /*itemImage.color = Color.red;
-        countItemText.text = 9.ToString();*/
-    }
-
 
     private void ClearCells()
     {
@@ -55,12 +46,6 @@ public class Inventory : MonoBehaviour
         {
             cellInterface[i].GetComponent<Image>().color = defaultCellColor;
             cellInterface[i].GetComponentInChildren<TextMeshProUGUI>().text = 0.ToString();
-            /*cellObject[i].countItem = 0;
-            cellObject[i].description = "";
-            cellObject[i].idItem = 0;
-            cellObject[i].item = null;
-            cellObject[i].itemName = "";
-            cellObject[i].sprite = null;*/
             cellObject[i].Clear();
         }
     }
@@ -92,102 +77,113 @@ public class Inventory : MonoBehaviour
         cellInterface[idCell].GetComponentInChildren<TextMeshProUGUI>().text = cellObject[idCell].countItem.ToString();
     }
 
-    public void ShowContextMenu(int id)
-    {
-        if (cellObject[id].item == null)
-            return;
-
-        if(!contextMenus[id].activeInHierarchy)
-        {
-            contextMenus[id].SetActive(true);
-            showedContextmenu = id;
-        } 
-        else
-        {
-            contextMenus[id].SetActive(false);
-            showedContextmenu = -1;
-        }
-            
-
-        for (int i = 0; i < contextMenus.Count; i++)
-        {
-            if (i != id)
-            {
-                contextMenus[i].SetActive(false);
-            }
-        }
-    }
 
     public void HideContextMenu()
     {
-        for (int i = 0; i < contextMenus.Count; i++)
-        {
-            contextMenus[i].SetActive(false);
-        }
-
-        showedContextmenu = -1;
+        Destroy(instantiatedContextMenu);
+        choosenCellId = -1;
     }
 
-    public void HideContextMenu(int id)
-    {
-        contextMenus[id].SetActive(false); 
-        showedContextmenu = -1;
-    }
-
-    public void UpdateItemInformation()
-    {
-        if(showedContextmenu == -1)
+    public void CreateContextMenu(int id, Vector2 position) {
+        if(cellObject[id].item == null) {
             return;
-
-        UseItem(showedContextmenu);
-
-        cellObject[showedContextmenu].countItem--;
-        cellInterface[showedContextmenu].GetComponentInChildren<TextMeshProUGUI>().text = cellObject[showedContextmenu].countItem.ToString();
-
-        if (cellObject[showedContextmenu].countItem == 0)
-        {
-            cellObject[showedContextmenu].idItem = 0;
-            cellObject[showedContextmenu].item = null;
-            cellInterface[showedContextmenu].GetComponent<Image>().sprite = null;
-            cellInterface[showedContextmenu].GetComponent<Image>().color = defaultCellColor;
         }
 
-       
-        HideContextMenu(showedContextmenu);
-
+        if(instantiatedContextMenu != null) {
+            Destroy(instantiatedContextMenu);
+        }
+        instantiatedContextMenu = Instantiate(contextMenu, position, Quaternion.identity, cellInterface[id].transform);
+        instantiatedContextMenu.SetActive(true);
+        choosenCellId = id;
     }
 
-    private void UseItem(int id)
-    {
-        if(cellObject[id].item.CompareTag("Potion"))
-        {
-            Potion potion = cellObject[id].item.GetComponent<Potion>();
+    public void UpdateItemInformation() {
+        cellObject[choosenCellId].countItem--;
+        cellInterface[choosenCellId].GetComponentInChildren<TextMeshProUGUI>().text = cellObject[choosenCellId].countItem.ToString();
+
+        if (cellObject[choosenCellId].countItem == 0) {
+            cellObject[choosenCellId].idItem = 0;
+            cellObject[choosenCellId].item = null;
+            cellInterface[choosenCellId].GetComponent<Image>().sprite = null;
+            cellInterface[choosenCellId].GetComponent<Image>().color = defaultCellColor;
+        }
+
+       HideContextMenu();
+    }
+
+    public void UseItem() {
+        
+        if(cellObject[choosenCellId].item.CompareTag("Potion")){
+            Potion potion = cellObject[choosenCellId].item.GetComponent<Potion>();
             potion.GetEffect();
+
+            UpdateItemInformation();
         }
     }
 
-    public void MoveItem(int id)
-    {
-        if(saveCell_1.item == null)
-        {
+    public void MoveItem(int id) {
+        if(cellObject[id].item == null && saveCell_1 == null) {
+            return;
+        }
+
+        if(saveCell_1.item == null) {
             saveCell_1 = cellObject[id].Clone();
             copiedCell = id;
-        } 
-        else if(saveCell_1.item != null)
-        {
-            cellObject[id] = saveCell_1.Clone();
-            saveCell_1.Clear();
+            ShowCurrentItem(saveCell_1.sprite);
 
-            cellInterface[id].GetComponent<Image>().sprite = cellObject[id].sprite;
+        } else if(saveCell_1.item != null && cellObject[id].item != null) {
+
+            saveCell_2 = cellObject[id].Clone();
+            cellObject[id] = saveCell_1.Clone();
+            cellObject[copiedCell] = saveCell_2.Clone();
+
+            cellInterface[id].GetComponent<Image>().sprite = saveCell_1.sprite;
+            cellInterface[copiedCell].GetComponent<Image>().sprite = saveCell_2.sprite;
             cellInterface[id].GetComponent<Image>().color = Color.white;
-            cellInterface[id].GetComponentInChildren<TextMeshProUGUI>().text = cellObject[id].countItem.ToString();
+            cellInterface[copiedCell].GetComponent<Image>().color = Color.white;
+            cellInterface[id].GetComponentInChildren<TextMeshProUGUI>().text = saveCell_1.countItem.ToString();
+            cellInterface[copiedCell].GetComponentInChildren<TextMeshProUGUI>().text = saveCell_2.countItem.ToString();
+
+            saveCell_1.Clear();
+            saveCell_2.Clear();
+            copiedCell = -1;
+            HideCurrentItem();
+
+        } else if(saveCell_1.item != null && cellObject[id].item == null) {
+            cellObject[id] = saveCell_1.Clone();
+
+            cellInterface[id].GetComponent<Image>().sprite = saveCell_1.sprite;
+            cellInterface[id].GetComponent<Image>().color = Color.white;
+            cellInterface[id].GetComponentInChildren<TextMeshProUGUI>().text = saveCell_1.countItem.ToString();
 
             cellObject[copiedCell].Clear();
             cellInterface[copiedCell].GetComponent<Image>().sprite = null;
             cellInterface[copiedCell].GetComponent<Image>().color = defaultCellColor;
             cellInterface[copiedCell].GetComponentInChildren<TextMeshProUGUI>().text = "0";
 
+            saveCell_1.Clear();
+            copiedCell = -1;
+            HideCurrentItem();
         }
     }
 
+    public void CloseMenu() {
+        HideContextMenu();
+        saveCell_1.Clear();
+        saveCell_2.Clear();
+        copiedCell = -1;
+    }
+
+    private void ShowCurrentItem(Sprite sprite) {
+        Vector4 color = new Vector4(255,255,255,1);
+        currentItem.SetActive(true);
+        currentItemImage.sprite = sprite;
+        currentItemImage.color = color;
+    }
+    private void HideCurrentItem() {
+        Vector4 color = new Vector4(255,255,255,0);
+        currentItemImage.sprite = null;
+        currentItemImage.color = color;
+        currentItem.SetActive(false);
+    }
 }

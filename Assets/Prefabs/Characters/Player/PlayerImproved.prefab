@@ -259,8 +259,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 432accf0f322ce1448db8fc680f1145c, type: 2}
   - {fileID: 11400000, guid: 6e84421e864023a4c92cbbfecd445322, type: 2}
   - {fileID: 11400000, guid: d0929c43ce582f245920a18272c8f6a1, type: 2}
-  contextMenus: []
-  saveCell_1: {fileID: 0}
+  contextMenu: {fileID: 1515044098465517477, guid: 1474b8624ce9b8343be93ea6708d6b63, type: 3}
+  saveCell_1: {fileID: 11400000, guid: f249c73d77b49a248a5ccad1f29c3d07, type: 2}
+  saveCell_2: {fileID: 11400000, guid: 99a67f7501e629040b75440955a4969d, type: 2}
+  cellCursorImage: {fileID: 4933392678757091848, guid: ea8d111aa41f73a42adccc6cf350e379, type: 3}
+  defaultCellColor: {r: 0.8, g: 0.6, b: 0.2901961, a: 0}
 --- !u!1001 &2700617517035678163
 PrefabInstance:
   m_ObjectHideFlags: 0

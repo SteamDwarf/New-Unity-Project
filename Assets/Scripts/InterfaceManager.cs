@@ -6,9 +6,8 @@ public class InterfaceManager : MonoBehaviour
 {
     private GameObject inventory;
     private GameObject pauseMenu;
-    /*private CanvasGroup inventory;
-    private CanvasGroup pauseMenu;*/
     private GameManager gm;
+    private Inventory inventoryScript;
     private bool inventoryShowed = false;
     private bool pauseMenuShowed = false;
 
@@ -28,7 +27,7 @@ public class InterfaceManager : MonoBehaviour
     }
 
 
-    //При закытии инвентаря все контекстные менюшк должны закрываться
+    //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 
     void Update()
@@ -51,7 +50,10 @@ public class InterfaceManager : MonoBehaviour
             if (pauseMenuShowed)
                 return;
 
-            ShowHideMenu(inventory, ref inventoryShowed);
+            if(inventoryScript == null) {
+                inventoryScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+            }
+            ShowHideMenu(inventory, ref inventoryShowed, inventoryScript);
         }   
     }
 
@@ -70,6 +72,25 @@ public class InterfaceManager : MonoBehaviour
             menuStatus = false;
             gm.isPaused = false;
             menu.SetActive(false);
+            /*menu.alpha = 0;
+            menu.interactable = false;*/
+        }
+    }
+    private void ShowHideMenu(GameObject menu, ref bool menuStatus, IMenu menuInterface)
+    {
+        if(!menuStatus)
+        {
+            menuStatus = true;
+            gm.isPaused = true;
+            menu.SetActive(true);
+            /*menu.alpha = 1;
+            menu.interactable = true;*/
+        } else
+        {
+            menuStatus = false;
+            gm.isPaused = false;
+            menu.SetActive(false);
+            menuInterface.CloseMenu();
             /*menu.alpha = 0;
             menu.interactable = false;*/
         }
