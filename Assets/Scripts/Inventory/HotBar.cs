@@ -15,7 +15,7 @@ public class HotBar : MonoBehaviour
     //private Regex numKeyCheck;
 
     /// <summary>
-    /// Добавить список предметов, чтобы они уничтожались при использовании
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
 
 
@@ -115,7 +115,7 @@ public class HotBar : MonoBehaviour
             if (cells[cellInd].item.CompareTag("Potion"))
             {
                 Potion potion = cells[cellInd].item.GetComponent<Potion>();
-                potion.GetEffect();
+                potion.UseItem();
                 /*cells[cellInd].countItem--;
 
                 if(cells[cellInd].countItem == 0)

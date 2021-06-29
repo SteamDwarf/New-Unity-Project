@@ -18,7 +18,8 @@ public class Potion : Item
         base.Start();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
-    public void GetEffect()
+
+    public override void UseItem()
     {
         switch (type)
         {

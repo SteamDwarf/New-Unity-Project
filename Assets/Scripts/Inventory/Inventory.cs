@@ -115,7 +115,7 @@ public class Inventory : MonoBehaviour, IMenu
         
         if(cellObject[choosenCellId].item.CompareTag("Potion")){
             Potion potion = cellObject[choosenCellId].item.GetComponent<Potion>();
-            potion.GetEffect();
+            potion.UseItem();
 
             UpdateItemInformation();
         }

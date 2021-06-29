@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public abstract class Item : MonoBehaviour
 {
     public int id;
     private bool isPicked;
@@ -26,4 +26,6 @@ public class Item : MonoBehaviour
             isPicked = true;
         }
     }
+
+    public abstract void UseItem();
 }
