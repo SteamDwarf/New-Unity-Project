@@ -16,6 +16,7 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
     private DungeonGenerator DG;
+    private MapDrawer mapDrawer;
     GameObject gameManager;
     Collider2D enemyCollider;
     protected EnemyAnimator anim;
@@ -78,8 +79,10 @@ public class Enemy : MonoBehaviour
         seeker = GetComponent<Seeker>();
         DG = gameManager.GetComponent<DungeonGenerator>();
         GM = gameManager.GetComponent<GameManager>();
+        mapDrawer = gameManager.GetComponent<MapDrawer>();
         enemyCollider = gameObject.GetComponent<Collider2D>();
         sortGr = GetComponent<SortingGroup>();
+        mapk = mapDrawer.GetMapScaler();
 
         startPosition = transform.position;
         agroRange = 4 * mapk;

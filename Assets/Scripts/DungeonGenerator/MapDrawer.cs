@@ -95,12 +95,7 @@ public class MapDrawer : MonoBehaviour
                         spawnedEnemies.Add(hardEnemies[enemyInd]);
                     }
                     
-                    //Vector2Int spawnPoint = new Vector2Int(x, y);
                     GameObject enemyToInst = Instantiate(enemy, new Vector3(x * mapk, y * mapk, 0), Quaternion.identity);
-                    //MapManager.map[x, y].enemy = enemyToInst;
-                    
-                    //GameObject enemy = MapManager.map[x, y].enemy;
-
                 }
 
 
@@ -121,11 +116,13 @@ public class MapDrawer : MonoBehaviour
                     }
 
                     GameObject potionToInst = Instantiate(potion, new Vector3(x * mapk, y * mapk, 0), Quaternion.identity);
-
-                    //MapManager.map[x, y].item = potionToInst;
                     spawnedPotions.Add(potion);
                 }
             }
         }
+    }
+
+    public float GetMapScaler() {
+        return mapk;
     }
 }

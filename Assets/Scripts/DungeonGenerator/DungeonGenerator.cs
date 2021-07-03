@@ -8,7 +8,6 @@ public class DungeonGenerator : MonoBehaviour
     private MapDrawer MD;
     private GameManager GM;
     private Map map;
-    //private new CameraScript camera;
 
     [SerializeField] private int mapWidth;
     [SerializeField] private int mapHeight;
@@ -28,21 +27,13 @@ public class DungeonGenerator : MonoBehaviour
     [SerializeField] private int maxPotionInRoom;
     [SerializeField] private int minPotionInRoom;
 
-    private int aliveEnemiesCount;
+    public int aliveEnemiesCount {get; private set;}
     private int countFeatures;
-
-    //public float mapk;
 
     public List<Feature> allFeatures;
     public List<Feature> allRooms;
 
     public Vector2Int playerSpawnCordinates;
-
-    //public GameObject playerPrefab;
-    /*public GameObject playerPrefab;
-    public GameObject wallPrefab;
-    public Transform mapTransform;
-    public List<GameObject> floorPrefab;*/
 
 
     public void InitializeDungeon()
@@ -55,8 +46,6 @@ public class DungeonGenerator : MonoBehaviour
 
         allFeatures = new List<Feature>();
         allRooms = new List<Feature>();
-        //mapk = MD.mapk;
-        //camera = GetComponent<CameraScript>();
     }
 
     public void GenerateDungeon()
@@ -150,17 +139,7 @@ public class DungeonGenerator : MonoBehaviour
 
         Feature feature = new Feature(featureWidth, featureHeight, type);
         //Создаем помещение
-   /*      Feature room = new Feature();
-        room.positions = new List<Vector2Int>();
-
-        int roomWidth = 0;
-        int roomHeight = 0; */
-
-
-
         //В зависимости от типа помещения определяем длину и высоту
-        
-
         //Определяем начальные точки генерации помещения
 
 
@@ -235,16 +214,11 @@ public class DungeonGenerator : MonoBehaviour
         }
 
         //Создаются стены
-        //room.walls = new Wall[4];
-
         for (int i = 0; i < feature.walls.Length; i++)
         {
             Wall newWall;
             int wallLength = 0;
             WallDirection wallDirection = WallDirection.south;
-            //feature.walls[i] = new Wall();
-            //room.walls[i].positions = new List<Vector2Int>();
-            //room.walls[i].length = 0;
 
             //Для каждой стены указываются направления
             switch (i)
@@ -285,33 +259,25 @@ public class DungeonGenerator : MonoBehaviour
                 feature.SetPosition(position);
 
                 //В карту передаем координаты тайла комнаты
-/*                 MapManager.map[position.x, position.y] = new Tile();
-                MapManager.map[position.x, position.y].xPosition = position.x;
-                MapManager.map[position.x, position.y].yPosition = position.y;
- */
                 //В карту передается тип тайла комнаты
                 if (y == 0)
                 {
                     feature.walls[0].SetPosition(position);
-                    //room.walls[0].length++;
                     tileType = TileType.wall;
                 }
                 if (y == (featureHeight - 1))
                 {
                     feature.walls[1].SetPosition(position);
-                    //room.walls[1].length++;
                     tileType = TileType.wall;
                 }
                 if (x == 0)
                 {
                     feature.walls[2].SetPosition(position);
-                    //room.walls[2].length++;
                     tileType = TileType.wall;
                 }
                 if (x == (featureWidth - 1))
                 {
                     feature.walls[3].SetPosition(position);
-                    //room.walls[3].length++;
                     tileType = TileType.wall;
                 }
                 if (tileType != TileType.wall)
@@ -421,17 +387,7 @@ public class DungeonGenerator : MonoBehaviour
             {
                 playerSpawnCordinates = cordinates;
                 map.map[cordinates.x, cordinates.y].SpawnPlayer();
-                //room.hasPlayer = true;
-                //camera.MoveCamera(new Vector2(cordinates.x, cordinates.y));
                 break;
-
-                /*playerSpawnCordinates = cordinates;
-                GameObject player = GameObject.Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-                player.GetComponent<PlayerMovement>().playerPosition = cordinates;
-                MapManager.map[cordinates.x, cordinates.y].hasPlayer = true;
-                room.hasPlayer = true;
-                GetComponent<GameManager>().player = player.GetComponent<PlayerMovement>();
-                */
             }
         }
     }
@@ -447,7 +403,6 @@ public class DungeonGenerator : MonoBehaviour
             {
                 int tileInd = Random.Range(0, room.positions.Count - 1);
                 int typeEnemy = Random.Range(0, 5);
-                //int enemyInd = Random.Range(0, enemies.Count);
 
                 Vector2Int spawnPoint = room.positions[tileInd];
 
@@ -458,8 +413,6 @@ public class DungeonGenerator : MonoBehaviour
                 else
                 {
                     EnemyType enemy = EnemyType.simpleEnemy;
-                    //map.map[spawnPoint.x, spawnPoint.y].SpawnEnemy();
-                    //spawnedEnemies.Add(enemies[enemyInd]);
 
                     if (typeEnemy == 4 && room.enemyInRoom >= 2)
                     {
@@ -480,8 +433,6 @@ public class DungeonGenerator : MonoBehaviour
                 }
             }
         }
-
-        //GM.aliveEnemies = aliveEnemiesCount;
     }
 
     public void SpawnPotions()
