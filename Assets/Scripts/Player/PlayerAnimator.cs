@@ -52,6 +52,7 @@ public class PlayerAnimator : MonoBehaviour
         isDied = false;
         prevFaceTo = faceTo;
         curAnimator = playerFrontAnim;
+
     }
 
     private void FixedUpdate()

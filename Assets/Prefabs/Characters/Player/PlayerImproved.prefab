@@ -50,7 +50,6 @@ GameObject:
   - component: {fileID: 1072617321315262203}
   - component: {fileID: 1946505139924328582}
   - component: {fileID: -4435130541680791243}
-  - component: {fileID: -2129945437372902831}
   - component: {fileID: -5484256254140618891}
   m_Layer: 0
   m_Name: PlayerImproved
@@ -149,6 +148,8 @@ MonoBehaviour:
   isDied: 0
   act: 
   animIsBlocked: 0
+  animations:
+  - {fileID: 11400000, guid: c47206bf03bb795449a0a7a37244f65d, type: 2}
 --- !u!61 &1072617321315262203
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -212,24 +213,6 @@ SortingGroup:
   m_SortingLayerID: 839852155
   m_SortingLayer: 6
   m_SortingOrder: 0
---- !u!114 &-2129945437372902831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1694865263422745704}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50a7e80b3abb72b4495819e80de4708c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cells:
-  - {fileID: 11400000, guid: 615a7f2530fe30b4da3e64530520c0d5, type: 2}
-  - {fileID: 11400000, guid: 174c06573c9fc8147b8f9b0aa3f16b9a, type: 2}
-  - {fileID: 11400000, guid: 1cfe7e168ea1892468223cb4049bc220, type: 2}
-  - {fileID: 11400000, guid: c4bac54f8ff5bf245b141c809497f851, type: 2}
-  cellIcons: []
 --- !u!114 &-5484256254140618891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,7 +246,6 @@ MonoBehaviour:
   saveCell_1: {fileID: 11400000, guid: f249c73d77b49a248a5ccad1f29c3d07, type: 2}
   saveCell_2: {fileID: 11400000, guid: 99a67f7501e629040b75440955a4969d, type: 2}
   cellCursorImage: {fileID: 4933392678757091848, guid: ea8d111aa41f73a42adccc6cf350e379, type: 3}
-  defaultCellColor: {r: 0.8, g: 0.6, b: 0.2901961, a: 0}
 --- !u!1001 &2700617517035678163
 PrefabInstance:
   m_ObjectHideFlags: 0

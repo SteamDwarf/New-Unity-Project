@@ -105,12 +105,14 @@ public class DungeonGenerator : MonoBehaviour
 
     void GenerateFeature(string type, Wall wall, bool isFirst = false)
     {
+        //Создаем помещение
         Feature room = new Feature();
         room.positions = new List<Vector2Int>();
 
         int roomWidth = 0;
         int roomHeight = 0;
 
+        //В зависимости от типа помещения определяем длину и высоту
         if (type == "Room")
         {
             roomWidth = Random.Range(widthMinRoom, widthMaxRoom);
@@ -140,6 +142,7 @@ public class DungeonGenerator : MonoBehaviour
             }
         }
 
+        //Определяем начальные точки генерации помещения
         int xStartingPoint;
         int yStartingPoint;
 
@@ -160,6 +163,7 @@ public class DungeonGenerator : MonoBehaviour
 
         Vector2Int lastWallPosition = new Vector2Int(xStartingPoint, yStartingPoint);
 
+        //Также в зависимости от того первая это помещение или нет, сдвигаем на определенное расстояние
         if (isFirst)
         {
             xStartingPoint -= Random.Range(1, roomWidth);
@@ -192,11 +196,13 @@ public class DungeonGenerator : MonoBehaviour
             }
         }
 
+        //Проверка на границу карты
         if (!CheckIfHasSpace(new Vector2Int(xStartingPoint, yStartingPoint), new Vector2Int(xStartingPoint + roomWidth - 1, yStartingPoint + roomHeight - 1)))
         {
             return;
         }
 
+        //Создаются стены
         room.walls = new Wall[4];
 
         for (int i = 0; i < room.walls.Length; i++)
@@ -205,6 +211,7 @@ public class DungeonGenerator : MonoBehaviour
             room.walls[i].positions = new List<Vector2Int>();
             room.walls[i].length = 0;
 
+            //Для каждой стены указываются направления
             switch (i)
             {
                 case 0:
@@ -226,16 +233,19 @@ public class DungeonGenerator : MonoBehaviour
         {
             for (int x = 0; x < roomWidth; x++)
             {
+                //Заполняется список координат комнаты
                 Vector2Int position = new Vector2Int();
                 position.x = xStartingPoint + x;
                 position.y = yStartingPoint + y;
 
                 room.positions.Add(position);
 
+                //В карту передаем координаты тайла комнаты
                 MapManager.map[position.x, position.y] = new Tile();
                 MapManager.map[position.x, position.y].xPosition = position.x;
                 MapManager.map[position.x, position.y].yPosition = position.y;
 
+                //В карту передается тип тайла комнаты
                 if (y == 0)
                 {
                     room.walls[0].positions.Add(position);
@@ -267,6 +277,7 @@ public class DungeonGenerator : MonoBehaviour
             }
         }
 
+        //В карту передается тип двери комнаты
         if (!isFirst)
         {
             MapManager.map[lastWallPosition.x, lastWallPosition.y].type = "Floor";

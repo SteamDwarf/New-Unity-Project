@@ -60,11 +60,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0daa1d40a075c439d85a393a575af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contextMenu: {fileID: 0}
-  useBtn: {fileID: 0}
-  descriptionBtn: {fileID: 0}
-  dropBtn: {fileID: 0}
   cellId: 2
+  cellType: 0
 --- !u!114 &2758111045947409972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5956683845410548991, guid: 0ffdec227d2aeaf4fb38d4262fde4d1b, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 59.0103
+      value: 49.8768
       objectReference: {fileID: 0}
     - target: {fileID: 5956683845410548991, guid: 0ffdec227d2aeaf4fb38d4262fde4d1b, type: 3}
       propertyPath: m_SizeDelta.y
@@ -281,7 +278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5956683845410548991, guid: 0ffdec227d2aeaf4fb38d4262fde4d1b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.1842
+      value: 0.2578
       objectReference: {fileID: 0}
     - target: {fileID: 5956683845410548991, guid: 0ffdec227d2aeaf4fb38d4262fde4d1b, type: 3}
       propertyPath: m_AnchoredPosition.y

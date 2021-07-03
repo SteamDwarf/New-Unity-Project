@@ -21,6 +21,7 @@ TagManager:
   - InventoryItem
   - Inventory
   - CurrentItem
+  - HotbarItem
   layers:
   - Default
   - TransparentFX

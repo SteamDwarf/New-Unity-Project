@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    //////////////////Интерактивные методы////////////////////
+    //////////////////пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ////////////////////
 
     private void Move()
     {
@@ -214,7 +214,7 @@ public class Player : MonoBehaviour
 
 
 
-    ////////////////////////Корутины////////////////////////////////
+    ////////////////////////пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ////////////////////////////////
 
     private IEnumerator Attacking()
     {
@@ -226,7 +226,6 @@ public class Player : MonoBehaviour
 
     private IEnumerator Blocking()
     {
-        Debug.Log("Блок");
         anim.isActing = true;
         anim.act = "Block";
         yield return new WaitForSeconds(0.5f);
@@ -287,7 +286,7 @@ public class Player : MonoBehaviour
     ////////////////////////////////////////////////////////////
 
 
-    ////////////////Взаимодействие с интерфейсом////////////////
+    ////////////////пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ////////////////
 
     private void StatBarChange()
     {
@@ -338,7 +337,7 @@ public class Player : MonoBehaviour
 
 
 
-    ///////////////// Работа с аттрибутами ///////////////////////
+    ///////////////// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ///////////////////////
     private void StaminaRefresh()
     {
         if (stamina.curValue < stamina.curMaxValue)
@@ -392,8 +391,6 @@ public class Player : MonoBehaviour
 
     public void GetContiniousEffect(float increase, float time, typeEnum effect)
     {
-        Debug.Log("Заюзал зелье");
-
         switch (effect)
         {
             case typeEnum.strength:
@@ -436,7 +433,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    //СДЕЛАТЬ НОРМАЛЬНЫЙ МЕНЕДЖМЕНТ ЭФФЕКТОВ
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     /*public void ChangeSpeed(float speedMultiplier)
     {
@@ -450,7 +447,7 @@ public class Player : MonoBehaviour
 
         if (isDefending)
         {
-            // Debug.Log("Игрок защищается");
+            // Debug.Log("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
             float staminaSub = damage * 10;
             if (staminaSub > stamina.curValue)
             {
@@ -493,7 +490,7 @@ public class Player : MonoBehaviour
 
 
 
-    ////////////////Пассивное взаимодействие///////////////////////
+    ////////////////пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ///////////////////////
     void NoiseFOVCheck(int x, int y)
     {
         for (int i = -4; i <= 4; i++)
@@ -516,7 +513,7 @@ public class Player : MonoBehaviour
                         //enemy.sawPlayer = true;
                         //enemy.currentPlayerPosition = transform.position;
                         //enemy.savedPlayerPosition = transform.position;
-                        //Debug.Log("Тут враг");
+                        //Debug.Log("пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ");
 
                     }
                 }
@@ -540,7 +537,7 @@ public class Player : MonoBehaviour
     //////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////
 
-    //////////////////// Методы для тестирования /////////////////////
+    //////////////////// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ /////////////////////
 
     private void RefreshScripObj()
     {

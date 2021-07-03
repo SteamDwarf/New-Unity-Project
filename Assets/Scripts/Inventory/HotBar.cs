@@ -24,7 +24,7 @@ public class HotBar : MonoBehaviour
         //numKeyCheck = new Regex(@"\d");
         inventorySize = 4;
         GetCellsIcons();
-        ClearCells();
+        //ClearCells();
         cellColor = cellIcons[0].color;
     }
 
@@ -41,7 +41,7 @@ public class HotBar : MonoBehaviour
         }
     }
 
-    private void AddItem(int idCell, int idItem, GameObject item, Sprite sprite)
+    /* private void AddItem(int idCell, int idItem, GameObject item, Sprite sprite)
     {
         cells[idCell].idItem = idItem;
         cells[idCell].item = item;
@@ -49,9 +49,9 @@ public class HotBar : MonoBehaviour
         cellIcons[idCell].sprite = sprite;
         cellIcons[idCell].color = Color.white;
         cellIcons[idCell].GetComponentInChildren<TextMeshProUGUI>().text = cells[idCell].countItem.ToString();
-    }
+    } */
 
-    private void UseItem(int idCell)
+   /*  private void UseItem(int idCell)
     {
         cells[idCell].countItem--;
         cellIcons[idCell].GetComponentInChildren<TextMeshProUGUI>().text = cells[idCell].countItem.ToString();
@@ -64,8 +64,8 @@ public class HotBar : MonoBehaviour
             cellIcons[idCell].color = cellColor;
         }
     }
-
-    public void GetItem(GameObject item)
+ */
+    /* public void GetItem(GameObject item)
     {
         Sprite sprite = item.GetComponent<SpriteRenderer>().sprite;
         int idItem = item.GetComponent<Item>().id;
@@ -79,9 +79,9 @@ public class HotBar : MonoBehaviour
             }
         }
 
-    }
+    } */
 
-    private void ClearCells()
+    /* private void ClearCells()
     {
         for (int i = 0; i < inventorySize; i++)
         {
@@ -91,7 +91,7 @@ public class HotBar : MonoBehaviour
             cellIcons[i].sprite = null;
             cellIcons[i].color = cellColor;
         }
-    }
+    } */
 
     private void UseCell()
     {
@@ -126,7 +126,7 @@ public class HotBar : MonoBehaviour
 
                 }*/
 
-                UseItem(cellInd);
+                //UseItem(cellInd);
             }
         }
     }

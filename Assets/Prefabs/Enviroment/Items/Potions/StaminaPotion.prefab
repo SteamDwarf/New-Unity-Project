@@ -114,6 +114,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 3
+  description: 
+  itemName: 
+  count: 1
   increase: 2
   timeEffect: 1
   type: 2
