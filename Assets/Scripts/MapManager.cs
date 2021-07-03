@@ -3,7 +3,7 @@ using System; // So the script can use the serialization commands
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapManager 
+/* public class MapManager 
 {
     public static Tile[,] map; // the 2-dimensional map with the information for all the tiles
 }
@@ -45,4 +45,4 @@ public class Feature
     public bool hasPlayer = false;
     public int enemyInRoom = 0;
     public int potionInRoom = 0;
-}
+} */

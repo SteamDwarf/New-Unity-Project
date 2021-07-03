@@ -87,9 +87,9 @@ public class Player : MonoBehaviour
         MD = gameManager.GetComponent<MapDrawer>();
         dungeon = gameManager.GetComponent<DungeonGenerator>();
 
-        mapk = MD.mapk;
-        mapWidth = dungeon.mapWidth;
-        mapHeight = dungeon.mapHeight;
+        //mapk = MD.mapk;
+/*         mapWidth = dungeon.mapWidth;
+        mapHeight = dungeon.mapHeight; */
         damage = strength.curValue + weaponDamage;
         defence = 1;
         staminaPerAttack = 30;
@@ -153,12 +153,12 @@ public class Player : MonoBehaviour
 
             prevX = Mathf.FloorToInt(rB.position.x / mapk + 0.5f);
             prevY = Mathf.FloorToInt(rB.position.y / mapk + 0.5f);
-            MapManager.map[prevX, prevY].hasPlayer = false;
+            //MapManager.map[prevX, prevY].hasPlayer = false;
             //Debug.Log(MapManager.map[prevX, prevY].hasPlayer);
             rB.MovePosition(rB.position + moveVelocity * Time.deltaTime);
             curX = Mathf.FloorToInt(rB.position.x / mapk + 0.5f);
             curY = Mathf.FloorToInt(rB.position.y / mapk + 0.5f);
-            MapManager.map[curX, curY].hasPlayer = true;
+            //MapManager.map[curX, curY].hasPlayer = true;
             //Debug.Log(MapManager.map[curX, curY].hasPlayer);
         }
         else
@@ -491,39 +491,6 @@ public class Player : MonoBehaviour
 
 
     ////////////////��������� ��������������///////////////////////
-    void NoiseFOVCheck(int x, int y)
-    {
-        for (int i = -4; i <= 4; i++)
-        {
-            for (int j = -4; j <= 4; j++)
-            {
-                if (x + i < 0 || x + i > mapWidth)
-                    break;
-                if (y + j < 0 || y + j > mapHeight)
-                    continue;
-
-                int xCord = x + i;
-                int yCord = y + j;
-                try
-                {
-                    if (MapManager.map[xCord, yCord].hasEnemy == true)
-                    {
-                        Enemy enemy = MapManager.map[xCord, yCord].enemy.GetComponent<Enemy>();
-                        enemy.SawPlayer(transform.position);
-                        //enemy.sawPlayer = true;
-                        //enemy.currentPlayerPosition = transform.position;
-                        //enemy.savedPlayerPosition = transform.position;
-                        //Debug.Log("��� ����");
-
-                    }
-                }
-                catch (System.Exception)
-                {
-                    continue;
-                }
-            }
-        }
-    }
 
     private void ConnectWithDoor(Collider2D collision)
     {

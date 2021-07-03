@@ -25,10 +25,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(aliveEnemies <= 0)
+/*         if(aliveEnemies <= 0)
         {
             SceneManager.LoadScene(3);
-        }
+        } */
 
         /*if (isPaused)
             pauseMenu.SetActive(true);

@@ -81,7 +81,6 @@ public class Enemy : MonoBehaviour
         enemyCollider = gameObject.GetComponent<Collider2D>();
         sortGr = GetComponent<SortingGroup>();
 
-        mapk = DG.mapk;
         startPosition = transform.position;
         agroRange = 4 * mapk;
         speed = defaultSpeed;
@@ -276,16 +275,7 @@ public class Enemy : MonoBehaviour
             rB.AddForce(force);
             //Flip();
 
-            xCord = Mathf.FloorToInt(transform.position.x / mapk + 0.5f);
-            yCord = Mathf.FloorToInt(transform.position.y / mapk + 0.5f);
-            MapManager.map[xCord, yCord].hasEnemy = false;
-            MapManager.map[xCord, yCord].enemy = null;
-            transform.position = rB.position;
-            //transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
-            xCord = Mathf.FloorToInt(transform.position.x / mapk + 0.5f);
-            yCord = Mathf.FloorToInt(transform.position.y / mapk + 0.5f);
-            MapManager.map[xCord, yCord].hasEnemy = true;
-            MapManager.map[xCord, yCord].enemy = this.gameObject;
+
 
             /*xCord = Mathf.FloorToInt(rB.position.x / mapk + 0.5f);
             yCord = Mathf.FloorToInt(rB.position.y / mapk + 0.5f);

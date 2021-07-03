@@ -6,48 +6,52 @@ using UnityEngine.UI;
 public class MapDrawer : MonoBehaviour
 {
     private DungeonGenerator dG;
+    private Tile[,] map;
+    private Vector2Int mapSize;
 
-    public GameObject playerPrefab;
-    public GameObject wallPrefab;
-    public GameObject frontDoorPrefab;
-    public GameObject topDoorPrefab;
-    public GameObject backStone;
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject wallPrefab;
+    [SerializeField] private GameObject frontDoorPrefab;
+    [SerializeField] private GameObject topDoorPrefab;
+    [SerializeField] private GameObject backStone;
 
-    public Transform mapTransform;
-    public List<GameObject> floorPrefab;
-    public List<GameObject> easyEnemies;
-    public List<GameObject> hardEnemies;
-    public List<GameObject> spawnedEnemies;
-    public List<GameObject> momentaryPotions;
-    public List<GameObject> continiousPotions;
-    public List<GameObject> spawnedPotions;
+    [SerializeField] private Transform mapTransform;
+    [SerializeField] private List<GameObject> floorPrefab;
+    [SerializeField] private List<GameObject> easyEnemies;
+    [SerializeField] private List<GameObject> hardEnemies;
+    [SerializeField] private List<GameObject> spawnedEnemies;
+    [SerializeField] private List<GameObject> momentaryPotions;
+    [SerializeField] private List<GameObject> continiousPotions;
+    [SerializeField] private List<GameObject> spawnedPotions;
 
-    public float mapk;
+    [SerializeField] private float mapk;
     public void DrawMap()
     {
         dG = GetComponent<DungeonGenerator>();
         mapTransform = new GameObject("Map").transform;
+        map = dG.GetMap();
+        mapSize = dG.GetMapSize();
 
 
-        for (int y = 0; y < dG.mapHeight - 1; y++)
+        for (int y = 0; y < mapSize.y - 1; y++)
         {
-            for (int x = 0; x < dG.mapWidth - 1; x++)
+            for (int x = 0; x < mapSize.x - 1; x++)
             {
-                if (MapManager.map[x, y] == null)
+                if (map[x, y] == null)
                 {
                     GameObject toInstantiate = backStone;
                     GameObject instance = Instantiate(toInstantiate, new Vector3(x * mapk, y * mapk, 0), Quaternion.identity) as GameObject;
                     instance.transform.SetParent(mapTransform);
                     continue;
                 }
-                else if (MapManager.map[x, y].type == "Wall")
+                else if (map[x, y].tileType == TileType.wall)
                 {
                     GameObject toInstantiate = wallPrefab;
                     GameObject instance = Instantiate(toInstantiate, new Vector3(x * mapk, y * mapk, 0), Quaternion.identity) as GameObject;
                     instance.transform.SetParent(mapTransform);
 
                 }
-                else if (MapManager.map[x, y].type == "Floor")
+                else if (map[x, y].tileType == TileType.floor)
                 {
                     int randomNum = Random.Range(0, floorPrefab.Count - 1);
                     GameObject toInstantiate = floorPrefab[randomNum];
@@ -55,29 +59,30 @@ public class MapDrawer : MonoBehaviour
                     instance.transform.SetParent(mapTransform);
                 }
 
-                if(MapManager.map[x, y].furniture == "DoorFront")
-                {
-                    GameObject toInstantiate = frontDoorPrefab;
-                    GameObject instance = Instantiate(toInstantiate, new Vector3(x * mapk, y * mapk, 0), Quaternion.identity) as GameObject;
-                    instance.transform.SetParent(mapTransform);
+                if(map[x, y].hasFurniture) {
+                    if(map[x, y].furnitureType == FurnitureType.doorFront) {
+                        GameObject toInstantiate = frontDoorPrefab;
+                        GameObject instance = Instantiate(toInstantiate, new Vector3(x * mapk, y * mapk, 0), Quaternion.identity) as GameObject;
+                        instance.transform.SetParent(mapTransform);
+                    }
+                    else if(map[x, y].furnitureType == FurnitureType.doorTop) {
+                        GameObject toInstantiate = topDoorPrefab;
+                        GameObject instance = Instantiate(toInstantiate, new Vector3(x * mapk, y * mapk, 0), Quaternion.identity) as GameObject;
+                        instance.transform.SetParent(mapTransform);
+                    }
                 }
-                else if(MapManager.map[x, y].furniture == "DoorTop")
-                {
-                    GameObject toInstantiate = topDoorPrefab;
-                    GameObject instance = Instantiate(toInstantiate, new Vector3(x * mapk, y * mapk, 0), Quaternion.identity) as GameObject;
-                    instance.transform.SetParent(mapTransform);
-                }
+                
 
-                if (MapManager.map[x, y].hasPlayer == true)
+                if (map[x, y].hasPlayer == true)
                 {
                     GameObject playerSpawn = GameObject.Instantiate(playerPrefab, new Vector3(x * mapk, y * mapk, 0), Quaternion.identity);
                 }
 
-                if (MapManager.map[x, y].hasEnemy)
+                if (map[x, y].hasEnemy)
                 {
                     int enemyInd;
                     GameObject enemy;
-                    if (MapManager.map[x, y].typeEnemy == "Easy")
+                    if (map[x, y].enemyType == EnemyType.simpleEnemy)
                     {
                         enemyInd = Random.Range(0, easyEnemies.Count);
                         enemy = easyEnemies[enemyInd];
@@ -92,19 +97,19 @@ public class MapDrawer : MonoBehaviour
                     
                     //Vector2Int spawnPoint = new Vector2Int(x, y);
                     GameObject enemyToInst = Instantiate(enemy, new Vector3(x * mapk, y * mapk, 0), Quaternion.identity);
-                    MapManager.map[x, y].enemy = enemyToInst;
+                    //MapManager.map[x, y].enemy = enemyToInst;
                     
                     //GameObject enemy = MapManager.map[x, y].enemy;
 
                 }
 
 
-                if(MapManager.map[x, y].typeItem != null)
+                if(map[x, y].hasItem)
                 {
                     int potionInd;
                     GameObject potion;
 
-                    if (MapManager.map[x, y].typeItem == "MomentaryPotion")
+                    if (map[x, y].itemType == ItemType.momentaryPotion)
                     {
                         potionInd = Random.Range(0, momentaryPotions.Count);
                         potion = momentaryPotions[potionInd];
@@ -117,7 +122,7 @@ public class MapDrawer : MonoBehaviour
 
                     GameObject potionToInst = Instantiate(potion, new Vector3(x * mapk, y * mapk, 0), Quaternion.identity);
 
-                    MapManager.map[x, y].item = potionToInst;
+                    //MapManager.map[x, y].item = potionToInst;
                     spawnedPotions.Add(potion);
                 }
             }
