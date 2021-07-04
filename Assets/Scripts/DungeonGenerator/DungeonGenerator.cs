@@ -52,17 +52,13 @@ public class DungeonGenerator : MonoBehaviour
     {
         GenerateFeature(TypeFeature.room, true);
 
-        for (int i = 0; i < 500; i++)
-        {
+        for (int i = 0; i < 500; i++) {
             TypeFeature type;
             Feature originFeature;
 
-            if (allFeatures.Count == 1)
-            {
+            if (allFeatures.Count == 1) {
                 originFeature = allFeatures[0];
-            }
-            else
-            {
+            }else {
                 originFeature = allFeatures[Random.Range(0, allFeatures.Count - 1)];
             }
 
@@ -71,18 +67,12 @@ public class DungeonGenerator : MonoBehaviour
                 continue;
             }
 
-            if (originFeature.type == TypeFeature.room)
-            {
+            if (originFeature.type == TypeFeature.room) {
                 type = TypeFeature.corridor;
-            }
-            else
-            {
-                if (Random.Range(0, 100) < 90)
-                {
+            }else {
+                if (Random.Range(0, 100) < 90){
                     type = TypeFeature.room;
-                }
-                else
-                {
+                }else {
                     type = TypeFeature.corridor;
                 }
             }
@@ -102,12 +92,14 @@ public class DungeonGenerator : MonoBehaviour
 
     void GenerateFeature(TypeFeature type, bool isFirst = false,  Wall wall = null)
     {
+        Feature feature;
         int featureWidth = 0;
         int featureHeight = 0;
         int xStartingPoint;
         int yStartingPoint;
         int id;
 
+        //В зависимости от типа помещения определяем его длину и высоту 
         if (type == TypeFeature.room)
         {
             featureWidth = Random.Range(widthMinRoom, widthMaxRoom);
@@ -137,12 +129,10 @@ public class DungeonGenerator : MonoBehaviour
             }
         }
 
-        Feature feature = new Feature(featureWidth, featureHeight, type);
         //Создаем помещение
-        //В зависимости от типа помещения определяем длину и высоту
+        feature = new Feature(featureWidth, featureHeight, type);    
+
         //Определяем начальные точки генерации помещения
-
-
         if (isFirst)
         {
             xStartingPoint = mapWidth / 2;
@@ -160,7 +150,7 @@ public class DungeonGenerator : MonoBehaviour
 
         Vector2Int lastWallPosition = new Vector2Int(xStartingPoint, yStartingPoint);
 
-        //Также в зависимости от того первая это помещение или нет, сдвигаем на определенное расстояние
+        //Также в зависимости от того первое это помещение или нет, сдвигаем на определенное расстояние
         if (isFirst)
         {
             xStartingPoint -= Random.Range(1, featureWidth);
@@ -208,43 +198,14 @@ public class DungeonGenerator : MonoBehaviour
         }
 
         //Проверка на границу карты
-        if (!CheckIfHasSpace(new Vector2Int(xStartingPoint, yStartingPoint), new Vector2Int(xStartingPoint + featureWidth - 1, yStartingPoint + featureHeight - 1)))
-        {
+        if (!CheckIfHasSpace(new Vector2Int(xStartingPoint, yStartingPoint), new Vector2Int(xStartingPoint + featureWidth - 1, yStartingPoint + featureHeight - 1))) {
             return;
         }
 
-        //Создаются стены
-        for (int i = 0; i < feature.walls.Length; i++)
-        {
-            Wall newWall;
-            int wallLength = 0;
-            WallDirection wallDirection = WallDirection.south;
+        //Создаются стены     
+        feature.SetWall(BuildWalls(featureWidth, featureHeight));
 
-            //Для каждой стены указываются направления
-            switch (i)
-            {
-                case 0:
-                    wallDirection = WallDirection.south;
-                    wallLength = featureWidth;
-                    break;
-                case 1:
-                    wallDirection = WallDirection.north;
-                    wallLength = featureWidth;
-                    break;
-                case 2:
-                    wallDirection = WallDirection.west;
-                    wallLength = featureHeight;
-                    break;
-                case 3:
-                    wallDirection = WallDirection.east;
-                    wallLength = featureHeight;
-                    break;
-            }
-
-            newWall = new Wall(wallDirection, wallLength);
-            feature.SetWall(i, newWall);
-        }
-
+        //Исходя из координат помещения в карту добавляем клетки и определяем их тип
         for (int y = 0; y < featureHeight; y++)
         {
             for (int x = 0; x < featureWidth; x++)
@@ -290,49 +251,91 @@ public class DungeonGenerator : MonoBehaviour
             }
         }
 
-        //В карту передается тип двери комнаты
-        if (!isFirst)
-        {
-            map.map[lastWallPosition.x, lastWallPosition.y].ChangeTileType(TileType.floor);
-            switch (wall.direction)
-            {
-                case WallDirection.south:
-                    map.map[lastWallPosition.x, lastWallPosition.y - 1].ChangeTileType(TileType.floor);
-                    if(type == TypeFeature.room){ 
-                        map.map[lastWallPosition.x, lastWallPosition.y - 1].SpawnFurniture(FurnitureType.doorFront);
-                    }
-                    break;
-                case WallDirection.north:
-                    map.map[lastWallPosition.x, lastWallPosition.y + 1].ChangeTileType(TileType.floor);
-                    if (type == TypeFeature.room) { 
-                        map.map[lastWallPosition.x, lastWallPosition.y + 1].SpawnFurniture(FurnitureType.doorFront);
-                    }
-                    break;
-                case WallDirection.west:
-                    map.map[lastWallPosition.x - 1, lastWallPosition.y].ChangeTileType(TileType.floor);
-                    if (type == TypeFeature.room) { 
-                        map.map[lastWallPosition.x - 1, lastWallPosition.y].SpawnFurniture(FurnitureType.doorTop);
-                    }
-                    break;
-                case WallDirection.east:
-                    map.map[lastWallPosition.x + 1, lastWallPosition.y].ChangeTileType(TileType.floor);
-                    if (type == TypeFeature.room) { 
-                        map.map[lastWallPosition.x + 1, lastWallPosition.y].SpawnFurniture(FurnitureType.doorTop);
-                    }
-                    break;
-            }
+        //Устанавливаем двери
+        if (!isFirst){
+            SetDoors(lastWallPosition, wall, type);
         }
 
-        Debug.Log(feature);
+        //Добавляем помещение в список
         allFeatures.Add(feature);
 
+        //Присоединяем помещение к стене
         if(wall != null) {
             wall.ConnectFeature(feature);
         }
         countFeatures++;
     }
 
-    bool CheckIfHasSpace(Vector2Int start, Vector2Int end)
+
+    private Wall[] BuildWalls(int featureWidth, int featureHeight) {
+        Wall[] featureWalls = new Wall[4];
+
+        for (int i = 0; i < 4; i++)
+        {
+            Wall newWall;
+            int wallLength = 0;
+            WallDirection wallDirection = WallDirection.south;
+
+            //Для каждой стены указываются направления
+            switch (i)
+            {
+                case 0:
+                    wallDirection = WallDirection.south;
+                    wallLength = featureWidth;
+                    break;
+                case 1:
+                    wallDirection = WallDirection.north;
+                    wallLength = featureWidth;
+                    break;
+                case 2:
+                    wallDirection = WallDirection.west;
+                    wallLength = featureHeight;
+                    break;
+                case 3:
+                    wallDirection = WallDirection.east;
+                    wallLength = featureHeight;
+                    break;
+            }
+
+            newWall = new Wall(wallDirection, wallLength);
+            featureWalls[i] = newWall;
+        }
+
+        return featureWalls;
+    }
+
+    private void SetDoors(Vector2Int lastWallPosition, Wall wall, TypeFeature type) {
+        map.map[lastWallPosition.x, lastWallPosition.y].ChangeTileType(TileType.floor);
+        switch (wall.direction)
+        {
+            case WallDirection.south:
+                map.map[lastWallPosition.x, lastWallPosition.y - 1].ChangeTileType(TileType.floor);
+                if(type == TypeFeature.room){ 
+                    map.map[lastWallPosition.x, lastWallPosition.y - 1].SpawnFurniture(FurnitureType.doorFront);
+                }
+                break;
+            case WallDirection.north:
+                map.map[lastWallPosition.x, lastWallPosition.y + 1].ChangeTileType(TileType.floor);
+                if (type == TypeFeature.room) { 
+                    map.map[lastWallPosition.x, lastWallPosition.y + 1].SpawnFurniture(FurnitureType.doorFront);
+                }
+                break;
+            case WallDirection.west:
+                map.map[lastWallPosition.x - 1, lastWallPosition.y].ChangeTileType(TileType.floor);
+                if (type == TypeFeature.room) { 
+                    map.map[lastWallPosition.x - 1, lastWallPosition.y].SpawnFurniture(FurnitureType.doorTop);
+                }
+                break;
+            case WallDirection.east:
+                map.map[lastWallPosition.x + 1, lastWallPosition.y].ChangeTileType(TileType.floor);
+                if (type == TypeFeature.room) { 
+                    map.map[lastWallPosition.x + 1, lastWallPosition.y].SpawnFurniture(FurnitureType.doorTop);
+                }
+                break;
+        }
+    }
+
+    private bool CheckIfHasSpace(Vector2Int start, Vector2Int end)
     {
         for (int y = start.y; y <= end.y; y++)
         {
@@ -350,7 +353,7 @@ public class DungeonGenerator : MonoBehaviour
         return true;
     }
 
-    Wall ChoseWall(Feature feature)
+    private Wall ChoseWall(Feature feature)
     {
         for (int i = 0; i < 10; i++)
         {
@@ -467,8 +470,6 @@ public class DungeonGenerator : MonoBehaviour
                     j++;
                 }
             }
-
-
         }
     }
 

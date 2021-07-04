@@ -16,3 +16,6 @@ public enum WallDirection {
 public enum TypeFeature {
     corridor, room
 }
+public enum CellType {
+    inventory, hotBar
+}

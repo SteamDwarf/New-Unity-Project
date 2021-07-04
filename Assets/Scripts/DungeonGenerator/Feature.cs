@@ -19,8 +19,8 @@ public class Feature
         this.positions = new List<Vector2Int>();
         this.walls =  new Wall[4];
     }
-    public void SetWall(int id, Wall wall) {
-        this.walls[id] = wall;
+    public void SetWall(Wall[] walls) {
+        this.walls = walls;
     }
     public void IncreaseEnemyCount(int num) {
         this.enemyInRoom += num;

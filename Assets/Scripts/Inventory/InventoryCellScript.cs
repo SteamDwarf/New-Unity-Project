@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public enum CellType {
-    inventory, hotBar
-}
+
 public class InventoryCellScript : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private int cellId;
@@ -19,12 +17,14 @@ public class InventoryCellScript : MonoBehaviour, IPointerClickHandler
             inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         }
 
-        if (eventData.button == PointerEventData.InputButton.Right) {
-            inventory.CreateContextMenu(cellId, transform.position);
+        if(cellType == CellType.inventory) {
+            if (eventData.button == PointerEventData.InputButton.Right) {
+                inventory.CreateContextMenu(cellId, transform.position);
+            }
         }
 
         if(eventData.button == PointerEventData.InputButton.Left){
-            inventory.MoveItem(cellId);
+            inventory.MoveItem(cellId, cellType);
         }
     }
 }

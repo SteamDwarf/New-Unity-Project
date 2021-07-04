@@ -21,24 +21,17 @@ public class GameManager : MonoBehaviour
 
         pathfinder = GameObject.Find("A*").GetComponent<AstarPath>();
         pathfinder.Scan();
-    }
-
-    void Update()
-    {
-        if(dungeonGenerator.aliveEnemiesCount <= 0)
-        {
-            SceneManager.LoadScene(3);
-        }
-
-        /*if (isPaused)
-            pauseMenu.SetActive(true);
-        else
-            pauseMenu.SetActive(false);*/
+        aliveEnemies = dungeonGenerator.aliveEnemiesCount;
     }
 
     public void ResumeGame()
     {
         isPaused = false;
     }
-
+    public void EnemyDie() {
+        aliveEnemies--;
+        if(aliveEnemies <= 0){
+            SceneManager.LoadScene(3);
+        }
+    }
 }

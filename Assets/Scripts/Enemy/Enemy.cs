@@ -5,20 +5,11 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-/*public enum EnemyState
-{
-    idle,
-    walk,
-    run, 
-    attack
-}*/
-
 public class Enemy : MonoBehaviour
 {
-    private DungeonGenerator DG;
     private MapDrawer mapDrawer;
-    GameObject gameManager;
-    Collider2D enemyCollider;
+    private  GameObject gameManager;
+    private Collider2D enemyCollider;
     protected EnemyAnimator anim;
 
     public Image healthBar;
@@ -77,7 +68,6 @@ public class Enemy : MonoBehaviour
         rB = GetComponent<Rigidbody2D>();
         anim = GetComponent<EnemyAnimator>();
         seeker = GetComponent<Seeker>();
-        DG = gameManager.GetComponent<DungeonGenerator>();
         GM = gameManager.GetComponent<GameManager>();
         mapDrawer = gameManager.GetComponent<MapDrawer>();
         enemyCollider = gameObject.GetComponent<Collider2D>();
@@ -316,7 +306,7 @@ public class Enemy : MonoBehaviour
             anim.curState = "Dying";
             isDied = true;
             enemyCollider.isTrigger = true;
-            GM.aliveEnemies--;
+            GM.EnemyDie();
             rB.constraints = RigidbodyConstraints2D.FreezePosition;
 
             if(!isBig)
@@ -355,48 +345,4 @@ public class Enemy : MonoBehaviour
     //////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////
 
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    /*private void PlayerFind()
-    {
-        if(Vector3.Distance(player.transform.position, this.gameObject.transform.position) < agroRange)
-        {
-            currentPlayerPosition = player.transform.position;
-            currentAgroTime = startAgroTime;
-            sawPlayer = true;
-        }
-    }*/
-
-   
-
-    /*protected void AnimPlay()
-    {
-        switch(currentState)
-        {  
-            case EnemyState.idle:
-                anim.Play("Idle" + enemyName);
-                break;
-            case EnemyState.walk:
-                anim.Play("Walk" + enemyName);
-                break;
-            case EnemyState.run:
-                anim.Play("Run" + enemyName);
-                break;
-            case EnemyState.attack:
-                anim.Play(curAttack + enemyName);
-                //anim.SetTrigger(curAttack);
-                break;
-        }
-    }*/
-
-    
 }

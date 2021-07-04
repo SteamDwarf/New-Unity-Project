@@ -14,20 +14,11 @@ public class InterfaceManager : MonoBehaviour
     void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        /*inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<CanvasGroup>();
-        pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<CanvasGroup>();*/
         inventory = GameObject.FindGameObjectWithTag("Inventory");
         pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
         inventory.SetActive(false);
         pauseMenu.SetActive(false);
-        /*inventory.alpha = 0;
-        inventory.interactable = false;
-        pauseMenu.alpha = 0;
-        pauseMenu.interactable = false;*/
     }
-
-
-    //��� ������� ��������� ��� ����������� ������ ������ �����������
 
 
     void Update()
