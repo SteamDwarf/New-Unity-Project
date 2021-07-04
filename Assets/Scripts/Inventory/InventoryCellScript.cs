@@ -24,7 +24,7 @@ public class InventoryCellScript : MonoBehaviour, IPointerClickHandler
         }
 
         if(eventData.button == PointerEventData.InputButton.Left){
-            inventory.MoveItem(cellId, cellType);
+            inventory.MoveItem(cellId);
         }
     }
 }

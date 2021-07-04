@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3518726459195611215, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_TagString
-      value: HotbarItem
+      value: InventoryItem
       objectReference: {fileID: 0}
     - target: {fileID: 4515339175163816252, guid: d3a3afa915c93f24dad06ff02339c0bd, type: 3}
       propertyPath: m_SizeDelta.x

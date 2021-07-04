@@ -29,6 +29,8 @@ public class InputController : MonoBehaviour
             cellInd = 2;
         else if (Input.GetKeyDown("4"))
             cellInd = 3;
+        else if (Input.GetKeyDown("5"))
+            cellInd = 4;
         else
         {
             return;
