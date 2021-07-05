@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IMenu
 {
     void CloseMenu();
+    void OpenMenu();
 }

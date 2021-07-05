@@ -17,10 +17,8 @@ public class InventoryCellScript : MonoBehaviour, IPointerClickHandler
             inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         }
 
-        if(cellType == CellType.inventory) {
-            if (eventData.button == PointerEventData.InputButton.Right) {
-                inventory.CreateContextMenu(cellId, transform.position);
-            }
+        if (eventData.button == PointerEventData.InputButton.Right) {
+            inventory.ShowContextMenu(cellId);
         }
 
         if(eventData.button == PointerEventData.InputButton.Left){

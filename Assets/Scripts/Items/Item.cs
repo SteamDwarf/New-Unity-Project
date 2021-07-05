@@ -11,21 +11,17 @@ public abstract class Item : MonoBehaviour
     private bool isPicked;
     private Inventory inventory;
 
-    private Dictionary<string, string> notChangableInformation;
-
     protected void Start() {
         isPicked = false;
-
-        notChangableInformation = new Dictionary<string, string> {
-            {"id", this.id.ToString()},
-            {"itemName", this.itemName},
-            {"description", this.description},
-        };
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
 
-        if(collision.CompareTag("Player") && !isPicked) {
+        if(isPicked) {
+            return;
+        }
+
+        if(collision.CompareTag("Player")) {
             Inventory inventory = collision.GetComponent<Inventory>();
             inventory.GetItem(this.gameObject);
             this.gameObject.SetActive(false);
@@ -33,5 +29,16 @@ public abstract class Item : MonoBehaviour
         }
     }
 
+    private IEnumerator DropItemCorutine() {
+        isPicked = true;
+        yield return new WaitForSeconds(2f);
+        isPicked = false;
+    }
+
+    public void DropItem() {
+        StartCoroutine(DropItemCorutine());
+    }
     public abstract void UseItem();
+    public abstract void SetInformation(Dictionary<string, object> information);
+    public abstract Dictionary<string, object> GetItemInformation();
 }

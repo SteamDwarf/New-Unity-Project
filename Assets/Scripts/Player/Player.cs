@@ -389,11 +389,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void GetContiniousEffect(float increase, float time, typeEnum effect)
+    public void GetContiniousEffect(float increase, float time, PotionType effect)
     {
         switch (effect)
         {
-            case typeEnum.strength:
+            case PotionType.strength:
                 if (strength.timeEffect != 0)
                 {
                     strength.timeEffect = time;
@@ -406,7 +406,7 @@ public class Player : MonoBehaviour
                     RefreshHitBoxDamage();
                 }
                 break;
-            case typeEnum.stamina:
+            case PotionType.stamina:
                 if (stamina.timeEffect != 0)
                 {
                     stamina.timeEffect = time;
@@ -418,7 +418,7 @@ public class Player : MonoBehaviour
                     staminaPerSec *= 2;
                 }
                 break;
-            case typeEnum.speed:
+            case PotionType.speed:
                 if (speed.timeEffect != 0)
                 {
                     speed.timeEffect = time;

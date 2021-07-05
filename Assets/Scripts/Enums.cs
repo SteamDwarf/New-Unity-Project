@@ -19,3 +19,6 @@ public enum TypeFeature {
 public enum CellType {
     inventory, hotBar
 }
+public enum PotionType {
+    health, strength, stamina, speed
+}

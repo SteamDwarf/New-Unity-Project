@@ -20,35 +20,6 @@ public class InterfaceManager : MonoBehaviour
         pauseMenu.SetActive(false);
     }
 
-
-    void Update()
-    {
-        MenusManager();
-    }
-
-    private void MenusManager()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (inventoryShowed)
-                return;
-
-            ShowHideMenu(pauseMenu, ref pauseMenuShowed);     
-        }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            if (pauseMenuShowed)
-                return;
-
-            if(inventoryScript == null) {
-                inventoryScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
-            }
-            ShowHideMenu(inventory, ref inventoryShowed, inventoryScript);
-        }   
-    }
-
-
     private void ShowHideMenu(GameObject menu, ref bool menuStatus)
     {
         if(!menuStatus)
@@ -56,15 +27,11 @@ public class InterfaceManager : MonoBehaviour
             menuStatus = true;
             gm.isPaused = true;
             menu.SetActive(true);
-            /*menu.alpha = 1;
-            menu.interactable = true;*/
         } else
         {
             menuStatus = false;
             gm.isPaused = false;
             menu.SetActive(false);
-            /*menu.alpha = 0;
-            menu.interactable = false;*/
         }
     }
     private void ShowHideMenu(GameObject menu, ref bool menuStatus, IMenu menuInterface)
@@ -74,16 +41,31 @@ public class InterfaceManager : MonoBehaviour
             menuStatus = true;
             gm.isPaused = true;
             menu.SetActive(true);
-            /*menu.alpha = 1;
-            menu.interactable = true;*/
+            menuInterface.OpenMenu();
         } else
         {
             menuStatus = false;
             gm.isPaused = false;
             menu.SetActive(false);
             menuInterface.CloseMenu();
-            /*menu.alpha = 0;
-            menu.interactable = false;*/
         }
+    }
+
+    public void ShowHideInventory() {
+        if(pauseMenuShowed) {
+            return;
+        }
+
+        if(inventoryScript == null) {
+            inventoryScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        }
+        ShowHideMenu(inventory, ref inventoryShowed, inventoryScript);
+    }
+    public void ShowHidePauseMenu() {
+        if (inventoryShowed) {
+            return;
+        }
+
+        ShowHideMenu(pauseMenu, ref pauseMenuShowed);
     }
 }

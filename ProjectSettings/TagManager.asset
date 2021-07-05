@@ -21,7 +21,10 @@ TagManager:
   - InventoryItem
   - Inventory
   - CurrentItem
-  - HotbarItem
+  - ItemInteractMenu
+  - ItemSprite
+  - ItemName
+  - ItemDescription
   layers:
   - Default
   - TransparentFX
