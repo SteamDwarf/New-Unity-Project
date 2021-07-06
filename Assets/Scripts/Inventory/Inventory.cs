@@ -10,10 +10,11 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour, IMenu
 {
-
+    
     private List<GameObject> cellUI;
-    [SerializeField] private List<InventoryCell> cellSO;
 
+    [SerializeField] private GameManager gm;
+    [SerializeField] private List<InventoryCell> cellSO;
     [SerializeField] private GameObject contextMenu;
     [SerializeField] private InventoryCell saveCell_1;
     [SerializeField] private InventoryCell saveCell_2;
@@ -36,6 +37,7 @@ public class Inventory : MonoBehaviour, IMenu
 
     private void Awake()
     {
+        gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();   
         cellUI = GameObject.FindGameObjectsWithTag("InventoryItem").ToList<GameObject>();
         currentItem = GameObject.FindGameObjectWithTag("CurrentItem");
         currentItemImage = currentItem.GetComponent<Image>();
@@ -186,6 +188,16 @@ public class Inventory : MonoBehaviour, IMenu
         }       
     }
 
+    public void DecreaseItemNumber(int id, int count) {
+        int itemCount = cellSO[id].DecreaseItemNumber(count);
+        cellUI[id].GetComponentInChildren<TextMeshProUGUI>().text = itemCount.ToString();
+
+        if (itemCount == 0) {
+            cellUI[id].GetComponent<Image>().sprite = null;
+            cellUI[id].GetComponent<Image>().color = defaultCellColor;
+        }     
+    }
+
     public void UseItem() {
         if(cellSO[choosenCellId].item == null) {
             HideContextMenu();
@@ -205,7 +217,7 @@ public class Inventory : MonoBehaviour, IMenu
 // TODO: Когда открыт инвентарь цифры не работают
 
     public void UseItem(int id) {
-        if(!inventoryBlocked) {
+        if(gm.isPaused) {
             return;
         }
         if(cellSO[id].item == null) {
@@ -299,16 +311,18 @@ public class Inventory : MonoBehaviour, IMenu
         HideContextMenu();
     }
 
-    public void DropItem() {
+    public void DropItem(string count) {
         if(cellSO[choosenCellId].item == null && saveCell_1.item == null) {
             HideContextMenu();
             return;
         }
-
-        GameObject newItem = ItemPrefabBuilder.BuildPotionPrefab(cellSO[choosenCellId].item, 5, cellSO[choosenCellId].sprite);
+        int intCount = Mathf.Clamp(int.Parse(count), 1, cellSO[choosenCellId].countItem);
+        
+        GameObject newItem = ItemPrefabBuilder.BuildPotionPrefab(cellSO[choosenCellId].item, intCount, cellSO[choosenCellId].sprite);
         newItem.GetComponent<Item>().DropItem();
         newItem.transform.position = new Vector3(transform.position.x + 5, transform.position.y + 5, transform.position.z);
 
+        DecreaseItemNumber(choosenCellId, intCount);
         HideContextMenu();
     }
 }

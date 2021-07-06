@@ -462,9 +462,9 @@ public class Player : MonoBehaviour
         else
             health.curValue -= damage;
 
-        /*if(health.curValue <= 0)
+        if(health.curValue <= 0)
             StartCoroutine(Dying());
-        else*/
+        else
             StartCoroutine(Hurting());
     }
 

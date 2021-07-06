@@ -47,18 +47,9 @@ public class ContextMenu : MonoBehaviour
             inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         }
 
-        //count = input.GetComponent<TextMeshProUGUI>().text;
-        inventory.DropItem();
+        count = input.GetComponent<TMP_InputField>().text;
+        inventory.DropItem(count);
+        input.GetComponent<TMP_InputField>().text = "";
         inputCountBlock.SetActive(false);
-    }
-
-// TODO: При вводе символов в инпут текст должен фильтроваться
-// TODO: Также хотбар должен блокироваться
-    public void OnValueChanged() {
-/*         string text = input.GetComponent<TMP_InputField>().text;
-        regex.Replace(text,"");
-        Debug.Log(text);
-        input.GetComponent<TMP_InputField>().text = text; */
-        //count = input.GetComponent<TextMeshProUGUI>().text;   
     }
 }

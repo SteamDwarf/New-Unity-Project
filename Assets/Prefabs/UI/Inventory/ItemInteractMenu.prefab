@@ -525,20 +525,32 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 2
   m_RegexValue: 
   m_GlobalPointSize: 14
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6256332192644796912}
+        m_TargetAssemblyTypeName: ContextMenu, Assembly-CSharp
+        m_MethodName: EndWrite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -1014,7 +1026,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0002975464, y: 0.0012321472}
+  m_AnchoredPosition: {x: -0.0002975464, y: 0.0012626648}
   m_SizeDelta: {x: 180.6, y: 94.424}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2592866708621799776
@@ -1628,8 +1640,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2592866707976610507}
   m_HandleRect: {fileID: 2592866707976610506}
   m_Direction: 2
-  m_Value: -0.013793103
-  m_Size: 0.9999766
+  m_Value: -0.006993007
+  m_Size: 0.9999769
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

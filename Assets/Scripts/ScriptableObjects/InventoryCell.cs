@@ -55,4 +55,15 @@ public class InventoryCell : ScriptableObject
 
         return this.countItem;
     }
+
+    public int DecreaseItemNumber(int count) {
+        this.countItem -= count;
+
+        if (this.countItem == 0) {
+            this.idItem = 0;
+            this.item = null;
+        }
+
+        return this.countItem;
+    }
 }
