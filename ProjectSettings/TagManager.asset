@@ -25,6 +25,7 @@ TagManager:
   - ItemSprite
   - ItemName
   - ItemDescription
+  - HotBar
   layers:
   - Default
   - TransparentFX

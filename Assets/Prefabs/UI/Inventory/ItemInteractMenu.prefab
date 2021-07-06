@@ -1026,8 +1026,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0002975464, y: 0.0012626648}
-  m_SizeDelta: {x: 180.6, y: 94.424}
+  m_AnchoredPosition: {x: 0.10596001, y: 0.000011444092}
+  m_SizeDelta: {x: 180.82, y: 94.422}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2592866708621799776
 CanvasRenderer:
@@ -1101,7 +1101,7 @@ MonoBehaviour:
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
+  m_wordWrappingRatios: 0.01
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
@@ -1479,8 +1479,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.4113, y: 0}
-  m_SizeDelta: {x: -4.6324, y: 94.422}
+  m_AnchoredPosition: {x: 0.00096317293, y: 0}
+  m_SizeDelta: {x: -4.2052, y: 94.422}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2592866709561392064
 GameObject:
@@ -1556,7 +1556,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1.5, y: -17.3}
   m_SizeDelta: {x: 20, y: -17}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &2592866709899545072
@@ -1580,7 +1580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6698113, g: 0.29600328, b: 0.06634923, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1640,8 +1640,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2592866707976610507}
   m_HandleRect: {fileID: 2592866707976610506}
   m_Direction: 2
-  m_Value: -0.006993007
-  m_Size: 0.9999769
+  m_Value: 1
+  m_Size: 0.9999979
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2751,7 +2751,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1809289180143522164}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6256332192644796912}
+        m_TargetAssemblyTypeName: ContextMenu, Assembly-CSharp
+        m_MethodName: UseItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8666253252141879102
 GameObject:
   m_ObjectHideFlags: 0

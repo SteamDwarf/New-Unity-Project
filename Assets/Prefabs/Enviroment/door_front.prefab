@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 8604241582568225408}
   - component: {fileID: 8803486060102936493}
   - component: {fileID: 6954269684641158758}
+  - component: {fileID: 6227221167478638388}
   m_Layer: 0
   m_Name: door_front
   m_TagString: Door
@@ -214,6 +215,32 @@ SortingGroup:
   m_SortingLayerID: 839852155
   m_SortingLayer: 6
   m_SortingOrder: 0
+--- !u!61 &6227221167478638388
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5592801470273566117}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.13860768}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.96, y: 0.96}
+    newSize: {x: 0.96, y: 0.96}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.96, y: 1.2372154}
+  m_EdgeRadius: 0
 --- !u!1 &8075758490020811934
 GameObject:
   m_ObjectHideFlags: 0

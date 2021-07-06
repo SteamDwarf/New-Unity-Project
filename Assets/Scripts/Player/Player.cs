@@ -9,8 +9,6 @@ public class Player : MonoBehaviour
 {
     private DungeonGenerator dungeon;
 
-    //public Vector2Int playerPosition;
-
     private MapDrawer MD;
     private GameObject gameManager;
     private GameManager GM;
@@ -24,10 +22,6 @@ public class Player : MonoBehaviour
     public Attribute stamina;
     public Attribute speed;
     public Attribute strength;
-    //public Transform hitPos;
-    //public float speed;
-    //public float maxHealth;
-    //public float maxStamina;
     public int noiseRange;
     public float hitRange;
     public float weaponDamage;
@@ -66,9 +60,7 @@ public class Player : MonoBehaviour
     public void Start()
     {
         rB = GetComponent<Rigidbody2D>();
-        //anim = GetComponent<Animator>();
         anim = GetComponent<PlayerAnimator>();
-        //canvasTransform = GameObject.Find("UI").transform;
 
         staminaBar = GameObject.FindGameObjectWithTag("StaminaBar").GetComponent<Image>();
         healthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Image>();
@@ -87,9 +79,6 @@ public class Player : MonoBehaviour
         MD = gameManager.GetComponent<MapDrawer>();
         dungeon = gameManager.GetComponent<DungeonGenerator>();
 
-        //mapk = MD.mapk;
-/*         mapWidth = dungeon.mapWidth;
-        mapHeight = dungeon.mapHeight; */
         damage = strength.curValue + weaponDamage;
         defence = 1;
         staminaPerAttack = 30;
@@ -125,7 +114,6 @@ public class Player : MonoBehaviour
             {
                 Move();
                 rB.velocity = new Vector2(0, 0);
-                //NoiseFOVCheck(curX, curY);
             }
         }
     }
@@ -151,25 +139,20 @@ public class Player : MonoBehaviour
             else if (inputMovement.x < 0)
                 anim.faceTo = "Left";
 
-            prevX = Mathf.FloorToInt(rB.position.x / mapk + 0.5f);
-            prevY = Mathf.FloorToInt(rB.position.y / mapk + 0.5f);
+            rB.MovePosition(rB.position + moveVelocity * Time.deltaTime);
+            //prevX = Mathf.FloorToInt(rB.position.x / mapk + 0.5f);
+            //prevY = Mathf.FloorToInt(rB.position.y / mapk + 0.5f);
             //MapManager.map[prevX, prevY].hasPlayer = false;
             //Debug.Log(MapManager.map[prevX, prevY].hasPlayer);
-            rB.MovePosition(rB.position + moveVelocity * Time.deltaTime);
-            curX = Mathf.FloorToInt(rB.position.x / mapk + 0.5f);
-            curY = Mathf.FloorToInt(rB.position.y / mapk + 0.5f);
+            
+           //curX = Mathf.FloorToInt(rB.position.x / mapk + 0.5f);
+            //curY = Mathf.FloorToInt(rB.position.y / mapk + 0.5f);
             //MapManager.map[curX, curY].hasPlayer = true;
             //Debug.Log(MapManager.map[curX, curY].hasPlayer);
         }
         else
         {
             anim.isMoving = false;
-            //anim.curState = "Idle";
-            /*anim.SetBool("runFrontA1", false);
-            anim.SetBool("runBackA1", false);
-            anim.SetBool("runLeftA1", false);
-            anim.SetBool("runRightA1", false);*/
-
         }
     }
 
@@ -262,16 +245,6 @@ public class Player : MonoBehaviour
     /////////// COLLISION, COLLIDER TRIGGER, COLLIDE ///////////
     ////////////////////////////////////////////////////////////
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        ConnectWithDoor(collision.collider);
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        ConnectWithDoor(collision.collider);
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         ConnectWithDoor(collision);
@@ -280,6 +253,11 @@ public class Player : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         ConnectWithDoor(collision);
+    }
+
+    private void OnTriggerExit2D()
+    {
+        doorScript = null;
     }
 
     ////////////////////////////////////////////////////////////
@@ -433,13 +411,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    //������� ���������� ���������� ��������
-
-    /*public void ChangeSpeed(float speedMultiplier)
-    {
-        speed.curValue *= speedMultiplier;
-    }*/
-
     public void GetDamage(float damage)
     {
         if (isDied)
@@ -447,7 +418,6 @@ public class Player : MonoBehaviour
 
         if (isDefending)
         {
-            // Debug.Log("����� ����������");
             float staminaSub = damage * 10;
             if (staminaSub > stamina.curValue)
             {
@@ -457,7 +427,6 @@ public class Player : MonoBehaviour
             }
             else
                 stamina.curValue -= staminaSub;
-            // Debug.Log(stamina);
         }
         else
             health.curValue -= damage;
@@ -475,9 +444,6 @@ public class Player : MonoBehaviour
         {
             HitBox hB = hitBox.GetComponent<HitBox>();
             hB.damage = damage;
-            /*Debug.Log(damage);
-            Debug.Log(strength.curValue);
-            Debug.Log(weaponDamage);*/
             hB.thrust = strength.curValue * 50000;
             hB.owner = "Player";
         }
@@ -494,7 +460,7 @@ public class Player : MonoBehaviour
 
     private void ConnectWithDoor(Collider2D collision)
     {
-        if (collision.CompareTag("Door"))
+        if (collision.GetComponent<DoorOpening>())
         {
             door = collision.gameObject;
             doorScript = door.GetComponent<DoorOpening>();

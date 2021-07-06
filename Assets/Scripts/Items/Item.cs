@@ -31,7 +31,7 @@ public abstract class Item : MonoBehaviour
 
     private IEnumerator DropItemCorutine() {
         isPicked = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         isPicked = false;
     }
 

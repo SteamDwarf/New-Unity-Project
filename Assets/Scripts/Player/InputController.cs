@@ -52,4 +52,5 @@ public class InputController : MonoBehaviour
             interfaceManager.ShowHidePauseMenu();
         }
     }
+
 }

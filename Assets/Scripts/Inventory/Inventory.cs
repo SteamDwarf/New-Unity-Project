@@ -38,7 +38,8 @@ public class Inventory : MonoBehaviour, IMenu
     private void Awake()
     {
         gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();   
-        cellUI = GameObject.FindGameObjectsWithTag("InventoryItem").ToList<GameObject>();
+        //cellUI = GameObject.FindGameObjectsWithTag("InventoryItem").ToList<GameObject>();
+        GetCells();
         currentItem = GameObject.FindGameObjectWithTag("CurrentItem");
         currentItemImage = currentItem.GetComponent<Image>();
         descriptionMenu = GameObject.FindGameObjectWithTag("ItemInteractMenu");
@@ -56,6 +57,23 @@ public class Inventory : MonoBehaviour, IMenu
         saveCell_1.Clear();
         saveCell_2.Clear();
         inventoryBlocked = true;
+    }
+
+    private void GetCells() {
+        List<GameObject> cell = new List<GameObject>();
+        cellUI = new List<GameObject>();
+
+        cell = GameObject.FindGameObjectWithTag("HotBar").GetComponent<HotBarUI>().GetHotBarCells();
+        foreach (var item in cell){
+            cellUI.Add(item);
+        }
+
+        cell = GameObject.FindGameObjectWithTag("Inventory").GetComponent<InventoryUI>().GetInventoryCell();
+         foreach (var item in cell){
+            cellUI.Add(item);
+        }
+
+        Debug.Log(cellUI.Count);
     }
 
     private void ClearCells()
@@ -214,8 +232,6 @@ public class Inventory : MonoBehaviour, IMenu
         HideContextMenu();
     }
 
-// TODO: Когда открыт инвентарь цифры не работают
-
     public void UseItem(int id) {
         if(gm.isPaused) {
             return;
@@ -320,7 +336,7 @@ public class Inventory : MonoBehaviour, IMenu
         
         GameObject newItem = ItemPrefabBuilder.BuildPotionPrefab(cellSO[choosenCellId].item, intCount, cellSO[choosenCellId].sprite);
         newItem.GetComponent<Item>().DropItem();
-        newItem.transform.position = new Vector3(transform.position.x + 5, transform.position.y + 5, transform.position.z);
+        newItem.transform.position = new Vector3(transform.position.x + 3, transform.position.y + 3, transform.position.z);
 
         DecreaseItemNumber(choosenCellId, intCount);
         HideContextMenu();

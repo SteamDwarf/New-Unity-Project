@@ -223,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9036d64b11a9640a8dfdb69c94d78a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm: {fileID: 0}
   cellSO:
   - {fileID: 11400000, guid: c2e0ea02a443d814e8b47f62b927b162, type: 2}
   - {fileID: 11400000, guid: 33235f8b57ae1f049ac4b8c549539cff, type: 2}
@@ -381,7 +382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3478164760466956474, guid: a7968f90772769a408ea13d69d86b745, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3709959293025058169, guid: a7968f90772769a408ea13d69d86b745, type: 3}
       propertyPath: m_IsActive
