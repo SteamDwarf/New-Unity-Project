@@ -270,7 +270,6 @@ public class Player : MonoBehaviour
     {
         staminaBar.fillAmount = stamina.curValue / stamina.curMaxValue;
         healthBar.fillAmount = health.curValue / health.curMaxValue;
-        //Debug.Log(staminaBar.fillAmount);
     }
 
     private void EffectBarChange()

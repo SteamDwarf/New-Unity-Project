@@ -121,6 +121,7 @@ MonoBehaviour:
     \u0441\u0438\u043B\u0443 \u0438\u0433\u0440\u043E\u043A\u0430."
   itemName: "\u0417\u0435\u043B\u044C\u0435 \u0441\u0438\u043B"
   count: 1
+  thisObjectPrefab: {fileID: 4172812202190944511}
   increase: 2
   timeEffect: 1
   type: 1

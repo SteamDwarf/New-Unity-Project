@@ -59,6 +59,8 @@ public class Enemy : MonoBehaviour
     protected int currentWaypoint = 0;
     protected bool reachedEndOfPath = false;
 
+    // TODO: При смерти врага HealthBar его должен пропадать и при повороте врага он не должен поворачиваться
+
     /////////Start, Update, FixedUpdate//////////////////////
 
     protected void Start()
@@ -85,6 +87,8 @@ public class Enemy : MonoBehaviour
 
         CreateAttacksList();
         InvokeRepeating("UpdatePath", 0f, 0.5f);
+
+        Debug.Log(healthBar);
     }
 
     // Update is called once per frame
@@ -288,10 +292,15 @@ public class Enemy : MonoBehaviour
         Vector2 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
+
+/*         Vector2 healthBarScaler = healthBar.transform.localScale;
+        scaler.x *= -1;
+        healthBar.transform.localScale = healthBarScaler; */
     }
 
     public void GetDamage(float damage)
     {
+        ChangeHealthBar();
         StartCoroutine(Hurting());
         health -= damage;
         currentAgroTime = startAgroTime;
@@ -303,12 +312,12 @@ public class Enemy : MonoBehaviour
             enemyCollider.isTrigger = true;
             GM.EnemyDie();
             rB.constraints = RigidbodyConstraints2D.FreezePosition;
+            healthBar.fillAmount = 0f;
 
             if(!isBig)
                 sortGr.sortingLayerName = "Items";
             //Debug.Log(GM.aliveEnemies);
         }
-
     }
 
     protected virtual void DefaultBehavior() { }
@@ -339,5 +348,9 @@ public class Enemy : MonoBehaviour
 
     //////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////
+
+    private void ChangeHealthBar() {
+        healthBar.fillAmount = health / maxHealth;
+    }
 
 }

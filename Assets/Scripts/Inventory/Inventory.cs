@@ -333,7 +333,6 @@ public class Inventory : MonoBehaviour, IMenu
             return;
         }
         int intCount = Mathf.Clamp(int.Parse(count), 1, cellSO[choosenCellId].countItem);
-        
         GameObject newItem = ItemPrefabBuilder.BuildPotionPrefab(cellSO[choosenCellId].item, intCount, cellSO[choosenCellId].sprite);
         newItem.GetComponent<Item>().DropItem();
         newItem.transform.position = new Vector3(transform.position.x + 3, transform.position.y + 3, transform.position.z);

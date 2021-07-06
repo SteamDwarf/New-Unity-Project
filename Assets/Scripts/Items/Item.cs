@@ -11,6 +11,8 @@ public abstract class Item : MonoBehaviour
     private bool isPicked;
     private Inventory inventory;
 
+    [SerializeField] private GameObject thisObjectPrefab;
+
     protected void Start() {
         isPicked = false;
     }
