@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Potion : Item
 {
-    public float increase;
-    public float timeEffect;
-    public PotionType type;
+    [SerializeField] protected float increase;
+    [SerializeField] protected float timeEffect;
+    [SerializeField] protected PotionType type;
     Player player;
 
     new void Start()
@@ -44,6 +44,7 @@ public class Potion : Item
         this.increase = (float)information["increase"];
         this.timeEffect = (float)information["timeEffect"];
         this.type = (PotionType)information["type"];
+        this.useType = (ItemUseType)information["useType"];
     }
 
     public override Dictionary<string, object> GetItemInformation() {
@@ -55,7 +56,8 @@ public class Potion : Item
             {"increase", this.increase},
             {"timeEffect", this.timeEffect},
             {"type", this.type},
-            {"collider", GetComponent<CapsuleCollider2D>()}
+            {"collider", GetComponent<CapsuleCollider2D>()},
+            {"useType", this.useType}
         };
 
         return information;

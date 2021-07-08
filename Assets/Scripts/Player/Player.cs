@@ -164,32 +164,60 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Combat()
-    {
-        if (Input.GetMouseButtonDown(0) && stamina.curValue >= staminaPerAttack && anim.isActing == false)
-        {
+    public void Attack() {
+        if(stamina.curValue >= staminaPerAttack && anim.isActing == false) {
             stamina.curValue -= 30;
             StartCoroutine(Attacking());
         }
+    }
+    public void BeginBlock() {
+        if(anim.isActing == false) {
+            isDefending = true;
+            StartCoroutine(BlockingCorutine());
+        }
+    }
+    public void Blocking() {
+        anim.isActing = true;
+        anim.act = "Blocking";
+    }
+    public void EndBlock() {
+        anim.isActing = false;
+        isDefending = false;
+    }
+    public void Combat()
+    {
+        /* if (Input.GetMouseButtonDown(0) && stamina.curValue >= staminaPerAttack && anim.isActing == false)
+        {
+            stamina.curValue -= 30;
+            StartCoroutine(Attacking());
+        } */
 
 
-        if (Input.GetMouseButtonDown(1) && anim.isActing == false)
+        /* if (Input.GetMouseButtonDown(1) && anim.isActing == false)
         {
             isDefending = true;
             StartCoroutine(Blocking());
-        }
+        } */
 
-        if (Input.GetMouseButton(1))
+/*         if (Input.GetMouseButton(1))
         {
             anim.isActing = true;
             anim.act = "Blocking";
-        }
-
+        } */
+/* 
         if (Input.GetMouseButtonUp(1))
         {
             anim.isActing = false;
             isDefending = false;
-        }
+        } */
+    }
+
+    public void ThrowAmmo(Vector2 vector, GameObject ammo) {
+        Vector2 distanceNorm = (vector - rB.position).normalized;
+        ammo.GetComponent<Item>().DropItem();
+        ammo.transform.position = rB.position;
+        ammo.GetComponent<Rigidbody2D>().AddForce(distanceNorm * 800);
+        Debug.Log("Кидаю снаряд");
     }
     ////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////
@@ -207,7 +235,7 @@ public class Player : MonoBehaviour
         anim.isActing = false;
     }
 
-    private IEnumerator Blocking()
+    private IEnumerator BlockingCorutine()
     {
         anim.isActing = true;
         anim.act = "Block";

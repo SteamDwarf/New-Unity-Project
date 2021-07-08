@@ -28,3 +28,9 @@ public enum MousePressed {
 public enum GameState {
     menuState, inGameState, inventoryState, invetoryItemInteraction
 }
+public enum ItemUseType {
+    getEffectUse, chooseTargetUse
+}
+public enum ItemDamageType {
+    target, area
+}

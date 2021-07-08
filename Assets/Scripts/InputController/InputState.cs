@@ -5,7 +5,7 @@ using UnityEngine;
 public interface InputState 
 {
     //void Move(Vector2 vector, Player player);
-    void MouseClick(int mBtn, MousePressed mousePressed, Player player);
+    void MouseClick(Player player);
     void CallMenu(KeyCode key);
     void HotBarUse(int id, Inventory inventory);
 }

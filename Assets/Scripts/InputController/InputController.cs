@@ -10,17 +10,20 @@ public class InputController : MonoBehaviour, IStateSwitcher
     private InterfaceManager interfaceManager;
     private Player player;
     private List<InputState> inputStates;
-    private InputState currentState;
+    public InputState currentState {get; private set;}
+    private ChooseTargetManager targetManager;
 
     void Start()
     {
         interfaceManager = gm.GetComponent<InterfaceManager>();
+        targetManager = GetComponent<ChooseTargetManager>();
 
         inputStates = new List<InputState>() {
             new MenuState(this, interfaceManager),
             new InGameState(this, interfaceManager),
             new InventoryState(this, interfaceManager),
-            new InventoryItemInteractionState(this, interfaceManager)
+            new InventoryItemInteractionState(this, interfaceManager),
+            new ChooseTargetState(this, interfaceManager, targetManager)
         };
 
         currentState = inputStates[1];
@@ -31,6 +34,7 @@ public class InputController : MonoBehaviour, IStateSwitcher
     {
         UseCell();
         CallUI();
+        MouseClick();
     }
 
     private void UseCell()
@@ -70,5 +74,12 @@ public class InputController : MonoBehaviour, IStateSwitcher
         InputState state = inputStates.FirstOrDefault(s => s is T);
         currentState = state;
         Debug.Log(currentState);
+    }
+
+    private void MouseClick() {
+        if(player == null) {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        }
+        currentState.MouseClick(player);
     }
 }

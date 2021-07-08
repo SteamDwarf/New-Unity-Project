@@ -31,4 +31,24 @@ public static class ItemPrefabBuilder
 
         return itemBase;
     }
+
+    public static GameObject BuildThrowingItemPrefab(Item itemScript, Sprite sprite) {
+        GameObject itemBase = CreateItemBase();
+
+        Dictionary<string, object> itemInformation = itemScript.GetItemInformation();
+        itemBase.AddComponent<ThrowingItem>();
+        itemBase.GetComponent<ThrowingItem>().SetInformation(itemInformation);
+        itemBase.AddComponent<CapsuleCollider2D>().isTrigger = true;
+
+        CapsuleCollider2D collider = (CapsuleCollider2D)itemInformation["collider"];
+        itemBase.GetComponent<CapsuleCollider2D>().size = collider.size;
+        itemBase.GetComponent<CapsuleCollider2D>().offset = collider.offset;
+        itemBase.GetComponent<SpriteRenderer>().sprite = sprite;
+        itemBase.transform.localScale = new Vector3(1, 1, 1);
+
+        itemBase.AddComponent<Rigidbody2D>();
+        itemBase.GetComponent<Rigidbody2D>().gravityScale = 0;
+
+        return itemBase;
+    }
 }

@@ -4,20 +4,21 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
-    public int id;
-    public string description;
-    public string itemName;
-    public int count;
-    private bool isPicked;
+    [SerializeField] protected int id;
+    [SerializeField] protected string description;
+    [SerializeField] protected string itemName;
+    [SerializeField] protected int count;
+    protected bool isPicked;
+    public ItemUseType useType;
     private Inventory inventory;
 
-    [SerializeField] private GameObject thisObjectPrefab;
+    public GameObject thisObjectPrefab;
 
     protected void Start() {
         isPicked = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
+    protected virtual void OnTriggerEnter2D(Collider2D collision) {
 
         if(isPicked) {
             return;

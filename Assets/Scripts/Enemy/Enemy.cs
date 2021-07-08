@@ -291,19 +291,17 @@ public class Enemy : MonoBehaviour
         Vector2 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
-
-/*         Vector2 healthBarScaler = healthBar.transform.localScale;
-        scaler.x *= -1;
-        healthBarCanvas.transform.localScale = healthBarScaler; */
     }
 
     public void GetDamage(float damage)
     {
-        ChangeHealthBar();
+        if(isDied) {
+            return;
+        }
         StartCoroutine(Hurting());
         health -= damage;
         currentAgroTime = startAgroTime;
-
+        ChangeHealthBar();
         if (health <= 0)
         {
             anim.curState = "Dying";

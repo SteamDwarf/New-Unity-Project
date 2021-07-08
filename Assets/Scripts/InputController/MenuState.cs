@@ -14,7 +14,7 @@ public class MenuState : InputState
 /*     public  void Move(Vector2 vector, Player player) {
         return;
     } */
-    public void MouseClick(int mBtn, MousePressed mousePressed, Player player) {
+    public void MouseClick(Player player) {
         return;
     }
     public void HotBarUse(int id, Inventory inventory) {

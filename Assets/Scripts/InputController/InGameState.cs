@@ -13,8 +13,21 @@ public class InGameState : InputState
 /*     public void Move(Vector2 vector, Player player) {
         player.Move(vector);//Передать Vector2
     } */
-    public void MouseClick(int i, MousePressed mousePressed, Player player) {
-        player.Combat(); //Передать Input
+    public void MouseClick(Player player) {
+        if (Input.GetMouseButtonDown(0)){
+            player.Attack();
+        }
+        if (Input.GetMouseButtonDown(1)) {
+            player.BeginBlock();
+        }
+
+        if (Input.GetMouseButton(1)) {
+            player.Blocking();
+        }
+
+        if (Input.GetMouseButtonUp(1)){
+            player.EndBlock();
+        }
     }
     public void HotBarUse(int id, Inventory inventory) {
         inventory.UseItem(id);

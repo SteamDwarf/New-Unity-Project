@@ -13,6 +13,7 @@ public class InventoryCell : ScriptableObject
     public int idItem {get; [SerializeField] private set;}
     public string description {get; [SerializeField] private set;}
     public string itemName {get; [SerializeField] private set;}
+    public ItemUseType useType;
 
     public InventoryCell Clone() {
         InventoryCell copyCell = ScriptableObject.CreateInstance<InventoryCell>();
@@ -23,6 +24,7 @@ public class InventoryCell : ScriptableObject
         copyCell.idItem = this.idItem;
         copyCell.description = this.description;
         copyCell.itemName = this.itemName;
+        copyCell.useType = this.useType;
 
         return copyCell;
     }
@@ -37,12 +39,15 @@ public class InventoryCell : ScriptableObject
     }
 
     public void SetItem(GameObject item) {
-        this.item = item.GetComponent<Item>();
+        Item newItem = item.GetComponent<Item>();
+        Dictionary<string, object> itemInformation = newItem.GetItemInformation();
+        this.item = newItem;
         this.sprite = item.GetComponent<SpriteRenderer>().sprite;
-        this.countItem += this.item.count;
-        this.idItem = this.item.id;
-        this.description = this.item.description;
-        this.itemName = this.item.itemName;
+        this.countItem += (int)itemInformation["count"];
+        this.idItem = (int)itemInformation["id"];
+        this.description = (string)itemInformation["description"];
+        this.itemName = (string)itemInformation["itemName"];
+        this.useType = (ItemUseType)itemInformation["useType"];
     }
 
     public int DecreaseItemNumber() {

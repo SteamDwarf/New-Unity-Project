@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Reflection;
 
 
 public class InventoryCellScript : MonoBehaviour, IPointerClickHandler
@@ -24,12 +25,16 @@ public class InventoryCellScript : MonoBehaviour, IPointerClickHandler
         }
 
         if (eventData.button == PointerEventData.InputButton.Right) {
-            inventory.ShowContextMenu(cellId);
-            inputController.SwitchState<InventoryItemInteractionState>();
+            if(inputController.currentState is InventoryState ) {
+                inventory.ShowContextMenu(cellId);
+                inputController.SwitchState<InventoryItemInteractionState>();
+            }
         }
 
         if(eventData.button == PointerEventData.InputButton.Left){
-            inventory.MoveItem(cellId);
+            if(inputController.currentState is InventoryState) {
+                inventory.MoveItem(cellId);
+            }
         }
     }
 }

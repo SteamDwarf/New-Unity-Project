@@ -32,8 +32,10 @@ public class Inventory : MonoBehaviour, IMenu
     private Image itemDescImage;
     private TextMeshProUGUI itemDescName;
     private TextMeshProUGUI itemDescDescription;
-    private bool inventoryBlocked;
+    //private bool inventoryBlocked;
+    private GameObject inputControllerGO;
     private InputController inputController;
+    private ChooseTargetManager targetManager;
     
 
     private void Awake()
@@ -47,7 +49,9 @@ public class Inventory : MonoBehaviour, IMenu
         itemDescImage = GameObject.FindGameObjectWithTag("ItemSprite").GetComponent<Image>();
         itemDescName = GameObject.FindGameObjectWithTag("ItemName").GetComponent<TextMeshProUGUI>();
         itemDescDescription = GameObject.FindGameObjectWithTag("ItemDescription").GetComponent<TextMeshProUGUI>();
-        inputController = GameObject.FindGameObjectWithTag("InputController").GetComponent<InputController>();
+        inputControllerGO = GameObject.FindGameObjectWithTag("InputController");
+        inputController = inputControllerGO.GetComponent<InputController>();
+        targetManager = inputControllerGO.GetComponent<ChooseTargetManager>();
     }
 
     private void Start()
@@ -58,7 +62,7 @@ public class Inventory : MonoBehaviour, IMenu
         ClearCells();
         saveCell_1.Clear();
         saveCell_2.Clear();
-        inventoryBlocked = true;
+        //inventoryBlocked = true;
     }
 
     private void GetCells() {
@@ -90,7 +94,8 @@ public class Inventory : MonoBehaviour, IMenu
     public void GetItem(GameObject item)
     {
         Sprite sprite = item.GetComponent<SpriteRenderer>().sprite;
-        int idItem = item.GetComponent<Item>().id;
+        Dictionary<string, object> itemInformation = item.GetComponent<Item>().GetItemInformation();
+        int idItem = (int)itemInformation["id"];
         int cellId = FindAppropriateCell(idItem);
 
         if(cellId == -1) {
@@ -150,13 +155,13 @@ public class Inventory : MonoBehaviour, IMenu
     {
         descriptionMenu.SetActive(false);
         choosenCellId = -1;
-        inventoryBlocked = false;
+        //inventoryBlocked = false;
     }
 
     public void ShowContextMenu(int id) {
-        if(inventoryBlocked) {
+/*         if(inventoryBlocked) {
             return;
-        }
+        } */
         if(cellSO[id].item == null) {
             return;
         }
@@ -167,7 +172,7 @@ public class Inventory : MonoBehaviour, IMenu
             itemDescName.text = cellSO[choosenCellId].itemName;
             itemDescDescription.text = cellSO[choosenCellId].description;
             descriptionMenu.SetActive(true);
-            inventoryBlocked = true;
+            //inventoryBlocked = true;
         }
     }
 
@@ -208,11 +213,17 @@ public class Inventory : MonoBehaviour, IMenu
 
         if(cellSO[choosenCellId].item.GetComponent<Item>() != null){
             Item item = cellSO[choosenCellId].item.GetComponent<Item>();
-            item.UseItem();
 
-            DecreaseItemNumber();
+            if(cellSO[choosenCellId].useType == ItemUseType.getEffectUse) {
+                item.UseItem();
+                DecreaseItemNumber();
+                inputController.SwitchState<InventoryState>();
+            }else if (cellSO[choosenCellId].useType == ItemUseType.chooseTargetUse){
+                targetManager.EnterState(item, cellSO[choosenCellId].sprite);
+                inputController.SwitchState<ChooseTargetState>();
+            }
         }
-        inputController.SwitchState<InventoryState>();
+        
         HideContextMenu();
     }
 
@@ -226,16 +237,21 @@ public class Inventory : MonoBehaviour, IMenu
         
         if(cellSO[id].item.GetComponent<Item>() != null){
             Item item = cellSO[id].item.GetComponent<Item>();
-            item.UseItem();
 
-            DecreaseItemNumber(id);
+            if(cellSO[id].useType == ItemUseType.getEffectUse) {
+                item.UseItem();
+                DecreaseItemNumber(id);
+            }else if (cellSO[id].useType == ItemUseType.chooseTargetUse){
+                targetManager.EnterState(item, cellSO[id].sprite);
+                inputController.SwitchState<ChooseTargetState>();
+            }
         }
     }
 
     public void MoveItem(int id) {
-        if(inventoryBlocked) {
+/*         if(inventoryBlocked) {
             return;
-        }
+        } */
 
         if(cellSO[id].item == null && saveCell_1.item == null) {
             return;
@@ -283,7 +299,7 @@ public class Inventory : MonoBehaviour, IMenu
     }
 
     public void OpenMenu() {
-        inventoryBlocked = false;
+        //inventoryBlocked = false;
     }
 
     public void CloseMenu() {
@@ -292,7 +308,7 @@ public class Inventory : MonoBehaviour, IMenu
         saveCell_1.Clear();
         saveCell_2.Clear();
         copiedCellID = -1;
-        inventoryBlocked = true;
+        //inventoryBlocked = true;
     }
 
     public void DropItem(string count) {
