@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private Collider2D enemyCollider;
     protected EnemyAnimator anim;
 
+    public GameObject healthBarCanvas;
     public Image healthBar;
     public Vector2 currentPlayerPosition;
     public List<GameObject> attackPoses;
@@ -87,8 +88,6 @@ public class Enemy : MonoBehaviour
 
         CreateAttacksList();
         InvokeRepeating("UpdatePath", 0f, 0.5f);
-
-        Debug.Log(healthBar);
     }
 
     // Update is called once per frame
@@ -295,7 +294,7 @@ public class Enemy : MonoBehaviour
 
 /*         Vector2 healthBarScaler = healthBar.transform.localScale;
         scaler.x *= -1;
-        healthBar.transform.localScale = healthBarScaler; */
+        healthBarCanvas.transform.localScale = healthBarScaler; */
     }
 
     public void GetDamage(float damage)
@@ -313,6 +312,7 @@ public class Enemy : MonoBehaviour
             GM.EnemyDie();
             rB.constraints = RigidbodyConstraints2D.FreezePosition;
             healthBar.fillAmount = 0f;
+            healthBarCanvas.SetActive(false);
 
             if(!isBig)
                 sortGr.sortingLayerName = "Items";

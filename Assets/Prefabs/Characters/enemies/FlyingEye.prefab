@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57edade7775cb764d904822c44757b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBarCanvas: {fileID: 7845072215151025837}
   healthBar: {fileID: 4720894344059431234}
   currentPlayerPosition: {x: 0, y: 0}
   attackPoses:

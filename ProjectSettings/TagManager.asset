@@ -26,6 +26,7 @@ TagManager:
   - ItemName
   - ItemDescription
   - HotBar
+  - InputController
   layers:
   - Default
   - TransparentFX

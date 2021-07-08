@@ -9,8 +9,13 @@ public class ContextMenu : MonoBehaviour
     private Inventory inventory;
     [SerializeField] private GameObject inputCountBlock;
     [SerializeField] private GameObject input;
+    [SerializeField] private GameObject inputControllerGO;
+    private InputController inputController;
     private string count;
-    private Regex regex = new Regex(@"\D");
+
+    private void Start() {
+        inputController = inputControllerGO.GetComponent<InputController>();
+    }
 
     public void UseItem() {
         if(inventory == null) {
@@ -23,7 +28,6 @@ public class ContextMenu : MonoBehaviour
         if(inventory == null) {
             inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         }
-        inventory.ShowItemDescription();
     }
 
     public void HideContextMenu() {
@@ -33,6 +37,7 @@ public class ContextMenu : MonoBehaviour
 
         inventory.HideContextMenu();
         inputCountBlock.SetActive(false);
+        inputController.SwitchState<InventoryState>();
     }
 
     public void ShowCountInput() {
@@ -51,5 +56,6 @@ public class ContextMenu : MonoBehaviour
         inventory.DropItem(count);
         input.GetComponent<TMP_InputField>().text = "";
         inputCountBlock.SetActive(false);
+        inputController.SwitchState<InventoryState>();
     }
 }

@@ -9,7 +9,13 @@ public class InventoryCellScript : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private int cellId;
     [SerializeField] private CellType cellType;
+    [SerializeField] GameObject inputControllerGO;
+    private InputController inputController; 
     private Inventory inventory;
+
+    private void Start() {
+        inputController = inputControllerGO.GetComponent<InputController>();
+    }
 
     public void OnPointerClick(PointerEventData eventData) { 
 
@@ -19,6 +25,7 @@ public class InventoryCellScript : MonoBehaviour, IPointerClickHandler
 
         if (eventData.button == PointerEventData.InputButton.Right) {
             inventory.ShowContextMenu(cellId);
+            inputController.SwitchState<InventoryItemInteractionState>();
         }
 
         if(eventData.button == PointerEventData.InputButton.Left){

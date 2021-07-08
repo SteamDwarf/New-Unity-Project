@@ -33,6 +33,7 @@ public class Inventory : MonoBehaviour, IMenu
     private TextMeshProUGUI itemDescName;
     private TextMeshProUGUI itemDescDescription;
     private bool inventoryBlocked;
+    private InputController inputController;
     
 
     private void Awake()
@@ -46,6 +47,7 @@ public class Inventory : MonoBehaviour, IMenu
         itemDescImage = GameObject.FindGameObjectWithTag("ItemSprite").GetComponent<Image>();
         itemDescName = GameObject.FindGameObjectWithTag("ItemName").GetComponent<TextMeshProUGUI>();
         itemDescDescription = GameObject.FindGameObjectWithTag("ItemDescription").GetComponent<TextMeshProUGUI>();
+        inputController = GameObject.FindGameObjectWithTag("InputController").GetComponent<InputController>();
     }
 
     private void Start()
@@ -150,24 +152,6 @@ public class Inventory : MonoBehaviour, IMenu
         choosenCellId = -1;
         inventoryBlocked = false;
     }
-/*     public void HideContextMenu()
-    {
-        Destroy(instantiatedContextMenu);
-        choosenCellId = -1;
-    } */
-
-/*     public void CreateContextMenu(int id, Vector2 position) {
-        if(cellSO[id].item == null) {
-            return;
-        }
-
-        if(instantiatedContextMenu != null) {
-            Destroy(instantiatedContextMenu);
-        }
-        instantiatedContextMenu = Instantiate(contextMenu, position, Quaternion.identity, cellUI[id].transform);
-        instantiatedContextMenu.SetActive(true);
-        choosenCellId = id;
-    } */
 
     public void ShowContextMenu(int id) {
         if(inventoryBlocked) {
@@ -228,14 +212,14 @@ public class Inventory : MonoBehaviour, IMenu
 
             DecreaseItemNumber();
         }
-
+        inputController.SwitchState<InventoryState>();
         HideContextMenu();
     }
 
     public void UseItem(int id) {
-        if(gm.isPaused) {
+/*         if(gm.isPaused) {
             return;
-        }
+        } */
         if(cellSO[id].item == null) {
             return;
         }
@@ -309,22 +293,6 @@ public class Inventory : MonoBehaviour, IMenu
         saveCell_2.Clear();
         copiedCellID = -1;
         inventoryBlocked = true;
-    }
-
-    public void ShowItemDescription() {
-        if(cellSO[choosenCellId].item == null) {
-            HideContextMenu();
-            return;
-        }
-
-        if(cellSO[choosenCellId].item != null){
-            itemDescImage.sprite = cellSO[choosenCellId].sprite;
-            itemDescName.text = cellSO[choosenCellId].itemName;
-            itemDescDescription.text = cellSO[choosenCellId].description;
-            descriptionMenu.SetActive(true);
-        }
-
-        HideContextMenu();
     }
 
     public void DropItem(string count) {

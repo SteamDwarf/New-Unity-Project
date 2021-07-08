@@ -40,6 +40,8 @@ public abstract class Item : MonoBehaviour
     public void DropItem() {
         StartCoroutine(DropItemCorutine());
     }
+
+/*     public abstract Item Clone(); */
     public abstract void UseItem();
     public abstract void SetInformation(Dictionary<string, object> information);
     public abstract Dictionary<string, object> GetItemInformation();

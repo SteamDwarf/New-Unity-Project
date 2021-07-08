@@ -7,6 +7,9 @@ public class MainMenu : MonoBehaviour
 {
     private GameManager GM;
     private GameObject gameManager;
+    private InterfaceManager interfaceManager;
+    [SerializeField] private GameObject inputControllerGO;
+    private InputController inputController;
 
     private void Start()
     {
@@ -14,6 +17,8 @@ public class MainMenu : MonoBehaviour
         {
             gameManager = GameObject.Find("GameManager");
             GM = gameManager.GetComponent<GameManager>();
+            inputController = inputControllerGO.GetComponent<InputController>();
+            interfaceManager = gameManager.GetComponent<InterfaceManager>();
         }
         catch (System.Exception)
         {
@@ -30,7 +35,7 @@ public class MainMenu : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
-        Debug.Log("Игра закрылась");
+        Debug.Log("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
     }
 
     public void GoToMenu()
@@ -40,6 +45,7 @@ public class MainMenu : MonoBehaviour
 
     public void Resume()
     {
-        GM.ResumeGame();
+       interfaceManager.ShowHidePauseMenu();
+        inputController.SwitchState<InGameState>();
     }
 }

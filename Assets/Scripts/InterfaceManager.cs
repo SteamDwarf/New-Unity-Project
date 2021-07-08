@@ -65,7 +65,6 @@ public class InterfaceManager : MonoBehaviour
         if (inventoryShowed) {
             return;
         }
-
         ShowHideMenu(pauseMenu, ref pauseMenuShowed);
     }
 }

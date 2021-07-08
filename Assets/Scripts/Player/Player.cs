@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
 
     //////////////////������������� ������////////////////////
 
-    private void Move()
+    public void Move()
     {
         inputMovement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         moveVelocity = inputMovement * speed.curValue;
@@ -164,7 +164,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Combat()
+    public void Combat()
     {
         if (Input.GetMouseButtonDown(0) && stamina.curValue >= staminaPerAttack && anim.isActing == false)
         {

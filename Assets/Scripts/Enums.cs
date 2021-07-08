@@ -22,3 +22,9 @@ public enum CellType {
 public enum PotionType {
     health, strength, stamina, speed
 }
+public enum MousePressed {
+    down, enter, up
+}
+public enum GameState {
+    menuState, inGameState, inventoryState, invetoryItemInteraction
+}

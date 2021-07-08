@@ -512,7 +512,7 @@ GameObject:
   - component: {fileID: 248603987}
   m_Layer: 0
   m_Name: InputController
-  m_TagString: Untagged
+  m_TagString: InputController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -626,9 +626,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1759988305}
-        m_TargetAssemblyTypeName: InterfaceManager, Assembly-CSharp
-        m_MethodName: ShowHideInventory
+      - m_Target: {fileID: 2071507797}
+        m_TargetAssemblyTypeName: InventoryUI, Assembly-CSharp
+        m_MethodName: CloseInventory
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -893,6 +893,10 @@ PrefabInstance:
       propertyPath: cellId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1366170370768290851, guid: d53e79ad7a2171f4a944c9688f2a3861, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 8418624855115148509, guid: d53e79ad7a2171f4a944c9688f2a3861, type: 3}
       propertyPath: m_Name
       value: Cell (2)
@@ -1210,6 +1214,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6256332192644796912, guid: 5e6af8b7afaf1e94b9489fe4852fdff6, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 9074081751347276949, guid: 5e6af8b7afaf1e94b9489fe4852fdff6, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1753,6 +1761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f923fbcdd079549a772291449e433b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputControllerGO: {fileID: 248603986}
 --- !u!224 &792163118 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8418624855115148510, guid: d53e79ad7a2171f4a944c9688f2a3861, type: 3}
@@ -1863,6 +1872,10 @@ PrefabInstance:
       propertyPath: cellId
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1366170370768290851, guid: d53e79ad7a2171f4a944c9688f2a3861, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 8418624855115148509, guid: d53e79ad7a2171f4a944c9688f2a3861, type: 3}
       propertyPath: m_Name
       value: Cell (4)
@@ -2574,6 +2587,10 @@ PrefabInstance:
       propertyPath: cellId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1366170370768290851, guid: d53e79ad7a2171f4a944c9688f2a3861, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 8418624855115148509, guid: d53e79ad7a2171f4a944c9688f2a3861, type: 3}
       propertyPath: m_Name
       value: Cell (1)
@@ -3186,6 +3203,8 @@ MonoBehaviour:
   - {fileID: 660381569}
   - {fileID: 131619588}
   - {fileID: 857522855}
+  inputControllerGO: {fileID: 248603986}
+  gameManagerGO: {fileID: 1759988300}
 --- !u!1001 &2116250586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3201,6 +3220,10 @@ PrefabInstance:
       propertyPath: cellId
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1366170370768290851, guid: d53e79ad7a2171f4a944c9688f2a3861, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 8418624855115148509, guid: d53e79ad7a2171f4a944c9688f2a3861, type: 3}
       propertyPath: m_Name
       value: Cell (3)
@@ -3402,62 +3425,122 @@ PrefabInstance:
       propertyPath: cellId
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 2477008032442390700, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 2477008032673852948, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
       propertyPath: cellId
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2477008032673852948, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 2477008032824844335, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
       propertyPath: cellId
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 2477008032824844335, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 2477008032905748363, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
       propertyPath: cellId
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 2477008032905748363, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 2477008032925292554, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
       propertyPath: cellId
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 2477008032925292554, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 2477008032988075762, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
       propertyPath: cellId
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2477008032988075762, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 2477008033111461970, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
       propertyPath: cellId
       value: 19
       objectReference: {fileID: 0}
+    - target: {fileID: 2477008033111461970, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 2477008033262769604, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
       propertyPath: cellId
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 2477008033262769604, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 2477008033482662265, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
       propertyPath: cellId
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2477008033482662265, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 2477008033499519629, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
       propertyPath: cellId
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 2477008033499519629, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 2477008033518871374, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
       propertyPath: cellId
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 2477008033518871374, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 2477008033758189442, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
       propertyPath: cellId
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2477008033758189442, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 2477008034000502256, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
       propertyPath: cellId
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2477008034000502256, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 2477008034175598068, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
       propertyPath: cellId
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 2477008034175598068, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 2477008034368571041, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
       propertyPath: cellId
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 2477008034368571041, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 3604712932378708307, guid: 6bb8373b6e32dfd4f808fefcd7659062, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -3903,6 +3986,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1917799669}
     m_Modifications:
+    - target: {fileID: 1366170370768290851, guid: d53e79ad7a2171f4a944c9688f2a3861, type: 3}
+      propertyPath: inputControllerGO
+      value: 
+      objectReference: {fileID: 248603986}
     - target: {fileID: 8418624855115148509, guid: d53e79ad7a2171f4a944c9688f2a3861, type: 3}
       propertyPath: m_Name
       value: Cell

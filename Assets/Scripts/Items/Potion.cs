@@ -60,4 +60,18 @@ public class Potion : Item
 
         return information;
     }
+
+/*     public override Item Clone(){
+        Potion clone = new Potion();
+
+        clone.id = this.id;
+        clone.description = this.description;
+        clone.itemName = this.itemName;
+        clone.count = this.count;
+        clone.increase = this.increase;
+        clone.timeEffect = this.timeEffect;
+        clone.type = this.type;
+
+        return clone;
+    } */
 }    

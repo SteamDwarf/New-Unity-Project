@@ -302,6 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57edade7775cb764d904822c44757b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBarCanvas: {fileID: 397878480038617568}
   healthBar: {fileID: 2045373829404190200}
   currentPlayerPosition: {x: 0, y: 0}
   attackPoses:
