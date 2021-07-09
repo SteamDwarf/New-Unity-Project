@@ -27,6 +27,7 @@ TagManager:
   - ItemDescription
   - HotBar
   - InputController
+  - TargetCursor
   layers:
   - Default
   - TransparentFX

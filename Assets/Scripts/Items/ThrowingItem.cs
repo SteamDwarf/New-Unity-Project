@@ -9,7 +9,7 @@ public class ThrowingItem : Item
     protected Player player;
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
@@ -73,9 +73,19 @@ public class ThrowingItem : Item
             {"damage", this.damage},
             {"type", this.type},
             {"collider", GetComponent<CapsuleCollider2D>()},
-            {"useType", this.useType}
+            {"useType", this.useType},
+            {"animController", GetComponent<Animator>().runtimeAnimatorController}
         };
 
         return information;
+    }
+
+    public void Launch(Vector2 target, float power) {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        Animator anim = GetComponent<Animator>();
+
+        rb.AddForce(target * power);
+        anim.Play("Launched");
+
     }
 }

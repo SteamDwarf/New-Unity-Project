@@ -216,8 +216,7 @@ public class Player : MonoBehaviour
         Vector2 distanceNorm = (vector - rB.position).normalized;
         ammo.GetComponent<Item>().DropItem();
         ammo.transform.position = rB.position;
-        ammo.GetComponent<Rigidbody2D>().AddForce(distanceNorm * 800);
-        Debug.Log("Кидаю снаряд");
+        ammo.GetComponent<ThrowingItem>().Launch(distanceNorm, 800);
     }
     ////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////

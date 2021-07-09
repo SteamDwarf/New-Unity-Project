@@ -16,7 +16,6 @@ public static class ItemPrefabBuilder
     }
     public static GameObject BuildPotionPrefab(Item itemScript, int count, Sprite sprite) {
         GameObject itemBase = CreateItemBase();
-        //ItemInformation itemInformation = itemScript.GetItemInformation();
         Dictionary<string, object> itemInformation = itemScript.GetItemInformation();
         itemInformation["count"] = count;
 
@@ -32,10 +31,12 @@ public static class ItemPrefabBuilder
         return itemBase;
     }
 
-    public static GameObject BuildThrowingItemPrefab(Item itemScript, Sprite sprite) {
+    public static GameObject BuildThrowingItemPrefab(Item itemScript, int count, Sprite sprite) {
         GameObject itemBase = CreateItemBase();
 
         Dictionary<string, object> itemInformation = itemScript.GetItemInformation();
+        itemInformation["count"] = count;
+        
         itemBase.AddComponent<ThrowingItem>();
         itemBase.GetComponent<ThrowingItem>().SetInformation(itemInformation);
         itemBase.AddComponent<CapsuleCollider2D>().isTrigger = true;
@@ -48,6 +49,9 @@ public static class ItemPrefabBuilder
 
         itemBase.AddComponent<Rigidbody2D>();
         itemBase.GetComponent<Rigidbody2D>().gravityScale = 0;
+
+        itemBase.AddComponent<Animator>();
+        itemBase.GetComponent<Animator>().runtimeAnimatorController = (RuntimeAnimatorController)itemInformation["animController"];
 
         return itemBase;
     }

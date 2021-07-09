@@ -36,6 +36,7 @@ public class Inventory : MonoBehaviour, IMenu
     private GameObject inputControllerGO;
     private InputController inputController;
     private ChooseTargetManager targetManager;
+    private InterfaceManager interfaceManager;
     
 
     private void Awake()
@@ -52,6 +53,7 @@ public class Inventory : MonoBehaviour, IMenu
         inputControllerGO = GameObject.FindGameObjectWithTag("InputController");
         inputController = inputControllerGO.GetComponent<InputController>();
         targetManager = inputControllerGO.GetComponent<ChooseTargetManager>();
+        interfaceManager = gm.GetComponent<InterfaceManager>();
     }
 
     private void Start()
@@ -218,13 +220,13 @@ public class Inventory : MonoBehaviour, IMenu
                 item.UseItem();
                 DecreaseItemNumber();
                 inputController.SwitchState<InventoryState>();
+                HideContextMenu();
             }else if (cellSO[choosenCellId].useType == ItemUseType.chooseTargetUse){
-                targetManager.EnterState(item, cellSO[choosenCellId].sprite);
+                targetManager.EnterState(item, cellSO[choosenCellId].sprite, choosenCellId);
                 inputController.SwitchState<ChooseTargetState>();
+                interfaceManager.ShowHideInventory();
             }
-        }
-        
-        HideContextMenu();
+        } 
     }
 
     public void UseItem(int id) {
@@ -242,7 +244,7 @@ public class Inventory : MonoBehaviour, IMenu
                 item.UseItem();
                 DecreaseItemNumber(id);
             }else if (cellSO[id].useType == ItemUseType.chooseTargetUse){
-                targetManager.EnterState(item, cellSO[id].sprite);
+                targetManager.EnterState(item, cellSO[id].sprite, id);
                 inputController.SwitchState<ChooseTargetState>();
             }
         }
@@ -316,8 +318,16 @@ public class Inventory : MonoBehaviour, IMenu
             HideContextMenu();
             return;
         }
+
         int intCount = Mathf.Clamp(int.Parse(count), 1, cellSO[choosenCellId].countItem);
-        GameObject newItem = ItemPrefabBuilder.BuildPotionPrefab(cellSO[choosenCellId].item, intCount, cellSO[choosenCellId].sprite);
+        GameObject newItem;
+
+        if(cellSO[choosenCellId].useType == ItemUseType.getEffectUse) {
+            newItem = ItemPrefabBuilder.BuildPotionPrefab(cellSO[choosenCellId].item, intCount, cellSO[choosenCellId].sprite);
+        } else {
+            newItem = ItemPrefabBuilder.BuildThrowingItemPrefab(cellSO[choosenCellId].item, intCount, cellSO[choosenCellId].sprite);
+        }
+        
         newItem.GetComponent<Item>().DropItem();
         newItem.transform.position = new Vector3(transform.position.x + 3, transform.position.y + 3, transform.position.z);
 

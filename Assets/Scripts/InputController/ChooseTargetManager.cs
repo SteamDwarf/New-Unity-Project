@@ -7,25 +7,24 @@ using UnityEngine.EventSystems;
 public class ChooseTargetManager : MonoBehaviour
 {
     [SerializeField] private GameObject currentItemGO;
+    private Camera cam;
     private InputController inputController;
     private Item choosedItem;
     private Player player;
     private Sprite itemSprite;
-    // Start is called before the first frame update
+    private Inventory inventory;
+    private int itemId;
     void Start()
     {
+        cam = Camera.main;
         inputController = GetComponent<InputController>();
     }
-    void Update()
-    {
-        
-    }
 
-    public void EnterState(Item item, Sprite sprite) {
-        Debug.Log("Enter");
+    public void EnterState(Item item, Sprite sprite, int id) {
         choosedItem = item;
         itemSprite = sprite;
-        currentItemGO.GetComponent<Image>().sprite = sprite;
+        itemId = id;
+        //currentItemGO.GetComponent<Image>().sprite = sprite;
         currentItemGO.SetActive(true);
     }
     public void ExitState() {
@@ -33,9 +32,10 @@ public class ChooseTargetManager : MonoBehaviour
         itemSprite = null;
         currentItemGO.SetActive(false);
         inputController.SwitchState<InGameState>();
+        itemId = -1;
     }
     public void BeginAction() {
-        Camera cam = Camera.main;
+
         Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 choosedPos = new Vector3(mousePos.x, mousePos.y);
 
@@ -43,10 +43,14 @@ public class ChooseTargetManager : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         }
 
-        GameObject newItem = ItemPrefabBuilder.BuildThrowingItemPrefab(choosedItem, itemSprite);
-        Debug.Log("кидаю");
-
+        GameObject newItem = ItemPrefabBuilder.BuildThrowingItemPrefab(choosedItem, 1, itemSprite);
         player.ThrowAmmo(choosedPos, newItem);
+
+        if(inventory == null) {
+            inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        }
+        inventory.DecreaseItemNumber(itemId, 1);
+
         ExitState();
     }
 
