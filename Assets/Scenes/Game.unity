@@ -2044,12 +2044,12 @@ SpriteRenderer:
   m_SortingLayerID: -255216243
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ed9b214dad4bfa94eaca6bd7c97ce9f1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b4c680416691a794b8fbae8ad5a444e1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 9, y: 9}
+  m_Size: {x: 5.12, y: 5.06}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2847,6 +2847,8 @@ MonoBehaviour:
   maxFeatures: 30
   maxEnemiesPerRoom: 4
   minEnemiesPerRoom: 2
+  maxItemInRoom: 4
+  minItemInRoom: 2
   maxPotionInRoom: 2
   minPotionInRoom: 0
   playerSpawnCordinates: {x: 0, y: 0}
@@ -2898,7 +2900,9 @@ MonoBehaviour:
   - {fileID: 3252153750383587771, guid: 5a9a2626da375de4891056ea1cbe73b3, type: 3}
   - {fileID: 4838784104326345665, guid: 6062dfca202d50c48ab1b595d451807f, type: 3}
   - {fileID: 4172812202190944511, guid: a5897a8c5cbb245428411190a52b3b89, type: 3}
-  spawnedPotions: []
+  oneTargetAmmo:
+  - {fileID: 635449740457399519, guid: 63cdd3345bcf25249921a1d503475db7, type: 3}
+  - {fileID: 8360230527823522335, guid: 8b2971ad24439824da652674c66dc57f, type: 3}
   mapk: 10
 --- !u!114 &1759988305
 MonoBehaviour:

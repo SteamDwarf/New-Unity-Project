@@ -24,6 +24,8 @@ public class DungeonGenerator : MonoBehaviour
     
     [SerializeField] private int maxEnemiesPerRoom;
     [SerializeField] private int minEnemiesPerRoom;
+    [SerializeField] private int maxItemInRoom;
+    [SerializeField] private int minItemInRoom;
     [SerializeField] private int maxPotionInRoom;
     [SerializeField] private int minPotionInRoom;
 
@@ -442,10 +444,10 @@ public class DungeonGenerator : MonoBehaviour
     {
         for (int i = 0; i < allRooms.Count; i++)
         {
-            int potionSpawnCount = Random.Range(minPotionInRoom, maxPotionInRoom + 1);
+            int itemSpawnCount = Random.Range(minItemInRoom, maxItemInRoom + 1);
             Feature room = allRooms[i];
 
-            for (int j = room.itemInRoom; j < potionSpawnCount;)
+            for (int j = room.itemInRoom; j < itemSpawnCount;)
             {
                 int tileInd = Random.Range(0, room.positions.Count - 1);
 
@@ -457,21 +459,32 @@ public class DungeonGenerator : MonoBehaviour
                     continue;
                 else if (map.map[spawnPoint.x, spawnPoint.y].hasPlayer)
                     continue;
+                else if(map.map[spawnPoint.x, spawnPoint.y].hasEnemy)
+                    continue;
                 else
                 {
-                    int lucky = Random.Range(1, 4);
+                    int lucky = Random.Range(1, 3);
 
-                    if (lucky < 3)
-                        map.map[spawnPoint.x, spawnPoint.y].SpawnItem(ItemType.momentaryPotion);
-                    else if (lucky == 3)
-                        map.map[spawnPoint.x, spawnPoint.y].SpawnItem(ItemType.continiousPotion);
+                    if(lucky == 1) {
+                        int potLucky = Random.Range(1, 4);
 
+                        if (potLucky < 3) {
+                            map.map[spawnPoint.x, spawnPoint.y].SpawnItem(ItemType.momentaryPotion);
+                        }   
+                        else if (potLucky == 3) {
+                            map.map[spawnPoint.x, spawnPoint.y].SpawnItem(ItemType.continiousPotion);
+                        }
+
+                    } else if(lucky == 2) {
+                        map.map[spawnPoint.x, spawnPoint.y].SpawnItem(ItemType.oneTargetThrowingItem);
+                    }
                     room.IncreaseItemCount(1);
                     j++;
                 }
             }
         }
     }
+
 
     public Tile[,] GetMap() {
         return map.map;

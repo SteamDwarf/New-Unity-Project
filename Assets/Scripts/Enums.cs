@@ -5,7 +5,7 @@ public enum EnemyType {
     simpleEnemy, hardEnemy
 }
 public enum ItemType {
-    momentaryPotion, continiousPotion
+    momentaryPotion, continiousPotion, oneTargetThrowingItem
 }
 public enum FurnitureType {
     doorTop, doorFront

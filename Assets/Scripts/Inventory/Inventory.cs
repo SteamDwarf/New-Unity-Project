@@ -96,8 +96,9 @@ public class Inventory : MonoBehaviour, IMenu
     public void GetItem(GameObject item)
     {
         Sprite sprite = item.GetComponent<SpriteRenderer>().sprite;
-        Dictionary<string, object> itemInformation = item.GetComponent<Item>().GetItemInformation();
-        int idItem = (int)itemInformation["id"];
+        Item itemScript = item.GetComponent<Item>();
+        //Dictionary<string, object> itemInformation = item.GetComponent<Item>().GetItemInformation();
+        int idItem = itemScript.GetId();
         int cellId = FindAppropriateCell(idItem);
 
         if(cellId == -1) {
@@ -170,6 +171,9 @@ public class Inventory : MonoBehaviour, IMenu
 
         choosenCellId = id;
         if(cellSO[choosenCellId].item != null){
+            /* int itemId = cellSO[choosenCellId].item.GetId();
+            Dictionary<string, object> inform = ItemDataBase.GetItemInformation(itemId); */
+
             itemDescImage.sprite = cellSO[choosenCellId].sprite;
             itemDescName.text = cellSO[choosenCellId].itemName;
             itemDescDescription.text = cellSO[choosenCellId].description;
@@ -222,7 +226,7 @@ public class Inventory : MonoBehaviour, IMenu
                 inputController.SwitchState<InventoryState>();
                 HideContextMenu();
             }else if (cellSO[choosenCellId].useType == ItemUseType.chooseTargetUse){
-                targetManager.EnterState(item, cellSO[choosenCellId].sprite, choosenCellId);
+                targetManager.EnterState(choosenCellId, cellSO[choosenCellId].idItem);
                 inputController.SwitchState<ChooseTargetState>();
                 interfaceManager.ShowHideInventory();
             }
@@ -244,7 +248,7 @@ public class Inventory : MonoBehaviour, IMenu
                 item.UseItem();
                 DecreaseItemNumber(id);
             }else if (cellSO[id].useType == ItemUseType.chooseTargetUse){
-                targetManager.EnterState(item, cellSO[id].sprite, id);
+                targetManager.EnterState(id, cellSO[id].idItem);
                 inputController.SwitchState<ChooseTargetState>();
             }
         }
@@ -320,16 +324,11 @@ public class Inventory : MonoBehaviour, IMenu
         }
 
         int intCount = Mathf.Clamp(int.Parse(count), 1, cellSO[choosenCellId].countItem);
-        GameObject newItem;
-
-        if(cellSO[choosenCellId].useType == ItemUseType.getEffectUse) {
-            newItem = ItemPrefabBuilder.BuildPotionPrefab(cellSO[choosenCellId].item, intCount, cellSO[choosenCellId].sprite);
-        } else {
-            newItem = ItemPrefabBuilder.BuildThrowingItemPrefab(cellSO[choosenCellId].item, intCount, cellSO[choosenCellId].sprite);
-        }
+        GameObject newItem = ItemPrefabBuilder.GetItemByResources(cellSO[choosenCellId].idItem);
+        Vector2 itemPosition = new Vector2(transform.position.x + 3, transform.position.y + 3);
         
-        newItem.GetComponent<Item>().DropItem();
-        newItem.transform.position = new Vector3(transform.position.x + 3, transform.position.y + 3, transform.position.z);
+        GameObject instItem =  Instantiate(newItem, itemPosition, Quaternion.identity);
+        instItem.GetComponent<Item>().DropItem();
 
         DecreaseItemNumber(choosenCellId, intCount);
         HideContextMenu();

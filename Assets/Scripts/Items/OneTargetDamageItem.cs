@@ -15,7 +15,7 @@ public class OneTargetDamageItem : ThrowingItem
         }
         
     }
-    public override void SetInformation(Dictionary<string, object> information){
+   /*  public override void SetInformation(Dictionary<string, object> information){
         this.id = (int)information["id"];
         this.description = (string)information["description"];
         this.itemName = (string)information["itemName"];
@@ -38,5 +38,5 @@ public class OneTargetDamageItem : ThrowingItem
         };
 
         return information;
-    }
+    } */
 }

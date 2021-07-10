@@ -9,9 +9,8 @@ public class Potion : Item
     [SerializeField] protected PotionType type;
     Player player;
 
-    new void Start()
+    void Start()
     {
-        base.Start();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
@@ -36,7 +35,7 @@ public class Potion : Item
         //Destroy(this.gameObject);
     }
 
-    public override void SetInformation(Dictionary<string, object> information){
+    /* public override void SetInformation(Dictionary<string, object> information){
         this.id = (int)information["id"];
         this.description = (string)information["description"];
         this.itemName = (string)information["itemName"];
@@ -61,7 +60,7 @@ public class Potion : Item
         };
 
         return information;
-    }
+    } */
 
 /*     public override Item Clone(){
         Potion clone = new Potion();

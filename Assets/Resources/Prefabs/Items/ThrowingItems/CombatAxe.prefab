@@ -124,7 +124,8 @@ MonoBehaviour:
   count: 1
   useType: 1
   thisObjectPrefab: {fileID: 8360230527823522335}
-  damage: 3
+  damage: 5
+  power: 800
   type: 0
 --- !u!70 &-7704358265038307400
 CapsuleCollider2D:

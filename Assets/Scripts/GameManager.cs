@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
         pathfinder = GameObject.Find("A*").GetComponent<AstarPath>();
         pathfinder.Scan();
         aliveEnemies = dungeonGenerator.aliveEnemiesCount;
+
+        //GameObject newItem = Resources.Load<GameObject>((string)ItemDataBase.GetItemInformation(1)["prefab"]);
+        //Debug.Log(newItem); 
     }
 
     public void ResumeGame()

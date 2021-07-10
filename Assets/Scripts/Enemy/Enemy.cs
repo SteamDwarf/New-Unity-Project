@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
     public float startAgroTime;
     public int maxStamina;
     public float attackRadius;
-    public bool isDied;
+    public bool isDied {get; set;}
     public bool isBig;
     public float nextWaypiontDistance;
 

@@ -40,11 +40,14 @@ public class InventoryCell : ScriptableObject
 
     public void SetItem(GameObject item) {
         Item newItem = item.GetComponent<Item>();
-        Dictionary<string, object> itemInformation = newItem.GetItemInformation();
+        int itemId = newItem.GetId();
+        Debug.Log(itemId);
+        Dictionary<string, object> itemInformation = ItemDataBase.GetItemInformation(itemId);
+
         this.item = newItem;
-        this.sprite = item.GetComponent<SpriteRenderer>().sprite;
-        this.countItem += (int)itemInformation["count"];
-        this.idItem = (int)itemInformation["id"];
+        this.sprite = Resources.Load<Sprite>((string)itemInformation["sprite"]);
+        this.countItem += newItem.GetCount();
+        this.idItem = itemId;
         this.description = (string)itemInformation["description"];
         this.itemName = (string)itemInformation["itemName"];
         this.useType = (ItemUseType)itemInformation["useType"];

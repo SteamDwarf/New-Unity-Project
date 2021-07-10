@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     public Image staminaBar;
     public Image healthBar;
 
-
     public List<GameObject> hitBoxes;
     public Attribute health;
     public Attribute stamina;
@@ -27,8 +26,6 @@ public class Player : MonoBehaviour
     public float weaponDamage;
     public bool isDied;
     public float staminaPerSec;
-
-
 
     private GameObject staminaEffectBar;
     private GameObject strengthEffectBar;
@@ -95,7 +92,6 @@ public class Player : MonoBehaviour
         {
             if (!isDied)
             {
-                Combat();
                 Actions();
                 StaminaRefresh();
                 EffectRefresh();
@@ -184,39 +180,35 @@ public class Player : MonoBehaviour
         anim.isActing = false;
         isDefending = false;
     }
-    public void Combat()
-    {
-        /* if (Input.GetMouseButtonDown(0) && stamina.curValue >= staminaPerAttack && anim.isActing == false)
-        {
-            stamina.curValue -= 30;
-            StartCoroutine(Attacking());
-        } */
-
-
-        /* if (Input.GetMouseButtonDown(1) && anim.isActing == false)
-        {
-            isDefending = true;
-            StartCoroutine(Blocking());
-        } */
-
-/*         if (Input.GetMouseButton(1))
-        {
-            anim.isActing = true;
-            anim.act = "Blocking";
-        } */
-/* 
-        if (Input.GetMouseButtonUp(1))
-        {
-            anim.isActing = false;
-            isDefending = false;
-        } */
-    }
 
     public void ThrowAmmo(Vector2 vector, GameObject ammo) {
+        GameObject instAmmo;
         Vector2 distanceNorm = (vector - rB.position).normalized;
-        ammo.GetComponent<Item>().DropItem();
-        ammo.transform.position = rB.position;
-        ammo.GetComponent<ThrowingItem>().Launch(distanceNorm, 800);
+        
+        ChangeVieweDirection(distanceNorm);
+
+        instAmmo = Instantiate(ammo, rB.position, Quaternion.identity);
+        instAmmo.GetComponent<Item>().DropItem();
+        instAmmo.GetComponent<ThrowingItem>().Launch(distanceNorm);
+    }
+
+    private void ChangeVieweDirection(Vector2 vector) {
+        float num = Mathf.Abs(vector.x) > Mathf.Abs(vector.y) ? vector.x : vector.y; 
+        string side = Mathf.Abs(vector.x) > Mathf.Abs(vector.y) ? "x" : "y";
+
+        if(side == "x") {
+            if(num > 0) {
+                anim.faceTo = "Right";
+            } else {
+                anim.faceTo = "Left";
+            }
+        } else {
+            if(num > 0) {
+                anim.faceTo = "Back";
+            } else {
+                anim.faceTo = "Front";
+            }
+        }
     }
     ////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////

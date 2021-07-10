@@ -5,8 +5,8 @@ using UnityEngine;
 public abstract class Item : MonoBehaviour
 {
     [SerializeField] protected int id;
-    [SerializeField] protected string description;
-    [SerializeField] protected string itemName;
+    //[SerializeField] protected string description;
+    //[SerializeField] protected string itemName;
     [SerializeField] protected int count;
     protected bool isPicked;
     public ItemUseType useType;
@@ -14,9 +14,9 @@ public abstract class Item : MonoBehaviour
 
     public GameObject thisObjectPrefab;
 
-    protected void Start() {
+/*     protected void Start() {
         isPicked = false;
-    }
+    } */
 
     protected virtual void OnTriggerEnter2D(Collider2D collision) {
 
@@ -34,7 +34,7 @@ public abstract class Item : MonoBehaviour
 
     private IEnumerator DropItemCorutine() {
         isPicked = true;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         isPicked = false;
     }
 
@@ -42,8 +42,15 @@ public abstract class Item : MonoBehaviour
         StartCoroutine(DropItemCorutine());
     }
 
-/*     public abstract Item Clone(); */
+    public int GetId() {
+        return id;
+    }
+    public int GetCount() {
+        return count;
+    }
+    public void SetCount(int count) {
+        this.count = count;
+    }
+
     public abstract void UseItem();
-    public abstract void SetInformation(Dictionary<string, object> information);
-    public abstract Dictionary<string, object> GetItemInformation();
 }

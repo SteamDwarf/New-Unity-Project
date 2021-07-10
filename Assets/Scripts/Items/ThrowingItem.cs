@@ -5,11 +5,14 @@ using UnityEngine;
 public class ThrowingItem : Item
 {
     [SerializeField] protected float damage;
+    [SerializeField] protected float power;
     [SerializeField] protected ItemDamageType type;
+    protected Rigidbody2D rb;
     protected Player player;
+    protected Animator anim;
 
     // Start is called before the first frame update
-    new void Start()
+    void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
@@ -20,72 +23,41 @@ public class ThrowingItem : Item
         
     }
 
-    public override void UseItem()
-    {
-        
-        /* switch (type)
-        {
-            case PotionType.health:
-                player.UpdateHealth(increase);
-                break;
-            case PotionType.stamina:
-                player.GetContiniousEffect(increase, timeEffect, type);
-                break;
-            case PotionType.strength:
-                player.GetContiniousEffect(increase, timeEffect, type);
-                break;
-            case PotionType.speed:
-                player.GetContiniousEffect(increase, timeEffect, type);
-                break;
-        } */
-
-        //Destroy(this.gameObject);
-    }
+    public override void UseItem() {}
 
     protected override void OnTriggerEnter2D(Collider2D other) {
         base.OnTriggerEnter2D(other);
 
         if(other.GetComponent<Enemy>() != null) {
-            other.GetComponent<Enemy>().GetDamage(damage);
-            Destroy(this.gameObject);
+            Enemy enemy = other.GetComponent<Enemy>();
+
+            if(!enemy.isDied) {
+                other.GetComponent<Enemy>().GetDamage(damage);
+                Destroy(this.gameObject);
+            }
+
         } else if(other.CompareTag("Wall")) {
             Destroy(this.gameObject);
         }
         
     }
 
-    public override void SetInformation(Dictionary<string, object> information){
-        this.id = (int)information["id"];
-        this.description = (string)information["description"];
-        this.itemName = (string)information["itemName"];
-        this.count = (int)information["count"];
-        this.damage = (float)information["damage"];
-        this.type = (ItemDamageType)information["type"];
-        this.useType = (ItemUseType)information["useType"];
-    }
-
-    public override Dictionary<string, object> GetItemInformation() {
-        Dictionary<string, object> information = new Dictionary<string, object> {
-            {"id", this.id},
-            {"description", this.description},
-            {"itemName", this.itemName},
-            {"count", this.count},
-            {"damage", this.damage},
-            {"type", this.type},
-            {"collider", GetComponent<CapsuleCollider2D>()},
-            {"useType", this.useType},
-            {"animController", GetComponent<Animator>().runtimeAnimatorController}
-        };
-
-        return information;
-    }
-
-    public void Launch(Vector2 target, float power) {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        Animator anim = GetComponent<Animator>();
+    public void Launch(Vector2 target) {
+        if(rb == null) {
+            rb = GetComponent<Rigidbody2D>();
+        }
+        if(anim == null) {
+            anim = GetComponent<Animator>();
+        }
 
         rb.AddForce(target * power);
         anim.Play("Launched");
+        StartCoroutine(LaunchCorutine());
+    }
 
+    IEnumerator LaunchCorutine() {
+        yield return new WaitForSeconds(2f);
+        rb.velocity = new Vector2(0, 0);
+        anim.Play("Droped");
     }
 }

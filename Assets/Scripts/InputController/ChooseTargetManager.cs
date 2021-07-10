@@ -9,10 +9,9 @@ public class ChooseTargetManager : MonoBehaviour
     [SerializeField] private GameObject currentItemGO;
     private Camera cam;
     private InputController inputController;
-    private Item choosedItem;
     private Player player;
-    private Sprite itemSprite;
     private Inventory inventory;
+    private int cellId;
     private int itemId;
     void Start()
     {
@@ -20,22 +19,19 @@ public class ChooseTargetManager : MonoBehaviour
         inputController = GetComponent<InputController>();
     }
 
-    public void EnterState(Item item, Sprite sprite, int id) {
-        choosedItem = item;
-        itemSprite = sprite;
-        itemId = id;
-        //currentItemGO.GetComponent<Image>().sprite = sprite;
+    public void EnterState(int cellId, int itemId) {
+        this.cellId = cellId;
+        this.itemId = itemId;
         currentItemGO.SetActive(true);
     }
     public void ExitState() {
-        choosedItem = null;
-        itemSprite = null;
         currentItemGO.SetActive(false);
         inputController.SwitchState<InGameState>();
+        cellId = -1;
         itemId = -1;
     }
     public void BeginAction() {
-
+        GameObject newItem;
         Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 choosedPos = new Vector3(mousePos.x, mousePos.y);
 
@@ -43,13 +39,13 @@ public class ChooseTargetManager : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         }
 
-        GameObject newItem = ItemPrefabBuilder.BuildThrowingItemPrefab(choosedItem, 1, itemSprite);
+        newItem = ItemPrefabBuilder.GetItemByResources(itemId);
         player.ThrowAmmo(choosedPos, newItem);
 
         if(inventory == null) {
             inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         }
-        inventory.DecreaseItemNumber(itemId, 1);
+        inventory.DecreaseItemNumber(cellId, 1);
 
         ExitState();
     }

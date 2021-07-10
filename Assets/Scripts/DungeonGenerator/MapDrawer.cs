@@ -22,7 +22,8 @@ public class MapDrawer : MonoBehaviour
     [SerializeField] private List<GameObject> spawnedEnemies;
     [SerializeField] private List<GameObject> momentaryPotions;
     [SerializeField] private List<GameObject> continiousPotions;
-    [SerializeField] private List<GameObject> spawnedPotions;
+    [SerializeField] private List<GameObject> oneTargetAmmo;
+    //[SerializeField] private List<GameObject> spawnedPotions;
 
     [SerializeField] private float mapk;
     public void DrawMap()
@@ -101,22 +102,24 @@ public class MapDrawer : MonoBehaviour
 
                 if(map[x, y].hasItem)
                 {
-                    int potionInd;
-                    GameObject potion;
+                    int itemInd;
+                    GameObject item;
 
-                    if (map[x, y].itemType == ItemType.momentaryPotion)
-                    {
-                        potionInd = Random.Range(0, momentaryPotions.Count);
-                        potion = momentaryPotions[potionInd];
-                    }
-                    else 
-                    {
-                        potionInd = Random.Range(0, continiousPotions.Count);
-                        potion = continiousPotions[potionInd];
+                    if (map[x, y].itemType == ItemType.momentaryPotion){
+                        itemInd = Random.Range(0, momentaryPotions.Count);
+                        item = momentaryPotions[itemInd];
+
+                    }else if (map[x, y].itemType == ItemType.continiousPotion) {
+                        itemInd = Random.Range(0, continiousPotions.Count);
+                        item = continiousPotions[itemInd];
+
+                    }else {
+                        itemInd = Random.Range(0, oneTargetAmmo.Count);
+                        item = oneTargetAmmo[itemInd];
                     }
 
-                    GameObject potionToInst = Instantiate(potion, new Vector3(x * mapk, y * mapk, 0), Quaternion.identity);
-                    spawnedPotions.Add(potion);
+                    GameObject potionToInst = Instantiate(item, new Vector3(x * mapk, y * mapk, 0), Quaternion.identity);
+                    //spawnedPotions.Add(potion);
                 }
             }
         }
