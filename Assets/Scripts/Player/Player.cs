@@ -122,9 +122,9 @@ public class Player : MonoBehaviour
         moveVelocity = inputMovement * speed.curValue;
         if ((inputMovement.x != 0 || inputMovement.y != 0))
         {
-            //anim.curState = "Run";
-            anim.isMoving = true;
-            anim.curState = "Run";
+            anim.SetState(true, "Run");
+            /* anim.isMoving = true;
+            anim.curState = "Run"; */
 
             if (inputMovement.y > 0)
                 anim.faceTo = "Back";
@@ -148,7 +148,8 @@ public class Player : MonoBehaviour
         }
         else
         {
-            anim.isMoving = false;
+            //anim.isMoving = false;
+            anim.SetState(false);
         }
     }
 
@@ -161,24 +162,18 @@ public class Player : MonoBehaviour
     }
 
     public void Attack() {
-        if(stamina.curValue >= staminaPerAttack && anim.isActing == false) {
+        if(stamina.curValue >= staminaPerAttack && anim.isActing == false && !isDied) {
             stamina.curValue -= 30;
-            StartCoroutine(Attacking());
-        }
-    }
-    public void BeginBlock() {
-        if(anim.isActing == false) {
-            isDefending = true;
-            StartCoroutine(BlockingCorutine());
+            anim.SetActing("Attack");
         }
     }
     public void Blocking() {
-        anim.isActing = true;
-        anim.act = "Blocking";
+        isDefending = true;
+        anim.SetAdditionalState(true, "Blocking");
     }
     public void EndBlock() {
-        anim.isActing = false;
         isDefending = false;
+        anim.SetAdditionalState(false);
     }
 
     public void ThrowAmmo(Vector2 vector, GameObject ammo) {
@@ -218,41 +213,18 @@ public class Player : MonoBehaviour
 
     ////////////////////////��������////////////////////////////////
 
-    private IEnumerator Attacking()
-    {
-        anim.isActing = true;
-        anim.act = "Attack_1";
-        yield return new WaitForSeconds(0.4f);
-        anim.isActing = false;
-    }
-
     private IEnumerator BlockingCorutine()
     {
-        anim.isActing = true;
-        anim.act = "Block";
+        anim.SetActing("Block");
         yield return new WaitForSeconds(0.5f);
-        anim.act = "Blocking";
-    }
-
-    private IEnumerator Hurting()
-    {
-        anim.isActing = true;
-        anim.act = "Hurt";
-        yield return new WaitForSeconds(0.5f);
-        anim.act = "";
-        anim.isActing = false;
+        anim.SetAdditionalState(true, "Blocking");
     }
 
     private IEnumerator Dying()
     {
         rB.isKinematic = true;
         isDied = true;
-        anim.isDied = true;
-        anim.isActing = true;
-        anim.isMoving = false;
-        anim.act = "Died";
-        yield return new WaitForSeconds(0.3f);
-        anim.act = "Die";
+        anim.PlayerDie();
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(2);
     }
@@ -452,7 +424,7 @@ public class Player : MonoBehaviour
         if(health.curValue <= 0)
             StartCoroutine(Dying());
         else
-            StartCoroutine(Hurting());
+            anim.SetActing("Hurt");
     }
 
     private void RefreshHitBoxDamage()

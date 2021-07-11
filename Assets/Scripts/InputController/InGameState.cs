@@ -17,9 +17,6 @@ public class InGameState : InputState
         if (Input.GetMouseButtonDown(0)){
             player.Attack();
         }
-        if (Input.GetMouseButtonDown(1)) {
-            player.BeginBlock();
-        }
 
         if (Input.GetMouseButton(1)) {
             player.Blocking();

@@ -17,9 +17,11 @@ public class PlayerAnimator : MonoBehaviour
     Animator playerRightAnim;
 
     public string curState;
+    public string additionalState;
     public string faceTo;
     public bool isActing;
     public bool isMoving;
+    private bool isAdditionalMoving;
     public bool isDied;
     public string act;
     /*public bool isAttacking;
@@ -113,25 +115,76 @@ public class PlayerAnimator : MonoBehaviour
 
     private void AnimationPlay()
     {
-        if(!isDied)
-        {
-            if (!isActing && !isMoving)
-                curAnimator.Play("player" + "Idle" + faceTo);
-            else if (act == "Hurt")
-                curAnimator.Play("player" + "Hurt" + faceTo);
-            else if (isActing && isMoving)
-                curAnimator.Play("player" + act + curState + faceTo);
-            else if (isActing)
-                curAnimator.Play("player" + act + faceTo);
-            else if (isMoving)
-                curAnimator.Play("player" + curState + faceTo);
+        if(isDied) {
+            return;
         }
 
-        if(isDied)
+        if(!isDied)
+        {  
+            if (!isActing && !isMoving && !isAdditionalMoving)
+                curAnimator.Play("Idle");
+            else if (act == "Hurt")
+                curAnimator.Play("Hurt");
+            else if(isActing && isMoving && isAdditionalMoving)
+                curAnimator.Play(curState + additionalState + act);
+            else if(isActing && isAdditionalMoving)
+                curAnimator.Play(additionalState + act);
+            else if(isMoving && isAdditionalMoving)
+                curAnimator.Play(curState + additionalState);
+            else if (isActing && isMoving)
+                curAnimator.Play(curState + act);
+            else if (isActing)
+                curAnimator.Play(act);
+            else if (isMoving)
+                curAnimator.Play(curState);
+            else if(isAdditionalMoving)
+                curAnimator.Play(additionalState);
+        }
+
+        /* if(isDied)
         {
             if(isActing && (act == "Die" || act == "Died"))
-                curAnimator.Play("player" + act + faceTo);
+                curAnimator.Play(act);    
+            
+        } */
+    }
+
+    public void SetActing(string acting) {
+        act = acting;
+        StartCoroutine(ActingCorutine());
+    }
+    public void SetState(bool addState, string state = "") {
+        if(addState) {
+            isMoving = true;
+            curState = state;
+        } else {
+            isMoving = false;
+        }
+    }
+    public void SetAdditionalState(bool addState, string state = "") {
+        if(addState) {
+            isAdditionalMoving = true;
+            additionalState = state;
+        } else {
+            isAdditionalMoving = false;
         }
     }
 
+    public void PlayerDie() {
+        StartCoroutine(DieCorutine());
+    }
+
+    private IEnumerator ActingCorutine() {
+        isActing = true;
+        yield return new WaitForSeconds(0.4f);
+        isActing = false;
+        act = "";
+    }
+
+    private IEnumerator DieCorutine() {
+        isDied = true;
+        curAnimator.Play("Died");
+        yield return new WaitForSeconds(0.3f);
+        curAnimator.Play("Die");
+    }
 }
