@@ -20,12 +20,40 @@ public class MapDrawer : MonoBehaviour
     [SerializeField] private List<GameObject> easyEnemies;
     [SerializeField] private List<GameObject> hardEnemies;
     [SerializeField] private List<GameObject> spawnedEnemies;
-    [SerializeField] private List<GameObject> momentaryPotions;
-    [SerializeField] private List<GameObject> continiousPotions;
-    [SerializeField] private List<GameObject> oneTargetAmmo;
+
+    private List<GameObject> rareItems;
+    private List<GameObject> unusualItems;
+    private List<GameObject> commonItems;
+
+    //[SerializeField] private List<GameObject> momentaryPotions;
+    //[SerializeField] private List<GameObject> continiousPotions;
+    //[SerializeField] private List<GameObject> oneTargetAmmo;
     //[SerializeField] private List<GameObject> spawnedPotions;
 
     [SerializeField] private float mapk;
+
+    public void Start() {
+        List<int> allID = ItemDataBase.GetAllID();
+
+        rareItems = new List<GameObject>();
+        unusualItems = new List<GameObject>();
+        commonItems = new List<GameObject>();
+
+        for (var i = 0; i < allID.Count; i++) {
+            Dictionary<string, object> itemInf = ItemDataBase.GetItemInformation(allID[i]);
+            RarityType rarity = (RarityType)itemInf["rarity"];
+            GameObject prefab = Resources.Load<GameObject>((string)itemInf["prefab"]);
+
+            if(rarity == RarityType.rare) {
+                rareItems.Add(prefab);
+            } else if(rarity == RarityType.unusual) {
+                unusualItems.Add(prefab);
+            } else if(rarity == RarityType.common) {
+                commonItems.Add(prefab);
+            }
+        }
+    }
+
     public void DrawMap()
     {
         dG = GetComponent<DungeonGenerator>();
@@ -105,19 +133,22 @@ public class MapDrawer : MonoBehaviour
                     int itemInd;
                     GameObject item;
 
-                    if (map[x, y].itemType == ItemType.momentaryPotion){
-                        itemInd = Random.Range(0, momentaryPotions.Count);
-                        item = momentaryPotions[itemInd];
+                    if (map[x, y].itemRarity == RarityType.rare){
+                        itemInd = Random.Range(0, rareItems.Count);
+                        item = rareItems[itemInd];
 
-                    }else if (map[x, y].itemType == ItemType.continiousPotion) {
-                        itemInd = Random.Range(0, continiousPotions.Count);
-                        item = continiousPotions[itemInd];
+                    }else if (map[x, y].itemRarity == RarityType.unusual) {
+                        itemInd = Random.Range(0, unusualItems.Count);
+                        item = unusualItems[itemInd];
 
-                    }else {
-                        itemInd = Random.Range(0, oneTargetAmmo.Count);
-                        item = oneTargetAmmo[itemInd];
+                    }else if (map[x, y].itemRarity == RarityType.common){
+                        itemInd = Random.Range(0, commonItems.Count);
+                        item = commonItems[itemInd];
+                    } else {
+                        item = null;
                     }
 
+                    item.GetComponent<Item>().SetCount(map[x, y].itemCount);
                     GameObject potionToInst = Instantiate(item, new Vector3(x * mapk, y * mapk, 0), Quaternion.identity);
                     //spawnedPotions.Add(potion);
                 }

@@ -9,7 +9,9 @@ public class Tile
     public bool hasEnemy {get; private set;}
     public EnemyType enemyType {get; private set;}
     public bool hasItem {get; private set;}
-    public ItemType itemType {get; private set;}
+    public int itemCount {get; private set;}
+    //public ItemType itemType {get; private set;}
+    public RarityType itemRarity {get; private set;}
     public bool hasFurniture {get; private set;}
     public FurnitureType furnitureType {get; private set;}
     public bool hasPlayer {get; private set;}
@@ -27,9 +29,10 @@ public class Tile
         this.hasEnemy = true;
         this.enemyType = enemy;
     }
-    public void SpawnItem(ItemType item) {
+    public void SpawnItem(RarityType itemRarity,int count) {
         this.hasItem = true;
-        this.itemType = item;
+        this.itemRarity = itemRarity;
+        this.itemCount = count;
     }
     public void SpawnFurniture(FurnitureType furniture) {
         this.hasFurniture = true;

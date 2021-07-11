@@ -11,6 +11,7 @@ public static class ItemDataBase
             {"itemName", "Зелье лечения"},
             {"description", "Это зелье содержит в себе живительную силу. Восстанавливают игроку жизни."},
             {"useType", ItemUseType.getEffectUse},
+            {"rarity", RarityType.unusual},
             {"sprite", "Sprites/Items/Potions/HealthPotion"},
             {"prefab", "Prefabs/Items/Potions/HealthPotion"}
         }},
@@ -19,6 +20,7 @@ public static class ItemDataBase
             {"itemName", "Зелье скорости"},
             {"description", "Хотите жить? Тогда бегите! Бегите! Пока не поздно... Зелье увеличивает скорость."},
             {"useType", ItemUseType.getEffectUse},
+            {"rarity", RarityType.rare},
             {"sprite", "Sprites/Items/Potions/SpeedPotion"},
             {"prefab", "Prefabs/Items/Potions/SpeedPotion"}
         }},
@@ -27,6 +29,7 @@ public static class ItemDataBase
             {"itemName", "Зелье выносливости"},
             {"description", "Устали от охоты на монстров, опускаются руки? Тогда этот напиток то, что вам надо! Увеличивает максимальное количество выносливости."},
             {"useType", ItemUseType.getEffectUse},
+            {"rarity", RarityType.rare},
             {"sprite", "Sprites/Items/Potions/StaminaPotion"},
             {"prefab", "Prefabs/Items/Potions/StaminaPotion"}
         }},
@@ -35,6 +38,7 @@ public static class ItemDataBase
             {"itemName", "Зелье сил"},
             {"description", "Скорее всего это зелье каждый день пил Добрыня Никитич! Увеличивает силу игрока."},
             {"useType", ItemUseType.getEffectUse},
+            {"rarity", RarityType.rare},
             {"sprite", "Sprites/Items/Potions/StrengthPotion"},
             {"prefab", "Prefabs/Items/Potions/StrengthPotion"}
         }},
@@ -43,6 +47,7 @@ public static class ItemDataBase
             {"itemName", "Боевой топор"},
             {"description", "Нет ничего лучше, чем топор, который можно кинуть в монстра и сразить его наповал!"},
             {"useType", ItemUseType.chooseTargetUse},
+            {"rarity", RarityType.unusual},
             {"sprite", "Sprites/Items/ThrowingItems/CombatAxe"},
             {"prefab", "Prefabs/Items/ThrowingItems/CombatAxe"}
         }},
@@ -51,6 +56,7 @@ public static class ItemDataBase
             {"itemName", "Метательный кинжал"},
             {"description", "Быстрый, резкий, как кинжал дерзкий!"},
             {"useType", ItemUseType.chooseTargetUse},
+            {"rarity", RarityType.common},
             {"sprite", "Sprites/Items/ThrowingItems/Dagger"},
             {"prefab", "Prefabs/Items/ThrowingItems/Dagger"}
         }}
@@ -59,4 +65,14 @@ public static class ItemDataBase
     public static Dictionary<string, object> GetItemInformation(int id) {
         return data[id];
     } 
+
+    public static List<int> GetAllID() {
+        List<int> allId = new List<int>();
+
+        foreach (var item in data){
+            allId.Add(item.Key);
+        }
+
+        return allId;
+    }
 }

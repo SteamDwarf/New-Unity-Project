@@ -34,3 +34,9 @@ public enum ItemUseType {
 public enum ItemDamageType {
     target, area
 }
+public enum RarityType {
+    unique, rare, unusual, common
+}
+public enum PlayerFaceTo {
+    front, back, left, right
+}

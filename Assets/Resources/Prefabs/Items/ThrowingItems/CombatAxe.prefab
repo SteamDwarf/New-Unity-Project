@@ -81,7 +81,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.34, y: 3.66}
+  m_Size: {x: 4.17, y: 4.17}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -119,8 +119,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 26
-  description: 
-  itemName: "\u041C\u0435\u0442\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0439 \u0442\u043E\u043F\u043E\u0440"
   count: 1
   useType: 1
   thisObjectPrefab: {fileID: 8360230527823522335}

@@ -10,6 +10,7 @@ public class ThrowingItem : Item
     protected Rigidbody2D rb;
     protected Player player;
     protected Animator anim;
+    protected bool isLaunched;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,7 @@ public class ThrowingItem : Item
     protected override void OnTriggerEnter2D(Collider2D other) {
         base.OnTriggerEnter2D(other);
 
-        if(other.GetComponent<Enemy>() != null) {
+        if(other.GetComponent<Enemy>() != null && isLaunched) {
             Enemy enemy = other.GetComponent<Enemy>();
 
             if(!enemy.isDied) {
@@ -56,8 +57,10 @@ public class ThrowingItem : Item
     }
 
     IEnumerator LaunchCorutine() {
+        isLaunched = true;
         yield return new WaitForSeconds(2f);
         rb.velocity = new Vector2(0, 0);
         anim.Play("Droped");
+        isLaunched = false;
     }
 }

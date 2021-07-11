@@ -89,6 +89,7 @@ public class DungeonGenerator : MonoBehaviour
         SpawnPlayer();
         SpawnEnemies();
         SpawnPotions();
+        MD.Start();
         MD.DrawMap();
     }
 
@@ -463,21 +464,39 @@ public class DungeonGenerator : MonoBehaviour
                     continue;
                 else
                 {
-                    int lucky = Random.Range(1, 3);
+                    int lucky = Random.Range(1, 17);
+                    int count;
+                    RarityType rarity;
 
-                    if(lucky == 1) {
+                    if(lucky >= 13 && lucky < 17) {
+                        count = 1;
+                        rarity = RarityType.rare;
+                    } else if(lucky >=9 && lucky < 13) {
+                        count = Random.Range(1,3);
+                        rarity = RarityType.unusual;
+                    } else {
+                        count = Random.Range(2, 4);
+                        rarity = RarityType.common;
+                    }
+
+                    map.map[spawnPoint.x, spawnPoint.y].SpawnItem(rarity, count);
+                   /*  if(lucky == 1) {
                         int potLucky = Random.Range(1, 4);
 
                         if (potLucky < 3) {
-                            map.map[spawnPoint.x, spawnPoint.y].SpawnItem(ItemType.momentaryPotion);
+                            count = Random.Range(1, 2); 
+                            map.map[spawnPoint.x, spawnPoint.y].SpawnItem(ItemType.momentaryPotion, count);
+
                         }   
                         else if (potLucky == 3) {
-                            map.map[spawnPoint.x, spawnPoint.y].SpawnItem(ItemType.continiousPotion);
+                            count = 1;
+                            map.map[spawnPoint.x, spawnPoint.y].SpawnItem(ItemType.continiousPotion, 1);
                         }
 
                     } else if(lucky == 2) {
-                        map.map[spawnPoint.x, spawnPoint.y].SpawnItem(ItemType.oneTargetThrowingItem);
-                    }
+                        count = Random.Range(1, 3);
+                        map.map[spawnPoint.x, spawnPoint.y].SpawnItem(ItemType.oneTargetThrowingItem, count);
+                    } */
                     room.IncreaseItemCount(1);
                     j++;
                 }
