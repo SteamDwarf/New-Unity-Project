@@ -328,6 +328,7 @@ public class Inventory : MonoBehaviour, IMenu
         Vector2 itemPosition = new Vector2(transform.position.x + 3, transform.position.y + 3);
         
         GameObject instItem =  Instantiate(newItem, itemPosition, Quaternion.identity);
+        instItem.GetComponent<Item>().SetCount(intCount);
         instItem.GetComponent<Item>().DropItem();
 
         DecreaseItemNumber(choosenCellId, intCount);

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6091556753640761709}
   - component: {fileID: 6382560557321516301}
   - component: {fileID: 8848417911601339635}
-  - component: {fileID: 1885150286749890046}
   - component: {fileID: 761151279021838551}
+  - component: {fileID: 504806535081467232}
   m_Layer: 0
   m_Name: Dagger
   m_TagString: Untagged
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -255216243
-  m_SortingLayer: 7
+  m_SortingLayerID: -1691773379
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1abe6dcf9eee3e447ac8acbbac16e5ce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -119,28 +119,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 27
-  count: 2
+  count: 3
   useType: 1
   thisObjectPrefab: {fileID: 635449740457399519}
   damage: 2
   power: 1200
   type: 0
---- !u!70 &1885150286749890046
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 635449740457399519}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 2.0400002, y: 4.7600007}
-  m_Direction: 0
 --- !u!50 &761151279021838551
 Rigidbody2D:
   serializedVersion: 4
@@ -162,3 +146,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!68 &504806535081467232
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635449740457399519}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 1.6735938, y: 2.003045}
+  - {x: -0.959956, y: -0.13533914}
+  - {x: -1.634261, y: -1.713648}
+  - {x: -1.4093142, y: -1.9603103}
+  - {x: 0.045766965, y: -0.92776036}
+  - {x: 1.6714783, y: 1.958415}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0

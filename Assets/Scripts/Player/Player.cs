@@ -180,6 +180,7 @@ public class Player : MonoBehaviour
         GameObject instAmmo;
         Vector2 distanceNorm = (vector - rB.position).normalized;
         
+        ammo.GetComponent<Item>().SetCount(1);
         ChangeVieweDirection(distanceNorm);
 
         instAmmo = Instantiate(ammo, rB.position, Quaternion.identity);

@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class InventoryCell : ScriptableObject
 {
-    //public GameObject item;
+    public GameObject itemGO {get; private set;}
     public Item item {get; [SerializeField] private set;} //Возможно заменить обратно на GameObject, чтобы потом Instatiate его
     public Sprite sprite {get; [SerializeField] private set;}
     public int countItem {get; [SerializeField] private set;}
@@ -18,6 +18,7 @@ public class InventoryCell : ScriptableObject
     public InventoryCell Clone() {
         InventoryCell copyCell = ScriptableObject.CreateInstance<InventoryCell>();
 
+        copyCell.itemGO = this.itemGO;
         copyCell.item = this.item;
         copyCell.sprite = this.sprite;
         copyCell.countItem = this.countItem;
@@ -30,6 +31,7 @@ public class InventoryCell : ScriptableObject
     }
 
     public void Clear() {
+        Destroy(itemGO);
         item = null;
         sprite = null;
         countItem = 0;
@@ -39,11 +41,17 @@ public class InventoryCell : ScriptableObject
     }
 
     public void SetItem(GameObject item) {
+        if(this.countItem > 0) {
+            this.countItem += item.GetComponent<Item>().GetCount();
+            Destroy(item);
+            return;
+        }
+
         Item newItem = item.GetComponent<Item>();
         int itemId = newItem.GetId();
-        Debug.Log(itemId);
         Dictionary<string, object> itemInformation = ItemDataBase.GetItemInformation(itemId);
 
+        this.itemGO = item;
         this.item = newItem;
         this.sprite = Resources.Load<Sprite>((string)itemInformation["sprite"]);
         this.countItem += newItem.GetCount();
@@ -57,8 +65,9 @@ public class InventoryCell : ScriptableObject
         this.countItem--;
 
         if (this.countItem == 0) {
-            this.idItem = 0;
-            this.item = null;
+            /* this.idItem = 0;
+            this.item = null; */
+            Clear();
         }
 
         return this.countItem;
@@ -68,8 +77,9 @@ public class InventoryCell : ScriptableObject
         this.countItem -= count;
 
         if (this.countItem == 0) {
-            this.idItem = 0;
-            this.item = null;
+            /* this.idItem = 0;
+            this.item = null; */
+            Clear();
         }
 
         return this.countItem;

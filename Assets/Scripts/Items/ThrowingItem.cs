@@ -11,6 +11,7 @@ public class ThrowingItem : Item
     protected Player player;
     protected Animator anim;
     protected bool isLaunched;
+    protected float currentPower;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,6 @@ public class ThrowingItem : Item
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public override void UseItem() {}
@@ -38,20 +38,29 @@ public class ThrowingItem : Item
             }
 
         } else if(other.CompareTag("Wall")) {
-            Destroy(this.gameObject);
+            Vector3 wallPos = other.GetComponent<Transform>().position;
+            Vector2 distanceNorm = (rb.position - new Vector2(wallPos.x, wallPos.y)).normalized;
+
+            rb.velocity = new Vector2(0, 0);
+            currentPower = currentPower / 2;
+            rb.AddForce(distanceNorm * currentPower);
+            StopCoroutine(LaunchCorutine());
+            StopCoroutine(RicochetCorutine());
+            StartCoroutine(RicochetCorutine());
         }
         
     }
 
     public void Launch(Vector2 target) {
+        currentPower = power;
+
         if(rb == null) {
             rb = GetComponent<Rigidbody2D>();
         }
         if(anim == null) {
             anim = GetComponent<Animator>();
         }
-
-        rb.AddForce(target * power);
+        rb.AddForce(target * currentPower);
         anim.Play("Launched");
         StartCoroutine(LaunchCorutine());
     }
@@ -60,7 +69,18 @@ public class ThrowingItem : Item
         isLaunched = true;
         yield return new WaitForSeconds(2f);
         rb.velocity = new Vector2(0, 0);
+        rb.angularVelocity = 0;
         anim.Play("Droped");
         isLaunched = false;
     }
+
+    IEnumerator RicochetCorutine() {
+        isLaunched = true;
+        yield return new WaitForSeconds(0.5f);
+        rb.velocity = new Vector2(0, 0);
+        rb.angularVelocity = 0;
+        anim.Play("Droped");
+        isLaunched = false;
+    }
+
 }

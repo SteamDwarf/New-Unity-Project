@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class ChooseTargetManager : MonoBehaviour
 {
-    [SerializeField] private GameObject currentItemGO;
+    [SerializeField] private GameObject aimGO;
     private Camera cam;
     private InputController inputController;
     private Player player;
@@ -22,10 +22,10 @@ public class ChooseTargetManager : MonoBehaviour
     public void EnterState(int cellId, int itemId) {
         this.cellId = cellId;
         this.itemId = itemId;
-        currentItemGO.SetActive(true);
+        aimGO.SetActive(true);
     }
     public void ExitState() {
-        currentItemGO.SetActive(false);
+        aimGO.SetActive(false);
         inputController.SwitchState<InGameState>();
         cellId = -1;
         itemId = -1;

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7087061348466859577}
   - component: {fileID: 1393700101296441443}
   - component: {fileID: 330123834310705546}
-  - component: {fileID: -7704358265038307400}
   - component: {fileID: 8500871293150702254}
+  - component: {fileID: 1809013226114708163}
   m_Layer: 0
   m_Name: CombatAxe
   m_TagString: Untagged
@@ -125,22 +125,6 @@ MonoBehaviour:
   damage: 5
   power: 800
   type: 0
---- !u!70 &-7704358265038307400
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8360230527823522335}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.0854431}
-  m_Size: {x: 1.34, y: 1.4891136}
-  m_Direction: 0
 --- !u!50 &8500871293150702254
 Rigidbody2D:
   serializedVersion: 4
@@ -162,3 +146,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!68 &1809013226114708163
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8360230527823522335}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.0388455, y: -1.7192483}
+  - {x: -1.5605953, y: -2.0384254}
+  - {x: -0.16584635, y: -0.26689243}
+  - {x: 1.0217571, y: -0.2260617}
+  - {x: 1.755473, y: 0.39651603}
+  - {x: 2.1901112, y: 1.4690721}
+  - {x: 0.76626897, y: 2.1816921}
+  - {x: -0.15579796, y: 0.8269234}
+  - {x: -2.0573497, y: -1.7423253}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
