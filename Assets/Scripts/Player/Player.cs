@@ -5,9 +5,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IGetDamage, IGetEffect
 {
     private DungeonGenerator dungeon;
+    private EffectBarUI effectBarUI;
 
     private MapDrawer MD;
     private GameObject gameManager;
@@ -71,6 +72,7 @@ public class Player : MonoBehaviour
         healthBar.fillAmount = 1f;
 
         gameManager = GameObject.Find("GameManager");
+        effectBarUI = GameObject.FindGameObjectWithTag("EffectBar").GetComponent<EffectBarUI>();
 
         GM = gameManager.GetComponent<GameManager>();
         MD = gameManager.GetComponent<MapDrawer>();
@@ -123,32 +125,20 @@ public class Player : MonoBehaviour
         if ((inputMovement.x != 0 || inputMovement.y != 0))
         {
             anim.SetState(true, "Run");
-            /* anim.isMoving = true;
-            anim.curState = "Run"; */
 
             if (inputMovement.y > 0)
-                anim.faceTo = "Back";
+                anim.ChangeFaceTo(PlayerFaceTo.back);
             else if (inputMovement.y < 0)
-                anim.faceTo = "Front";
+                anim.ChangeFaceTo(PlayerFaceTo.front);
             else if (inputMovement.x > 0)
-                anim.faceTo = "Right";
+                anim.ChangeFaceTo(PlayerFaceTo.right);
             else if (inputMovement.x < 0)
-                anim.faceTo = "Left";
+                anim.ChangeFaceTo(PlayerFaceTo.left);
 
             rB.MovePosition(rB.position + moveVelocity * Time.deltaTime);
-            //prevX = Mathf.FloorToInt(rB.position.x / mapk + 0.5f);
-            //prevY = Mathf.FloorToInt(rB.position.y / mapk + 0.5f);
-            //MapManager.map[prevX, prevY].hasPlayer = false;
-            //Debug.Log(MapManager.map[prevX, prevY].hasPlayer);
-            
-           //curX = Mathf.FloorToInt(rB.position.x / mapk + 0.5f);
-            //curY = Mathf.FloorToInt(rB.position.y / mapk + 0.5f);
-            //MapManager.map[curX, curY].hasPlayer = true;
-            //Debug.Log(MapManager.map[curX, curY].hasPlayer);
         }
         else
         {
-            //anim.isMoving = false;
             anim.SetState(false);
         }
     }
@@ -184,7 +174,7 @@ public class Player : MonoBehaviour
         ChangeVieweDirection(distanceNorm);
 
         instAmmo = Instantiate(ammo, rB.position, Quaternion.identity);
-        instAmmo.GetComponent<Item>().DropItem();
+        //instAmmo.GetComponent<Item>().DropItem();
         instAmmo.GetComponent<ThrowingItem>().Launch(distanceNorm);
     }
 
@@ -194,15 +184,15 @@ public class Player : MonoBehaviour
 
         if(side == "x") {
             if(num > 0) {
-                anim.faceTo = "Right";
+                anim.ChangeFaceTo(PlayerFaceTo.right);
             } else {
-                anim.faceTo = "Left";
+                anim.ChangeFaceTo(PlayerFaceTo.left);
             }
         } else {
             if(num > 0) {
-                anim.faceTo = "Back";
+                anim.ChangeFaceTo(PlayerFaceTo.back);
             } else {
-                anim.faceTo = "Front";
+                anim.ChangeFaceTo(PlayerFaceTo.front);
             }
         }
     }
@@ -402,6 +392,28 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void GetEffect(AttributeType attribute, AttributeValueType valueType, float increase, float time) {
+        Attribute varAttribute = health;
+
+        switch(attribute) {
+            case AttributeType.health:
+                varAttribute = health;
+                break;
+            case AttributeType.stamina:
+                varAttribute = stamina;
+                break;
+            case AttributeType.strength: 
+                varAttribute = strength;
+                break;
+            case AttributeType.speed:
+                varAttribute = speed;
+                break;
+        }
+
+        varAttribute.GetEffect(valueType, increase, time);
+        effectBarUI.SetEffect(attribute, valueType, increase, time);
+    }
+
     public void GetDamage(float damage)
     {
         if (isDied)
@@ -422,9 +434,9 @@ public class Player : MonoBehaviour
         else
             health.curValue -= damage;
 
-        if(health.curValue <= 0)
+        /* if(health.curValue <= 0)
             StartCoroutine(Dying());
-        else
+        else */
             anim.SetActing("Hurt");
     }
 

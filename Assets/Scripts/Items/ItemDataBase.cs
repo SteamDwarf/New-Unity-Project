@@ -59,6 +59,15 @@ public static class ItemDataBase
             {"rarity", RarityType.common},
             {"sprite", "Sprites/Items/ThrowingItems/Dagger"},
             {"prefab", "Prefabs/Items/ThrowingItems/Dagger"}
+        }},
+        {28, new Dictionary<string, object>() {
+            {"id", 28},
+            {"itemName", "Бомбочка"},
+            {"description", "Делает БУМ!"},
+            {"useType", ItemUseType.chooseTargetUse},
+            {"rarity", RarityType.unusual},
+            {"sprite", "Sprites/Items/ThrowingItems/Bomb_v2"},
+            {"prefab", "Prefabs/Items/ThrowingItems/Bomb"}
         }}
     };
 

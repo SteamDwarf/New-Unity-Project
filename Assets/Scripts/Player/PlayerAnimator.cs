@@ -16,30 +16,18 @@ public class PlayerAnimator : MonoBehaviour
     Animator playerLeftAnim;
     Animator playerRightAnim;
 
-    public string curState;
-    public string additionalState;
-    public string faceTo;
-    public bool isActing;
-    public bool isMoving;
-    private bool isAdditionalMoving;
-    public bool isDied;
-    public string act;
-    /*public bool isAttacking;
-    public bool isBlocking;
-    public bool getBlocking;
-    public bool isHurting;
-    public string curAttack;*/
-
-    private string prevFaceTo;
-    public bool animIsBlocked;
+    public string curState {get; private set;}
+    public string additionalState {get; private set;}
+    public PlayerFaceTo faceTo;
+    public bool isActing {get; private set;}
+    public bool isMoving {get; private set;}
+    public bool isAdditionalMoving {get; private set;}
+    public bool isDied {get; private set;}
+    public string act {get; private set;}
 
     void Start()
     {
         player = GetComponent<Player>();
-        /*playerFront = GameObject.Find("Player_Front");
-        playerBack = GameObject.Find("Player_Back");
-        playerLeft = GameObject.Find("Player_Left");
-        playerRight = GameObject.Find("Player_Right");*/
 
         playerFrontAnim = playerFront.GetComponent<Animator>();
         playerBackAnim = playerBack.GetComponent<Animator>();
@@ -47,60 +35,47 @@ public class PlayerAnimator : MonoBehaviour
         playerRightAnim = playerRight.GetComponent<Animator>();
 
         curState = "Idle";
-        faceTo = "Front";
+        faceTo = PlayerFaceTo.front;
         isActing = false;
         isMoving = false;
-        animIsBlocked = false;
         isDied = false;
-        prevFaceTo = faceTo;
+        //prevFaceTo = faceTo;
         curAnimator = playerFrontAnim;
 
+        ChangeFaceTo(faceTo);
     }
 
-    private void FixedUpdate()
-    {
-        //CheckAnimBlocked();
-        ChangeFaceTo();
+    private void FixedUpdate() {
+        AnimationPlay();
     }
 
-    /*private void CheckAnimBlocked()
-    {
-        if (isAttacking && curAnimator.GetCurrentAnimatorStateInfo(0).IsName("player" + curAttack + prevFaceTo))
-            animIsBlocked = true;
-        else
-            animIsBlocked = false;
-    }*/
+    public void ChangeFaceTo(PlayerFaceTo face) {
+        faceTo = face;
 
-    private void ChangeFaceTo()
-    {
-        if (animIsBlocked)
-            return;
-
-        prevFaceTo = faceTo;
         switch (faceTo)
         {
-            case "Front":
+            case PlayerFaceTo.front:
                 playerBack.SetActive(false);
                 playerLeft.SetActive(false);
                 playerRight.SetActive(false);
                 playerFront.SetActive(true);
                 curAnimator = playerFrontAnim;
                 break;
-            case "Back":
+            case PlayerFaceTo.back:
                 playerBack.SetActive(true);
                 playerLeft.SetActive(false);
                 playerRight.SetActive(false);
                 playerFront.SetActive(false);
                 curAnimator = playerBackAnim;
                 break;
-            case "Left":
+            case PlayerFaceTo.left:
                 playerBack.SetActive(false);
                 playerLeft.SetActive(true);
                 playerRight.SetActive(false);
                 playerFront.SetActive(false);
                 curAnimator = playerLeftAnim;
                 break;
-            case "Right":
+            case PlayerFaceTo.right:
                 playerBack.SetActive(false);
                 playerLeft.SetActive(false);
                 playerRight.SetActive(true);
@@ -108,12 +83,9 @@ public class PlayerAnimator : MonoBehaviour
                 curAnimator = playerRightAnim;
                 break;
         }
-
-        AnimationPlay();
-        //Debug.Log("player" + curState + faceTo);
     }
 
-    private void AnimationPlay()
+    public void AnimationPlay()
     {
         if(isDied) {
             return;
@@ -140,13 +112,6 @@ public class PlayerAnimator : MonoBehaviour
             else if(isAdditionalMoving)
                 curAnimator.Play(additionalState);
         }
-
-        /* if(isDied)
-        {
-            if(isActing && (act == "Die" || act == "Died"))
-                curAnimator.Play(act);    
-            
-        } */
     }
 
     public void SetActing(string acting) {

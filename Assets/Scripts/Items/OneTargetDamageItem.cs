@@ -1,42 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class OneTargetDamageItem : ThrowingItem
 {
+    [SerializeField] protected GameObject endActionEffect;
+    protected Collider2D enemyColl;
+    public UnityEvent<Collider2D, float> ActionDelegate;
     protected override void OnTriggerEnter2D(Collider2D other) {
         base.OnTriggerEnter2D(other);
+        
+        if(actionAfterConnect && (other.GetComponent<Enemy>() != null && !other.GetComponent<Enemy>().isDied)) {
+            enemyColl = other;
+            
+            if(actionDel != null && isLaunched) {
+                actionDel.Invoke();
+            }
+            return;
+        }
 
-        if(other.GetComponent<Enemy>() != null) {
-            other.GetComponent<Enemy>().GetDamage(damage);
-            Destroy(this.gameObject);
-        } else if(other.CompareTag("Wall")) {
-            Destroy(this.gameObject);
+        if(other.CompareTag("Wall") && isLaunched) {
+            Ricochet(other);
+            return;
+        }
+
+        if((other.GetComponent<Enemy>() != null && !other.GetComponent<Enemy>().isDied) && !actionAfterConnect) {
+            Ricochet(other);
+            return;
         }
         
     }
-   /*  public override void SetInformation(Dictionary<string, object> information){
-        this.id = (int)information["id"];
-        this.description = (string)information["description"];
-        this.itemName = (string)information["itemName"];
-        this.count = (int)information["count"];
-        this.damage = (float)information["damage"];
-        this.type = (ItemDamageType)information["type"];
-        this.useType = (ItemUseType)information["useType"];
+
+    protected override void Action() {
+        if(ActionDelegate != null) {
+            ActionDelegate.Invoke(enemyColl, damage);
+        }
+
+        if(endActionEffect != null) {
+            GameObject instEffect = Instantiate(endActionEffect, transform.position, Quaternion.identity);
+        }
+
+        if(afterLaunchDestroyable) {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        if(afterActionDistroyable) {
+            Destroy(this.gameObject);
+            return;
+        }
+
     }
 
-    public override Dictionary<string, object> GetItemInformation() {
-        Dictionary<string, object> information = new Dictionary<string, object> {
-            {"id", this.id},
-            {"description", this.description},
-            {"itemName", this.itemName},
-            {"count", this.count},
-            {"damage", this.damage},
-            {"type", this.type},
-            {"collider", GetComponent<CapsuleCollider2D>()},
-            {"useType", this.useType}
-        };
-
-        return information;
-    } */
 }
+

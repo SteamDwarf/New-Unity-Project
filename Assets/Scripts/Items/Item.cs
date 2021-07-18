@@ -32,7 +32,7 @@ public abstract class Item : MonoBehaviour
         }
     }
 
-    private IEnumerator DropItemCorutine() {
+    protected IEnumerator DropItemCorutine() {
         isPicked = true;
         yield return new WaitForSeconds(2f);
         isPicked = false;

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7484502503355511863}
   - component: {fileID: 6091556753640761709}
   - component: {fileID: 6382560557321516301}
-  - component: {fileID: 8848417911601339635}
   - component: {fileID: 761151279021838551}
   - component: {fileID: 504806535081467232}
+  - component: {fileID: 7158196108524045048}
   m_Layer: 0
   m_Name: Dagger
   m_TagString: Untagged
@@ -106,25 +106,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8848417911601339635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 635449740457399519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b51a4c17d0c5f24a8f1171026dcf98c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 27
-  count: 3
-  useType: 1
-  thisObjectPrefab: {fileID: 635449740457399519}
-  damage: 2
-  power: 1200
-  type: 0
 --- !u!50 &761151279021838551
 Rigidbody2D:
   serializedVersion: 4
@@ -172,3 +153,43 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &7158196108524045048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635449740457399519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21c589ec30b5db4fa00a4396928b040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 27
+  count: 1
+  useType: 1
+  thisObjectPrefab: {fileID: 0}
+  damage: 2
+  power: 1200
+  type: 0
+  afterLaunchDestroyable: 0
+  afterActionDistroyable: 1
+  hasActionAfterTime: 0
+  time: 0
+  actionAfterConnect: 1
+  endActionEffect: {fileID: 0}
+  ActionDelegate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1090285253224965070, guid: 9f44013575f63784ab63bf83a0e09605, type: 3}
+        m_TargetAssemblyTypeName: NoMagicEvents, Assembly-CSharp
+        m_MethodName: SetSimpleDamageTarget
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

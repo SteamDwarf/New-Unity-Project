@@ -86,3 +86,6 @@ TagManager:
   - name: DoorTop
     uniqueID: 4039751053
     locked: 0
+  - name: TopLayer
+    uniqueID: 2923786419
+    locked: 0

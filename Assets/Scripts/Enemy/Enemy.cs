@@ -5,41 +5,40 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IGetDamage
 {
-    private MapDrawer mapDrawer;
-    private  GameObject gameManager;
-    private Collider2D enemyCollider;
+    protected MapDrawer mapDrawer;
+    protected GameObject gameManager;
+    protected Collider2D enemyCollider;
     protected EnemyAnimator anim;
 
-    public GameObject healthBarCanvas;
-    public Image healthBar;
-    public Vector2 currentPlayerPosition;
-    public List<GameObject> attackPoses;
-    public List<float> attackRanges;
-    public List<int> attackDamages;
-    public float agroRange;
-    //public EnemyState currentState;
+    [SerializeField] protected GameObject healthBarCanvas;
+    [SerializeField] protected Image healthBar;
+    [SerializeField] protected List<GameObject> attackPoses;
+    [SerializeField] protected List<float> attackRanges;
+    [SerializeField] protected List<int> attackDamages;
+    [SerializeField] protected float agroRange;
 
+    [SerializeField] protected float defaultSpeed;
+    [SerializeField] protected float maxHealth;
+    [SerializeField] protected bool sawPlayer;
+    [SerializeField] protected float startAgroTime;
+    [SerializeField] protected int maxStamina;
+    [SerializeField] protected float attackRadius;
+    [SerializeField] protected bool isBig;
+    [SerializeField] protected float nextWaypiontDistance;
 
-    public float defaultSpeed;
-    public float maxHealth;
-    public bool sawPlayer;
-    public float startAgroTime;
-    public int maxStamina;
-    public float attackRadius;
-    public bool isDied {get; set;}
-    public bool isBig;
-    public float nextWaypiontDistance;
+    public bool isDied {get; protected set;}
 
     protected Rigidbody2D rB;
-    //protected Animator anim;
+    protected Vector2 currentPlayerPosition;
     protected Vector2 moveVelocity;
     protected Vector2 startPosition;
     protected Vector2 target;
     protected List<Attack> enemyAttacks;
     protected GameManager GM;
     protected GameObject player;
+    protected Rigidbody2D playerRB;
     protected Path path;
     protected Seeker seeker;
     protected SortingGroup sortGr;
@@ -54,20 +53,19 @@ public class Enemy : MonoBehaviour
     protected float speed;
     protected float health;
     protected float stamina;
-    protected string currentAnimation;
-    protected float attackTime;
+    //protected float attackTime;
     protected string curAttack;
     protected int currentWaypoint = 0;
     protected bool reachedEndOfPath = false;
-
-    // TODO: При смерти врага HealthBar его должен пропадать и при повороте врага он не должен поворачиваться
+    protected bool isAttacking;
 
     /////////Start, Update, FixedUpdate//////////////////////
 
-    protected void Start()
+    protected virtual void Start()
     {
         gameManager = GameObject.Find("GameManager");
         player = GameObject.FindGameObjectWithTag("Player");
+        playerRB = player.GetComponent<Rigidbody2D>();
         rB = GetComponent<Rigidbody2D>();
         anim = GetComponent<EnemyAnimator>();
         seeker = GetComponent<Seeker>();
@@ -90,23 +88,16 @@ public class Enemy : MonoBehaviour
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
 
-    // Update is called once per frame
-    private void Update()
+    protected virtual void Update()
     {
         if (isDied)
             return;
 
-        if (!GM.isPaused)
-        {
-            if (!anim.isAttacking)
-            {
+        if (!GM.isPaused){
+            if (!anim.isActing){
                 DefaultBehavior();
-                //Move(target, speed);
             }
-            //attackTime -= Time.deltaTime;
-            //AnimPlay();
             RefreshStamina();
-            //PlayerFind();
         }
     }
 
@@ -117,7 +108,6 @@ public class Enemy : MonoBehaviour
 
         PlayerFind();
         ChoosePath();
-       
     }
 
     ////////////////////////////////////////////////////////////////
@@ -163,14 +153,6 @@ public class Enemy : MonoBehaviour
             else if (anim.curState == "Run")
                 stamina += Time.deltaTime * 10;
         }
-    }
-
-    public void SawPlayer(Vector2 playerPos)
-    {
-        currentPlayerPosition = playerPos;
-        currentAgroTime = startAgroTime;
-        sawPlayer = true;
-        //Debug.Log("SawPlayer:" + sawPlayer + "cord: " + playerPos);
     }
 
     ////////////////////////////////////////////////////////////
@@ -225,21 +207,14 @@ public class Enemy : MonoBehaviour
 
     private void PlayerFind()
     {
-        if (Vector3.Distance(player.transform.position, this.gameObject.transform.position) < agroRange)
+        if (Vector3.Distance(playerRB.position, this.gameObject.transform.position) < agroRange)
         {
-            currentPlayerPosition = player.transform.position;
+            currentPlayerPosition = playerRB.position;
             currentAgroTime = startAgroTime;
             sawPlayer = true;
-        }
-
-        if (sawPlayer)
-        {
-            target = currentPlayerPosition;
-            currentAgroTime -= Time.deltaTime;
-        }
-        else
-        {
-            target = startPosition;
+        } else {
+            currentAgroTime = 0;
+            sawPlayer = false;
         }
     }
 
@@ -250,25 +225,16 @@ public class Enemy : MonoBehaviour
     ///////////////////////// ACTIONS ///////////////////////////////
     ////////////////////////////////////////////////////////////////
 
-    protected void Move(Vector2 force)
-    {
-        if (Vector2.Distance(target, rB.position) > attackRadius)
-        {
-            //moveVelocity = (target - rB.position) * moveSpeed;
-            if (rB.velocity.x <= -0.01f && faceTo == "Right")
-            {
-                faceTo = "Left";
-                Flip();
-            }
-            else if (rB.velocity.x >= 0.01f && faceTo == "Left")
-            {
-                faceTo = "Right";
-                Flip();
-            }
+    protected void Move(Vector2 force) {
+        if (Vector2.Distance(target, rB.position) > attackRadius) {
+            Vector2 vectorNorm = (target - rB.position).normalized;
+
+            Flip(vectorNorm);
+            rB.AddForce(force);
 
             //rB.MovePosition(rB.position + moveVelocity * Time.deltaTime);
 
-            rB.AddForce(force);
+            
             //Flip();
 
 
@@ -286,8 +252,20 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Flip()
-    {
+    protected void Flip(Vector2 vectorNorm) {
+        if(vectorNorm.x <= -0.01f && faceTo == "Left") {
+            return;
+        }
+        if(vectorNorm.x >= 0.01f && faceTo == "Right") {
+            return;
+        }
+
+        if(faceTo == "Right") {
+            faceTo = "Left";
+        } else if(faceTo == "Left") {
+            faceTo = "Right";
+        }
+
         Vector2 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
@@ -298,13 +276,16 @@ public class Enemy : MonoBehaviour
         if(isDied) {
             return;
         }
-        StartCoroutine(Hurting());
+
+        anim.SetActing("Hurt");
+
         health -= damage;
         currentAgroTime = startAgroTime;
+
         ChangeHealthBar();
-        if (health <= 0)
-        {
-            anim.curState = "Dying";
+
+        if (health <= 0) {
+            anim.CreatureDie();
             isDied = true;
             enemyCollider.isTrigger = true;
             GM.EnemyDie();
@@ -328,21 +309,21 @@ public class Enemy : MonoBehaviour
     //////////////////////// COURUTINES ///////////////////////////////////
     //////////////////////////////////////////////////////////////////////
 
-    protected IEnumerator Attacking()
+   /*  protected IEnumerator Attacking()
     {
         anim.curAttack = curAttack;
         anim.isAttacking = true;
         yield return new WaitForSeconds(0.5f);
         anim.isAttacking = false;
-    }
+    } */
 
-    protected IEnumerator Hurting()
+    /* protected IEnumerator Hurting()
     {
         anim.curState = "Hurt";
         anim.isHurting = true;
         yield return new WaitForSeconds(0.5f);
         anim.isHurting = false;
-    }
+    } */
 
     //////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////

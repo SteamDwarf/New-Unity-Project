@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 6010450285606836637}
   - component: {fileID: 1745009911124437916}
   - component: {fileID: 175744787488089180}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: door_top_exp
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 7897641631077998023}
   - component: {fileID: 6155280391625563271}
   - component: {fileID: 5664118793520681401}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: top_leaf
   m_TagString: Door
   m_Icon: {fileID: 0}
