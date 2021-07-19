@@ -28,6 +28,7 @@ TagManager:
   - HotBar
   - InputController
   - TargetCursor
+  - EffectBar
   layers:
   - Default
   - TransparentFX

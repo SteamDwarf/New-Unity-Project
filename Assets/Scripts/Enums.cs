@@ -13,6 +13,9 @@ public enum AttributeType {
 public enum AttributeValueType {
     maxValue, curValue
 }
+public enum EffectClass {
+    none, baf, debaf
+}
 public enum EffectType {
     none, maxStamina, currentSpeed, currentStrength
 }
@@ -31,15 +34,12 @@ public enum TypeFeature {
 public enum CellType {
     inventory, hotBar
 }
-public enum PotionType {
+/* public enum PotionType {
     health, strength, stamina, speed
-}
+} */
 public enum MousePressed {
     down, enter, up
 }
-public enum GameState {
-    menuState, inGameState, inventoryState, invetoryItemInteraction
-}//Не используется
 public enum ItemUseType {
     getEffectUse, chooseTargetUse
 }
@@ -51,4 +51,7 @@ public enum RarityType {
 }
 public enum PlayerFaceTo {
     front, back, left, right
+}
+public enum MathActions {
+    division, substraction, addition, multiplication
 }

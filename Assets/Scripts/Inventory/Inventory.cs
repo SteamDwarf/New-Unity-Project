@@ -281,8 +281,8 @@ public class Inventory : MonoBehaviour, IMenu
             cellUI[copiedCellID].GetComponent<Image>().color = Color.white;
             cellUI[copiedCellID].GetComponentInChildren<TextMeshProUGUI>().text = saveCell_2.countItem.ToString();
 
-            saveCell_1.Clear();
-            saveCell_2.Clear();
+            saveCell_1.ClearWithoutDestroyGO();
+            saveCell_2.ClearWithoutDestroyGO();
             copiedCellID = -1;
             HideCurrentItem();
 
@@ -293,12 +293,12 @@ public class Inventory : MonoBehaviour, IMenu
             cellUI[id].GetComponent<Image>().color = Color.white;
             cellUI[id].GetComponentInChildren<TextMeshProUGUI>().text = saveCell_1.countItem.ToString();
 
-            cellSO[copiedCellID].Clear();
+            cellSO[copiedCellID].ClearWithoutDestroyGO();
             cellUI[copiedCellID].GetComponent<Image>().sprite = null;
             cellUI[copiedCellID].GetComponent<Image>().color = defaultCellColor;
             cellUI[copiedCellID].GetComponentInChildren<TextMeshProUGUI>().text = "0";
 
-            saveCell_1.Clear();
+            saveCell_1.ClearWithoutDestroyGO();
             copiedCellID = -1;
             HideCurrentItem();
         }

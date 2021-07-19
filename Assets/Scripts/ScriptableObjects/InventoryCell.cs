@@ -39,6 +39,15 @@ public class InventoryCell : ScriptableObject
         description = "";
         itemName = "";
     }
+    public void ClearWithoutDestroyGO() {
+        itemGO = null;
+        item = null;
+        sprite = null;
+        countItem = 0;
+        idItem = 0;
+        description = "";
+        itemName = "";
+    }
 
     public void SetItem(GameObject item) {
         if(this.countItem > 0) {

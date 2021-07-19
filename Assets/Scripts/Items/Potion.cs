@@ -6,7 +6,9 @@ public class Potion : Item
 {
     [SerializeField] protected float increase;
     [SerializeField] protected float timeEffect;
-    [SerializeField] protected PotionType type;
+    [SerializeField] protected AttributeType type;
+    [SerializeField] protected EffectClass effectClass;
+    [SerializeField] protected EffectType effectType;
     Player player;
 
     void Start()
@@ -16,7 +18,17 @@ public class Potion : Item
 
     public override void UseItem()
     {
-        switch (type)
+        if(effectClass == EffectClass.none) {
+            //player.UpdateHealth(increase);
+            player.GetIncrease(type, increase);
+            return;
+        }
+
+        if(effectClass != EffectClass.none) {
+            player.GetEffect(effectClass,effectType, increase, timeEffect);
+        }
+
+        /* switch (type)
         {
             case PotionType.health:
                 player.UpdateHealth(increase);
@@ -30,49 +42,7 @@ public class Potion : Item
             case PotionType.speed:
                 player.GetContiniousEffect(increase, timeEffect, type);
                 break;
-        }
+        } */
 
-        //Destroy(this.gameObject);
     }
-
-    /* public override void SetInformation(Dictionary<string, object> information){
-        this.id = (int)information["id"];
-        this.description = (string)information["description"];
-        this.itemName = (string)information["itemName"];
-        this.count = (int)information["count"];
-        this.increase = (float)information["increase"];
-        this.timeEffect = (float)information["timeEffect"];
-        this.type = (PotionType)information["type"];
-        this.useType = (ItemUseType)information["useType"];
-    }
-
-    public override Dictionary<string, object> GetItemInformation() {
-        Dictionary<string, object> information = new Dictionary<string, object> {
-            {"id", this.id},
-            {"description", this.description},
-            {"itemName", this.itemName},
-            {"count", this.count},
-            {"increase", this.increase},
-            {"timeEffect", this.timeEffect},
-            {"type", this.type},
-            {"collider", GetComponent<CapsuleCollider2D>()},
-            {"useType", this.useType}
-        };
-
-        return information;
-    } */
-
-/*     public override Item Clone(){
-        Potion clone = new Potion();
-
-        clone.id = this.id;
-        clone.description = this.description;
-        clone.itemName = this.itemName;
-        clone.count = this.count;
-        clone.increase = this.increase;
-        clone.timeEffect = this.timeEffect;
-        clone.type = this.type;
-
-        return clone;
-    } */
 }    

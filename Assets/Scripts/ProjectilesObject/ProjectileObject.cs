@@ -10,8 +10,8 @@ public class ProjectileObject : MonoBehaviour
     [SerializeField] protected bool hasActionAfterTime;
     [SerializeField] protected float time;
     [SerializeField] protected bool actionAfterConnect;
-    [SerializeField] AttributeType effectType;
-    [SerializeField] AttributeValueType effectValueType;
+    [SerializeField] protected EffectClass effectClass;
+    [SerializeField] protected EffectType effectType;
     [SerializeField] float increaseEffect;
     [SerializeField] float timeEffect; 
     protected Rigidbody2D rb;
@@ -31,7 +31,7 @@ public class ProjectileObject : MonoBehaviour
         
         if(actionAfterConnect && (other.GetComponent<Player>() != null && !other.GetComponent<Player>().isDied)) {
             ActionDelegate.Invoke(other, damage);
-            other.GetComponent<Player>().GetEffect(effectType, effectValueType, increaseEffect, timeEffect);
+            other.GetComponent<Player>().GetEffect(effectClass, effectType, increaseEffect, timeEffect);
             Destroy(this.gameObject);
             return;
         }

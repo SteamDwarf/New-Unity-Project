@@ -53,8 +53,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectImage: {fileID: 6630908773438856751}
-  description: {fileID: 3133963069549814690}
-  timer: {fileID: 5978046177488908026}
+  panelDescription: {fileID: 3133963069549814690}
+  timerUI: {fileID: 5978046177488908026}
 --- !u!1 &4274741651751247440
 GameObject:
   m_ObjectHideFlags: 0

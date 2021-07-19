@@ -62,17 +62,12 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
 
         staminaBar = GameObject.FindGameObjectWithTag("StaminaBar").GetComponent<Image>();
         healthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Image>();
-        staminaEffectBar = GameObject.FindGameObjectWithTag("StaminaEffect");
-        strengthEffectBar = GameObject.FindGameObjectWithTag("StrengthEffect");
-        speedEffectBar = GameObject.FindGameObjectWithTag("SpeedEffect");
-        staminaTimer = GameObject.FindGameObjectWithTag("StaminaTimer").GetComponent<TextMeshProUGUI>();
-        strengthTimer = GameObject.FindGameObjectWithTag("StrengthTimer").GetComponent<TextMeshProUGUI>();
-        speedTimer = GameObject.FindGameObjectWithTag("SpeedTimer").GetComponent<TextMeshProUGUI>();
         staminaBar.fillAmount = 1f;
         healthBar.fillAmount = 1f;
 
         gameManager = GameObject.Find("GameManager");
         effectBarUI = GameObject.FindGameObjectWithTag("EffectBar").GetComponent<EffectBarUI>();
+        effectBarUI.GetPlayer(this);
 
         GM = gameManager.GetComponent<GameManager>();
         MD = gameManager.GetComponent<MapDrawer>();
@@ -96,11 +91,11 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
             {
                 Actions();
                 StaminaRefresh();
-                EffectRefresh();
+                //EffectRefresh();
             }
 
             StatBarChange();
-            EffectBarChange();
+            //EffectBarChange();
         }
         
     }
@@ -254,7 +249,7 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
         healthBar.fillAmount = health.curValue / health.curMaxValue;
     }
 
-    private void EffectBarChange()
+/*     private void EffectBarChange()
     {
         if (stamina.timeEffect != 0)
         {
@@ -289,7 +284,7 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
         else
             speedEffectBar.SetActive(false);
 
-    }
+    } */
 
     //////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////
@@ -309,7 +304,7 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
 
     }
 
-    private void EffectRefresh()
+    /* private void EffectRefresh()
     {
         if (stamina.timeEffect < 0)
         {
@@ -335,9 +330,9 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
             speed.curValue = speed.curMaxValue;
         }else if (speed.timeEffect != 0)
             speed.timeEffect -= 0.01f * Time.deltaTime;
-    }
+    } */
 
-    public void UpdateHealth(float healthIncr)
+/*     public void UpdateHealth(float healthIncr)
     {
         if (health.curValue < health.curMaxValue)
         {
@@ -346,9 +341,9 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
             else
                 health.curValue += healthIncr;
         }
-    }
+    } */
 
-    public void GetContiniousEffect(float increase, float time, PotionType effect)
+    /* public void GetContiniousEffect(float increase, float time, PotionType effect)
     {
         switch (effect)
         {
@@ -390,28 +385,64 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
                 }
                 break;
         }
-    }
+    } */
 
-    public void GetEffect(AttributeType attribute, AttributeValueType valueType, float increase, float time) {
-        Attribute varAttribute = health;
+    public void GetIncrease(AttributeType attributeType, float increase) {
+        Attribute curAttribute = health;
 
-        switch(attribute) {
+        switch(attributeType) {
             case AttributeType.health:
-                varAttribute = health;
+                curAttribute = health;
                 break;
             case AttributeType.stamina:
-                varAttribute = stamina;
+                curAttribute = stamina;
                 break;
-            case AttributeType.strength: 
-                varAttribute = strength;
+            case AttributeType.strength:
+                curAttribute = strength;
                 break;
             case AttributeType.speed:
-                varAttribute = speed;
+                curAttribute = speed;
                 break;
         }
 
-        varAttribute.GetEffect(valueType, increase, time);
-        effectBarUI.SetEffect(attribute, valueType, increase, time);
+        if (curAttribute.curValue < curAttribute.curMaxValue)
+        {
+            if (health.curValue + increase > health.curMaxValue)
+                health.curValue += health.curMaxValue - health.curValue;
+            else
+                health.curValue += increase;
+        }
+    }
+
+    public void GetEffect(EffectClass effectClass, EffectType effectType, float increase, float time) {
+        Dictionary<string, object> effectInfo = EffectDataBase.GetEffectInformation(effectClass, effectType);
+        Effect curEffect  = (Effect)effectInfo["Effect"];
+        Attribute varAttribute = health;
+
+        switch(effectType) {
+            case EffectType.maxStamina:
+                varAttribute = stamina;
+                break;
+            case EffectType.currentSpeed:
+                varAttribute = speed;
+                break;
+            case EffectType.currentStrength: 
+                varAttribute = strength;
+                break;
+        }
+
+        curEffect.SetAttribute(varAttribute);
+        curEffect.SetIncrease(increase);
+        //varAttribute.GetEffect(valueType, increase, time);
+        effectBarUI.SetEffect(effectClass, effectType, time);
+    }
+
+    public void UnsetEffect(EffectClass effectClass, EffectType effectType) {
+        Dictionary<string, object> effectInfo = EffectDataBase.GetEffectInformation(effectClass, effectType);
+        Effect curEffect = (Effect)effectInfo["Effect"];
+
+        Debug.Log("EndEffect");
+        curEffect.EndEffect();
     }
 
     public void GetDamage(float damage)

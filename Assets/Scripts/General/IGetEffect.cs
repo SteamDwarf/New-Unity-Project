@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IGetEffect
 {
-    void GetEffect(AttributeType attribute, AttributeValueType valueType, float increase, float time);
+    void GetEffect(EffectClass effectClass, EffectType effectType, float increase, float time);
 }

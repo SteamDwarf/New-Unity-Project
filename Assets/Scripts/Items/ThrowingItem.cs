@@ -60,7 +60,7 @@ public class ThrowingItem : Item
     }
 
     protected void Ricochet(Collider2D other) {
-        if(other == null) {
+        if(other == null || !isLaunched) {
             return;
         }
 
