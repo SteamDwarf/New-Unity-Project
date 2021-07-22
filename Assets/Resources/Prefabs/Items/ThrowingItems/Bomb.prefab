@@ -164,18 +164,23 @@ MonoBehaviour:
   power: 600
   type: 1
   afterLaunchDestroyable: 1
+  afterActionDistroyable: 0
   hasActionAfterTime: 1
   time: 3
   actionAfterConnect: 0
   lifeTimeParticles: {fileID: 4276359876771172310}
   endActionEffect: {fileID: 451970270088771904, guid: 9afa0afae93623f40915f8cc382539dd, type: 3}
   radius: 10
+  knockPower: 600
   ActionDelegate:
+    m_PersistentCalls:
+      m_Calls: []
+  ActionDelegateImproved:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1090285253224965070, guid: 9f44013575f63784ab63bf83a0e09605, type: 3}
         m_TargetAssemblyTypeName: NoMagicEvents, Assembly-CSharp
-        m_MethodName: SetSimpleDamageArea
+        m_MethodName: SetKnockbackableDamageArea
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

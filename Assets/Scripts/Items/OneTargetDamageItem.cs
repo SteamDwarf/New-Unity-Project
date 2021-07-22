@@ -6,8 +6,10 @@ using UnityEngine.Events;
 public class OneTargetDamageItem : ThrowingItem
 {
     [SerializeField] protected GameObject endActionEffect;
+    [SerializeField] private float knockPower;
     protected Collider2D enemyColl;
     public UnityEvent<Collider2D, float> ActionDelegate;
+    public UnityEvent<Vector2, Collider2D, float, float> ActionDelegateImproved;
     protected override void OnTriggerEnter2D(Collider2D other) {
         base.OnTriggerEnter2D(other);
         
@@ -33,8 +35,14 @@ public class OneTargetDamageItem : ThrowingItem
     }
 
     protected override void Action() {
-        if(ActionDelegate != null) {
-            ActionDelegate.Invoke(enemyColl, damage);
+        if(knockPower == 0) {
+            if(ActionDelegate != null) {
+                ActionDelegate.Invoke(enemyColl, damage);
+            }
+        } else if(knockPower > 0) {
+            if(ActionDelegateImproved != null) {
+                ActionDelegateImproved.Invoke(rb.position, enemyColl, damage, knockPower);
+            }
         }
 
         if(endActionEffect != null) {

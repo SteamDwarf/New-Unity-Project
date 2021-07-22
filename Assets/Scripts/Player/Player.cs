@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour, IGetDamage, IGetEffect
+public class Player : MonoBehaviour, IGetDamage, IGetEffect, IKnockbackable
 {
     private DungeonGenerator dungeon;
     private EffectBarUI effectBarUI;
@@ -52,6 +52,8 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
     private float defence;
     private bool isDefending;
     private float damage;
+    private bool isInvencible;
+    private bool isKnockbacked;
 
 
 
@@ -79,8 +81,8 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
         isDied = false;
 
 
-        RefreshHitBoxDamage();
         RefreshScripObj();
+        RefreshHitBoxDamage();
     }
 
     public void Update()
@@ -99,16 +101,12 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
         }
         
     }
-    public void FixedUpdate()
-    {
-        if(!GM.isPaused)
-        {
-            if (!isDied)
-            {
-                //Move();
-                rB.velocity = new Vector2(0, 0);
-            }
+    public void FixedUpdate() {
+        if(GM.isPaused || isDied || isKnockbacked) {
+            return;
         }
+        
+        rB.velocity = new Vector2(0, 0);
     }
 
     //////////////////������������� ������////////////////////
@@ -171,7 +169,6 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
         ChangeVieweDirection(distanceNorm);
 
         instAmmo = Instantiate(ammo, rB.position, Quaternion.identity);
-        //instAmmo.GetComponent<Item>().DropItem();
         instAmmo.GetComponent<ThrowingItem>().Launch(distanceNorm);
     }
 
@@ -216,6 +213,16 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(2);
     }
+    private IEnumerator InvencibleCoroutine() {
+        isInvencible = true;
+        yield return new WaitForSeconds(0.3f);
+        isInvencible = false;
+    }
+     private IEnumerator KnockbackCoroutine() {
+        isKnockbacked = true;
+        yield return new WaitForSeconds(0.5f);
+        isKnockbacked = false;
+    }
 
     /////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////
@@ -251,43 +258,6 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
         healthBar.fillAmount = health.curValue / health.curMaxValue;
     }
 
-/*     private void EffectBarChange()
-    {
-        if (stamina.timeEffect != 0)
-        {
-            float time = stamina.timeEffect * 60;
-            float minutes = Mathf.Floor(time / 60);
-            staminaEffectBar.SetActive(true);
-            staminaTimer.text = $"{Mathf.Floor(minutes)} : {Mathf.Round(time - (minutes * 60))}";
-
-        }
-        else
-            staminaEffectBar.SetActive(false);
-
-        if (strength.timeEffect != 0)
-        {
-            float time = strength.timeEffect * 60;
-            float minutes = Mathf.Floor(time / 60);
-            strengthEffectBar.SetActive(true);
-            strengthTimer.text = $"{Mathf.Floor(minutes)} : {Mathf.Round(time - (minutes * 60))}";
-        }
-
-        else
-            strengthEffectBar.SetActive(false);
-
-        if (speed.timeEffect != 0)
-        {
-            float time = speed.timeEffect * 60;
-            float minutes = Mathf.Floor(time / 60);
-            speedEffectBar.SetActive(true);
-            speedTimer.text = $"{Mathf.Floor(minutes)} : {Mathf.Round(time - (minutes * 60))}";
-
-        }
-        else
-            speedEffectBar.SetActive(false);
-
-    } */
-
     //////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////
 
@@ -305,89 +275,6 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
         }
 
     }
-
-    /* private void EffectRefresh()
-    {
-        if (stamina.timeEffect < 0)
-        {
-            stamina.timeEffect = 0;
-            stamina.curMaxValue = stamina.defaultMaxValue;
-            staminaPerSec /= 2;
-        }else if (stamina.timeEffect != 0)
-            stamina.timeEffect -= 0.01f * Time.deltaTime;
-
-        if (strength.timeEffect < 0)
-        {
-            strength.timeEffect = 0;
-            strength.curMaxValue = strength.defaultMaxValue;
-            strength.curValue = strength.curMaxValue;
-            RefreshHitBoxDamage();
-        }else if (strength.timeEffect != 0)
-            strength.timeEffect -= 0.01f * Time.deltaTime;
-
-        if (speed.timeEffect < 0)
-        {
-            speed.timeEffect = 0;
-            speed.curMaxValue = speed.defaultMaxValue;
-            speed.curValue = speed.curMaxValue;
-        }else if (speed.timeEffect != 0)
-            speed.timeEffect -= 0.01f * Time.deltaTime;
-    } */
-
-/*     public void UpdateHealth(float healthIncr)
-    {
-        if (health.curValue < health.curMaxValue)
-        {
-            if (health.curValue + healthIncr > health.curMaxValue)
-                health.curValue += health.curMaxValue - health.curValue;
-            else
-                health.curValue += healthIncr;
-        }
-    } */
-
-    /* public void GetContiniousEffect(float increase, float time, PotionType effect)
-    {
-        switch (effect)
-        {
-            case PotionType.strength:
-                if (strength.timeEffect != 0)
-                {
-                    strength.timeEffect = time;
-                }
-                else
-                {
-                    strength.curMaxValue += increase;
-                    strength.curValue += increase;
-                    strength.timeEffect = time;
-                    RefreshHitBoxDamage();
-                }
-                break;
-            case PotionType.stamina:
-                if (stamina.timeEffect != 0)
-                {
-                    stamina.timeEffect = time;
-                }
-                else
-                {
-                    stamina.curMaxValue *= increase;
-                    stamina.timeEffect = time;
-                    staminaPerSec *= 2;
-                }
-                break;
-            case PotionType.speed:
-                if (speed.timeEffect != 0)
-                {
-                    speed.timeEffect = time;
-                }
-                else
-                {
-                    speed.curMaxValue *= increase;
-                    speed.curValue *= increase;
-                    speed.timeEffect = time;
-                }
-                break;
-        }
-    } */
 
     public void GetIncrease(AttributeType attributeType, float increase) {
         Attribute curAttribute = health;
@@ -437,6 +324,10 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
         curEffect.SetIncrease(increase);
         //varAttribute.GetEffect(valueType, increase, time);
         effectBarUI.SetEffect(effectClass, effectType, time);
+
+        if(effectType == EffectType.currentStrength) {
+            RefreshHitBoxDamage();
+        }
     }
 
     public void UnsetEffect(EffectClass effectClass, EffectType effectType) {
@@ -445,11 +336,15 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
 
         Debug.Log("EndEffect");
         curEffect.EndEffect();
+
+        if(effectType == EffectType.currentStrength) {
+            RefreshHitBoxDamage();
+        }
     }
 
     public void GetDamage(float damage)
     {
-        if (isDied)
+        if (isDied || isInvencible)
             return;
 
         if (isDefending)
@@ -471,25 +366,29 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
             StartCoroutine(Dying());
         else */
             anim.SetActing("Hurt");
+            StartCoroutine(InvencibleCoroutine());
     }
 
-    private void RefreshHitBoxDamage()
-    {
+    private void RefreshHitBoxDamage() {
+        Debug.Log(strength.curValue);
         damage = strength.curValue + weaponDamage;
-        foreach (var hitBox in hitBoxes)
-        {
+
+        foreach (var hitBox in hitBoxes) {
             HitBox hB = hitBox.GetComponent<HitBox>();
             hB.damage = damage;
-            hB.thrust = strength.curValue * 50000;
+            hB.thrust = strength.curValue;
             hB.owner = "Player";
+            Debug.Log(hB.damage);
         }
     }
 
-
+    public void Knockback(Vector2 knockVector, float power) {
+        //rB.MovePosition(rB.position + knockVector * 4);
+        rB.AddForce(knockVector * 0.4f);
+        StartCoroutine(KnockbackCoroutine());
+    }
     ///////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////
-
-
 
 
     ////////////////��������� ��������������///////////////////////

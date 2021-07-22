@@ -178,6 +178,7 @@ MonoBehaviour:
   time: 0
   actionAfterConnect: 1
   endActionEffect: {fileID: 0}
+  knockPower: 0
   ActionDelegate:
     m_PersistentCalls:
       m_Calls:
@@ -193,3 +194,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  ActionDelegateImproved:
+    m_PersistentCalls:
+      m_Calls: []

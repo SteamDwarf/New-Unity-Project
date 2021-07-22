@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759ef6e6706c36a4c9c481ae25235759, type: 3}
   m_Name: Speed
   m_EditorClassIdentifier: 
-  defaultMaxValue: 16
-  curMaxValue: 20.8
-  curValue: 20.8
-  timeEffect: 0.9451266
+  defaultMaxValue: 14
+  curMaxValue: 14
+  curValue: 14
+  timeEffect: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour, IGetDamage
+public class Enemy : MonoBehaviour, IGetDamage, IKnockbackable
 {
     protected MapDrawer mapDrawer;
     protected GameObject gameManager;
@@ -61,6 +61,7 @@ public class Enemy : MonoBehaviour, IGetDamage
     protected int currentWaypoint = 0;
     protected bool reachedEndOfPath = false;
     protected bool isAttacking;
+    private bool isInvencible;
 
     /////////Start, Update, FixedUpdate//////////////////////
 
@@ -239,32 +240,14 @@ public class Enemy : MonoBehaviour, IGetDamage
 
             Flip(vectorNorm);
             rB.AddForce(force);
-
-            //rB.MovePosition(rB.position + moveVelocity * Time.deltaTime);
-
-            
-            //Flip();
-
-
-
-            /*xCord = Mathf.FloorToInt(rB.position.x / mapk + 0.5f);
-            yCord = Mathf.FloorToInt(rB.position.y / mapk + 0.5f);
-            MapManager.map[xCord, yCord].hasEnemy = false;
-            MapManager.map[xCord, yCord].enemy = null;
-            rB.MovePosition(rB.position + moveVelocity * Time.deltaTime);
-            //rB.position = Vector2.MoveTowards(rB.position, target, moveSpeed * Time.deltaTime);
-            xCord = Mathf.FloorToInt(rB.position.x / mapk + 0.5f);
-            yCord = Mathf.FloorToInt(rB.position.y / mapk + 0.5f);
-            MapManager.map[xCord, yCord].hasEnemy = true;
-            MapManager.map[xCord, yCord].enemy = this.gameObject;*/
         }
     }
 
     protected void Flip(Vector2 vectorNorm) {
-        if(vectorNorm.x <= -0.01f && faceTo == "Left") {
+        if(vectorNorm.x <= -0.001f && faceTo == "Left") {
             return;
         }
-        if(vectorNorm.x >= 0.01f && faceTo == "Right") {
+        if(vectorNorm.x >= 0.001f && faceTo == "Right") {
             return;
         }
 
@@ -281,7 +264,7 @@ public class Enemy : MonoBehaviour, IGetDamage
 
     public void GetDamage(float damage)
     {
-        if(isDied) {
+        if(isDied || isInvencible) {
             return;
         }
 
@@ -291,6 +274,7 @@ public class Enemy : MonoBehaviour, IGetDamage
         currentAgroTime = startAgroTime;
 
         ChangeHealthBar();
+        StartCoroutine(InvencibleCoroutine());
 
         if (health <= 0) {
             anim.CreatureDie();
@@ -305,6 +289,10 @@ public class Enemy : MonoBehaviour, IGetDamage
                 sortGr.sortingLayerName = "Items";
             //Debug.Log(GM.aliveEnemies);
         }
+    }
+
+    public void Knockback(Vector2 knockVector, float power) {
+        rB.AddForce(knockVector * power);
     }
 
     //НЕ ЗАБУДЬ УНАСЛЕДОВАТЬ ОТ IGetEffect
@@ -344,21 +332,11 @@ public class Enemy : MonoBehaviour, IGetDamage
     //////////////////////// COURUTINES ///////////////////////////////////
     //////////////////////////////////////////////////////////////////////
 
-   /*  protected IEnumerator Attacking()
-    {
-        anim.curAttack = curAttack;
-        anim.isAttacking = true;
-        yield return new WaitForSeconds(0.5f);
-        anim.isAttacking = false;
-    } */
-
-    /* protected IEnumerator Hurting()
-    {
-        anim.curState = "Hurt";
-        anim.isHurting = true;
-        yield return new WaitForSeconds(0.5f);
-        anim.isHurting = false;
-    } */
+        private IEnumerator InvencibleCoroutine() {
+        isInvencible = true;
+        yield return new WaitForSeconds(0.3f);
+        isInvencible = false;
+    }
 
     //////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////

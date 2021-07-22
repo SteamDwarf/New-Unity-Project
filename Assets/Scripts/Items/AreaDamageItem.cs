@@ -8,8 +8,10 @@ public class AreaDamageItem : ThrowingItem
     [SerializeField] protected ParticleSystem lifeTimeParticles;
     [SerializeField] protected GameObject endActionEffect;
     [SerializeField] protected float radius;
+    [SerializeField] private float knockPower;
 
     public UnityEvent<Vector2, float, float> ActionDelegate;
+    public UnityEvent<Vector2, float, float, float> ActionDelegateImproved;
 
     private void Start() {
         if(lifeTimeParticles != null && !isLaunched) {
@@ -50,8 +52,14 @@ public class AreaDamageItem : ThrowingItem
     }
 
     protected override void Action() {
-        if(ActionDelegate != null) {
-            ActionDelegate.Invoke(rb.position, radius, damage);
+        if(knockPower == 0) {
+            if(ActionDelegate != null) {
+                ActionDelegate.Invoke(rb.position, radius, damage);
+            }
+        } else if(knockPower > 0) {
+            if(ActionDelegateImproved != null) {
+                ActionDelegateImproved.Invoke(rb.position, radius, damage, knockPower);
+            }
         }
 
         if(endActionEffect != null) {

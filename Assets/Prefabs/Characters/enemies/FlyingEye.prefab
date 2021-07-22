@@ -33,7 +33,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402101762110853534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1541.6948, y: 1509.4204, z: -23.036148}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children:
   - {fileID: 785702624993619367}
@@ -135,8 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57edade7775cb764d904822c44757b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectBar: {fileID: 4033361720376020117}
-  effectPrefab: {fileID: 429197466837026127, guid: f392acd3f4cbfe84e8411c01f8221f8d, type: 3}
   healthBarCanvas: {fileID: 7845072215151025837}
   healthBar: {fileID: 4720894344059431234}
   attackPoses:
@@ -146,7 +144,7 @@ MonoBehaviour:
   attackDamages: 01000000
   agroRange: 2
   defaultSpeed: 500
-  maxHealth: 10
+  maxHealth: 7
   sawPlayer: 0
   startAgroTime: 7
   maxStamina: 100
@@ -692,11 +690,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0312456c19f5e040b27b9e57fae5fb8, type: 3}
---- !u!1 &4033361720376020117 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3861970724651679337, guid: b0312456c19f5e040b27b9e57fae5fb8, type: 3}
-  m_PrefabInstance: {fileID: 171445700934628092}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5708752690161373237 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5573354792562336457, guid: b0312456c19f5e040b27b9e57fae5fb8, type: 3}

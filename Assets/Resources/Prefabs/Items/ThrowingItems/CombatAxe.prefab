@@ -181,12 +181,16 @@ MonoBehaviour:
   time: 0
   actionAfterConnect: 1
   endActionEffect: {fileID: 0}
+  knockPower: 800
   ActionDelegate:
+    m_PersistentCalls:
+      m_Calls: []
+  ActionDelegateImproved:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1090285253224965070, guid: 9f44013575f63784ab63bf83a0e09605, type: 3}
         m_TargetAssemblyTypeName: NoMagicEvents, Assembly-CSharp
-        m_MethodName: SetSimpleDamageTarget
+        m_MethodName: SetKnockbackableDamageTarget
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

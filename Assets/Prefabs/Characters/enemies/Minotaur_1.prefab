@@ -136,7 +136,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDrag: 1.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -256,7 +256,7 @@ MonoBehaviour:
   - 2
   attackDamages: 04000000
   agroRange: 2
-  defaultSpeed: 400
+  defaultSpeed: 600
   maxHealth: 25
   sawPlayer: 0
   startAgroTime: 7
@@ -273,8 +273,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4753205835042543505}
-  - component: {fileID: 8886733199465435223}
   - component: {fileID: 4067855216949960324}
+  - component: {fileID: 3241372222807487581}
   m_Layer: 6
   m_Name: AttackPos
   m_TagString: Untagged
@@ -296,7 +296,22 @@ Transform:
   m_Father: {fileID: 196017175635732220}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &8886733199465435223
+--- !u!114 &4067855216949960324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8867547020886713610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa69f1adeb2aa74aa35ba5e542848e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  thrust: 0
+  owner: 
+--- !u!60 &3241372222807487581
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -321,27 +336,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 3.0180054, y: 1.8780518}
-      - {x: -1.0305176, y: 1.7863159}
-      - {x: 0.77245426, y: 0.14739588}
-      - {x: -1.9749312, y: -2.6287804}
-      - {x: 3.7309127, y: -2.701656}
-      - {x: 3.4200506, y: 0.48968118}
---- !u!114 &4067855216949960324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8867547020886713610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffa69f1adeb2aa74aa35ba5e542848e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  thrust: 0
-  owner: 
+    - - {x: -1.2847233, y: 2.329854}
+      - {x: -0.19787371, y: -0.19793305}
+      - {x: -1.9058552, y: -2.420128}
+      - {x: 3.875718, y: -2.5616152}
+      - {x: 3.3554478, y: 2.2933643}
 --- !u!1001 &1295754268639963352
 PrefabInstance:
   m_ObjectHideFlags: 0

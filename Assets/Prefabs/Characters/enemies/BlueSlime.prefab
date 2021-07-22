@@ -287,8 +287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57edade7775cb764d904822c44757b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectBar: {fileID: 7518690456819763056}
-  effectPrefab: {fileID: 429197466837026127, guid: f392acd3f4cbfe84e8411c01f8221f8d, type: 3}
   healthBarCanvas: {fileID: 6422876606643468684}
   healthBar: {fileID: 2059893906892003165}
   attackPoses:
@@ -298,7 +296,7 @@ MonoBehaviour:
   attackDamages: 01000000
   agroRange: 2
   defaultSpeed: 400
-  maxHealth: 10
+  maxHealth: 7
   sawPlayer: 0
   startAgroTime: 7
   maxStamina: 100
@@ -692,11 +690,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0312456c19f5e040b27b9e57fae5fb8, type: 3}
---- !u!1 &7518690456819763056 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3861970724651679337, guid: b0312456c19f5e040b27b9e57fae5fb8, type: 3}
-  m_PrefabInstance: {fileID: 6759824751634331929}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1195477467593743312 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5573354792562336457, guid: b0312456c19f5e040b27b9e57fae5fb8, type: 3}

@@ -10,66 +10,36 @@ public class HitBox : MonoBehaviour
 
     private PolygonCollider2D coll;
 
-    private void Start()
-    {
+    private void Start() {
         coll = GetComponent<PolygonCollider2D>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
+    private void OnTriggerEnter2D(Collider2D collision) {
         MakeAttack(collision); 
     }
 
-    /*private void OnTriggerStay2D(Collider2D collision)
-    {
+
+    private void MakeAttack(Collider2D collision) {
         GameObject hitTarget = collision.gameObject;
 
-        if (hitTarget.CompareTag("Enemy") && owner != "Enemy")
-        {
-            Enemy enemyScript = hitTarget.GetComponent<Enemy>();
-            //Rigidbody2D enemyRB = hitTarget.GetComponent<Rigidbody2D>();
-
-            if (enemyScript.isDied)
-                return;
-
-            enemyScript.GetDamage(damage);
-        }
-    }*/
-
-    private void MakeAttack(Collider2D collision)
-    {
-        GameObject hitTarget = collision.gameObject;
-
-        if (hitTarget.CompareTag("Player") && owner != "Player")
-        {
+        if (hitTarget.GetComponent<Player>() != null && owner != "Player") {
             Player playerScript = hitTarget.GetComponent<Player>();
 
             if (playerScript.isDied)
                 return;
 
             playerScript.GetDamage(damage);
-        }
-        else if (hitTarget.CompareTag("Enemy") && owner != "Enemy")
-        {
+        } else if (hitTarget.GetComponent<Enemy>() != null && owner != "Enemy") {
+            Vector2 hitBoxPos = new Vector2(transform.position.x, transform.position.y);
+            Vector2 enemyPos = hitTarget.GetComponent<Rigidbody2D>().position;
             Enemy enemyScript = hitTarget.GetComponent<Enemy>();
-            //Rigidbody2D enemyRB = hitTarget.GetComponent<Rigidbody2D>();
+            Vector2 knockVector = (enemyPos - hitBoxPos).normalized;
 
             if (enemyScript.isDied)
                 return;
 
             enemyScript.GetDamage(damage);
-            /*Vector2 diff = enemyRB.transform.position - transform.position;
-            diff = diff.normalized * thrust;
-            Debug.Log(diff);
-            enemyRB.AddForce(diff, ForceMode2D.Impulse);
-            StartCoroutine(KnockBack(enemyRB));*/
+            enemyScript.Knockback(knockVector, 400);
         }
     }
-
-
-    /*IEnumerator KnockBack(Rigidbody2D enemyRB)
-    {
-        yield return new WaitForSeconds(1f);
-        enemyRB.velocity = Vector2.zero;
-    }*/
 }
