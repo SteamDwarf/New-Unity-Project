@@ -9,7 +9,9 @@ public class EffectPanelUI : MonoBehaviour, IPointerEnterHandler
 {
     [SerializeField] private Image effectImage;
     [SerializeField] private TextMeshProUGUI timerUI;
-    
+    [SerializeField] private TextMeshProUGUI descriptionUI;
+    [SerializeField] private bool isCompact;
+
     private GameManager gameManager;
     private GameObject descriptionPanel;
     private EffectBarUI effectBarUI;
@@ -44,12 +46,13 @@ public class EffectPanelUI : MonoBehaviour, IPointerEnterHandler
         effectImage.color = color;
 
         effectDescription = description;
-        //panelDescription.text = description;
-        //panelDescription.color = color;
-
-        //timerUI.color = color;
-
         effectTime = time;
+
+        if(!isCompact) {
+            descriptionUI.text = description;
+            descriptionUI.color = color;
+            timerUI.color = color;
+        }
     }
 
     public void RefreshTime(float time) {
@@ -65,6 +68,9 @@ public class EffectPanelUI : MonoBehaviour, IPointerEnterHandler
     }
 
     public void OnPointerEnter (PointerEventData eventData) {
+        if(!isCompact) {
+            return;
+        }
         descriptionPanel.GetComponentInChildren<TextMeshProUGUI>().text = effectDescription;
         descriptionPanel.transform.position = this.gameObject.transform.position;
         descriptionPanel.SetActive(true);

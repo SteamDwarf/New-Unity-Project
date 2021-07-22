@@ -36,6 +36,9 @@ public class InputController : MonoBehaviour, IStateSwitcher
         CallUI();
         MouseClick();
     }
+    private void FixedUpdate() {
+        PlayerMove();
+    }
 
     private void UseCell()
     {
@@ -70,16 +73,25 @@ public class InputController : MonoBehaviour, IStateSwitcher
         }
     }
 
-    public void SwitchState<T>() where T : InputState {
-        InputState state = inputStates.FirstOrDefault(s => s is T);
-        currentState = state;
-        Debug.Log(currentState);
-    }
-
     private void MouseClick() {
         if(player == null) {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         }
         currentState.MouseClick(player);
+    }
+
+    private void PlayerMove() {
+        if(player == null) {
+            return;
+        }
+        Vector2 inputVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        currentState.PlayerMove(inputVector, player);
+    }
+
+    public void SwitchState<T>() where T : InputState {
+        InputState state = inputStates.FirstOrDefault(s => s is T);
+        currentState = state;
+        Debug.Log(currentState);
     }
 }

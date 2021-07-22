@@ -105,7 +105,7 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
         {
             if (!isDied)
             {
-                Move();
+                //Move();
                 rB.velocity = new Vector2(0, 0);
             }
         }
@@ -113,9 +113,11 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect
 
     //////////////////������������� ������////////////////////
 
-    public void Move()
-    {
-        inputMovement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+    public void Move(Vector2 inputMovement) {
+        if(isDied) { 
+            return;
+        }
+        //inputMovement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         moveVelocity = inputMovement * speed.curValue;
         if ((inputMovement.x != 0 || inputMovement.y != 0))
         {

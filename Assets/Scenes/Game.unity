@@ -555,12 +555,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 5
-    m_Right: -40
+    m_Right: -20
     m_Top: -5
     m_Bottom: 0
-  m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 0
+  m_ChildAlignment: 2
+  m_StartCorner: 1
+  m_StartAxis: 1
   m_CellSize: {x: 50, y: 35}
   m_Spacing: {x: -22, y: -5}
   m_Constraint: 0
@@ -2960,7 +2960,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   descriptionPanel: {fileID: 148569951}
-  effectPanel: {fileID: 8642747249255255064, guid: 1a43e40463056ac41ba4fac7fe5bfa47, type: 3}
+  effectPanelCompact: {fileID: 8642747249255255064, guid: 1a43e40463056ac41ba4fac7fe5bfa47, type: 3}
+  effectPanel: {fileID: 352662546221558360, guid: d84c859a65942b944b5b996d69cb22f9, type: 3}
   bafGrid: {fileID: 237623608}
   debafGrid: {fileID: 2129037884}
 --- !u!1 &1704633936 stripped
@@ -3794,12 +3795,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 5
-    m_Right: -40
+    m_Right: -20
     m_Top: -5
     m_Bottom: 0
-  m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 0
+  m_ChildAlignment: 2
+  m_StartCorner: 1
+  m_StartAxis: 1
   m_CellSize: {x: 50, y: 35}
   m_Spacing: {x: -22, y: -5}
   m_Constraint: 0
@@ -4486,7 +4487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3775281720738709640, guid: c17e84aaa56b4e943853f420b7dd490d, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3775281720738709640, guid: c17e84aaa56b4e943853f420b7dd490d, type: 3}
       propertyPath: m_AnchorMax.x

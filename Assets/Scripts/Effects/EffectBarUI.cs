@@ -5,6 +5,7 @@ using UnityEngine;
 public class EffectBarUI : MonoBehaviour
 {
     [SerializeField] private GameObject descriptionPanel;
+    [SerializeField] private GameObject effectPanelCompact;
     [SerializeField] private GameObject effectPanel;
     [SerializeField] private GameObject bafGrid;
     [SerializeField] private GameObject debafGrid;
@@ -71,7 +72,7 @@ public class EffectBarUI : MonoBehaviour
                 color = debafColor;
             }
 
-            panel = Instantiate(effectPanel, new Vector3(0, 0, 0), Quaternion.identity, parent.transform);
+            panel = Instantiate(effectPanelCompact, new Vector3(0, 0, 0), Quaternion.identity, parent.transform);
             panel.GetComponent<EffectPanelUI>().CreatePanel(this, descriptionPanel, effectClass, effectType, sprite, color, description, time);
             curPanels[effectType] = panel;
         } else {

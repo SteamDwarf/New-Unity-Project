@@ -10,9 +10,9 @@ public class InGameState : InputState
         this.stateSwitcher = stateSwitcher;
         this.interfaceManager = interfaceManager;
     }
-/*     public void Move(Vector2 vector, Player player) {
-        player.Move(vector);//Передать Vector2
-    } */
+    public void PlayerMove(Vector2 inputVector, Player player) {
+        player.Move(inputVector);//Передать Vector2
+    }
     public void MouseClick(Player player) {
         if (Input.GetMouseButtonDown(0)){
             player.Attack();

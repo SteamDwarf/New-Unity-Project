@@ -14,9 +14,9 @@ public class ChooseTargetState : InputState
         this.targetManager = targetManager;
     }
 
-/*     public  void Move(Vector2 vector, Player player) {
-        return;
-    } */
+    public void PlayerMove(Vector2 inputVector, Player player) {
+        player.Move(inputVector);
+    }
     public void MouseClick(Player player) {
         if (Input.GetMouseButtonDown(0)){
             targetManager.BeginAction();

@@ -11,9 +11,9 @@ public class MenuState : InputState
         this.stateSwitcher = stateSwitcher;
     }
 
-/*     public  void Move(Vector2 vector, Player player) {
+    public void PlayerMove(Vector2 vector, Player player) {
         return;
-    } */
+    }
     public void MouseClick(Player player) {
         return;
     }

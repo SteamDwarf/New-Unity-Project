@@ -81,6 +81,9 @@ public class EnemyAnimator : MonoBehaviour
     public void CreatureDie() {
         StartCoroutine(DieCorutine());
     }
+    public void SetTripleQueuedAction(string firstAction, string secondAction, string thirdAction, float actionDelay) {
+        StartCoroutine(TripleActionCorutine(firstAction, secondAction, thirdAction, actionDelay));
+    }
 
     private IEnumerator ActingCorutine() {
         isActing = true;
@@ -94,5 +97,15 @@ public class EnemyAnimator : MonoBehaviour
         curAnimator.Play("Die");
         yield return new WaitForSeconds(0.3f);
         curAnimator.Play("Died");
+    }
+    protected IEnumerator TripleActionCorutine(string firstAction, string secondAction, string thirdAction, float actionDelay) {
+        isActing = true;
+        act = firstAction;
+        yield return new WaitForSeconds(actionDelay);
+        act = secondAction;
+        yield return new WaitForSeconds(actionDelay);
+        act = thirdAction;
+        yield return new WaitForSeconds(actionDelay);
+        isActing = false;
     }
 }

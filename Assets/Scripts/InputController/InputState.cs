@@ -8,4 +8,5 @@ public interface InputState
     void MouseClick(Player player);
     void CallMenu(KeyCode key);
     void HotBarUse(int id, Inventory inventory);
+    void PlayerMove(Vector2 inputVector, Player player);
 }

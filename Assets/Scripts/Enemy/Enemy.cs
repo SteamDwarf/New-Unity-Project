@@ -12,8 +12,11 @@ public class Enemy : MonoBehaviour, IGetDamage
     protected Collider2D enemyCollider;
     protected EnemyAnimator anim;
 
+    //[SerializeField] protected GameObject effectBar;
+    //[SerializeField] protected GameObject effectPrefab;
     [SerializeField] protected GameObject healthBarCanvas;
     [SerializeField] protected Image healthBar;
+    //[SerializeField] protected Dictionary<EffectType, GameObject> gettedEffects;
     [SerializeField] protected List<GameObject> attackPoses;
     [SerializeField] protected List<float> attackRanges;
     [SerializeField] protected List<int> attackDamages;
@@ -83,6 +86,11 @@ public class Enemy : MonoBehaviour, IGetDamage
         health = maxHealth;
         isDied = false;
         enemyAttacks = new List<Attack>();
+
+       /*  gettedEffects = new Dictionary<EffectType, GameObject>() {
+            {EffectType.currentSpeed, null},
+            {EffectType.maxStamina, null}
+        }; */
 
         CreateAttacksList();
         InvokeRepeating("UpdatePath", 0f, 0.5f);
@@ -299,6 +307,33 @@ public class Enemy : MonoBehaviour, IGetDamage
         }
     }
 
+    //НЕ ЗАБУДЬ УНАСЛЕДОВАТЬ ОТ IGetEffect
+    
+    /* public void GetEffect(EffectClass effectClass, EffectType effectType, float increase, float time = 0) {
+        if(gettedEffects[effectType] != null) {
+            return;
+        }
+
+        Debug.Log("I Get Effect");
+        Debug.Log(this.gameObject);
+        GameObject instEffect;
+        Dictionary<string, object> effectInfo = EffectDataBase.GetEffectInformation(effectClass, effectType);
+
+        Debug.Log(speed);
+        switch(effectType) {
+            case EffectType.maxStamina:
+                stamina *= increase;
+                break;
+            case EffectType.currentSpeed:
+                speed *= increase;
+                break;
+        }
+
+        Debug.Log(speed);
+        instEffect = Instantiate(effectPrefab, Vector2.zero, Quaternion.identity, effectBar.transform);
+        instEffect.GetComponent<Image>().sprite = Resources.Load<Sprite>((string)effectInfo["Image"]);
+        gettedEffects[effectType] = instEffect;
+    } */
     protected virtual void DefaultBehavior() { }
     protected virtual void MakeAttack() {}
 

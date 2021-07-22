@@ -12,6 +12,7 @@ public class Ghost : Enemy
     [SerializeField] protected float manaPerAttack;
     [SerializeField] protected float staminaPerAttack;
 
+    protected GameObject ally;
     protected float curMana;
 
     
@@ -68,7 +69,7 @@ public class Ghost : Enemy
     protected void RangeAttack(Vector2 norm) {
         RaycastHit2D raycast = Physics2D.Raycast(rB.position, norm, rangeAttackRadius, LayerMask.GetMask("BlockingLayer"));
         if(raycast.collider != null) {
-            if(raycast.collider.gameObject.GetComponent<Player>() == null) {
+            if(raycast.collider.gameObject.GetComponent<IGetDamage>() == null) {
                 return;
             }
         } else {

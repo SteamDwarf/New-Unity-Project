@@ -115,7 +115,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 3953054136092724229}
-  - {fileID: 5989505777556108351}
+  - {fileID: 456624598867230680}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -326,8 +326,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb769b137e4be39409bc564e5799bc9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBarCanvas: {fileID: 7714913075648571778}
-  healthBar: {fileID: 300686994968911117}
+  effectBar: {fileID: 653803914597954304}
+  effectPrefab: {fileID: 429197466837026127, guid: f392acd3f4cbfe84e8411c01f8221f8d, type: 3}
+  healthBarCanvas: {fileID: 4492445027066356325}
+  healthBar: {fileID: 5865093370514085610}
   attackPoses:
   - {fileID: 1928973513990191391}
   attackRanges:
@@ -352,7 +354,7 @@ MonoBehaviour:
   rangeAttackRadius: 20
   manaPerAttack: 15
   staminaPerAttack: 30
---- !u!1001 &8695233445497030757
+--- !u!1001 &3306507295268815746
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -361,7 +363,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1421813871961629159, guid: 77897433510af974a8025ae78f610617, type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: EnemyHealthBar
       objectReference: {fileID: 0}
     - target: {fileID: 3149515300258708570, guid: 77897433510af974a8025ae78f610617, type: 3}
       propertyPath: m_Pivot.x
@@ -393,11 +395,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3149515300258708570, guid: 77897433510af974a8025ae78f610617, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 3.55542
+      value: 3.5554
       objectReference: {fileID: 0}
     - target: {fileID: 3149515300258708570, guid: 77897433510af974a8025ae78f610617, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0.62022
+      value: 1.1224
       objectReference: {fileID: 0}
     - target: {fileID: 3149515300258708570, guid: 77897433510af974a8025ae78f610617, type: 3}
       propertyPath: m_LocalPosition.x
@@ -433,7 +435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3149515300258708570, guid: 77897433510af974a8025ae78f610617, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.03
+      value: 2.1555176
       objectReference: {fileID: 0}
     - target: {fileID: 3149515300258708570, guid: 77897433510af974a8025ae78f610617, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -449,20 +451,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77897433510af974a8025ae78f610617, type: 3}
---- !u!1 &7714913075648571778 stripped
+--- !u!1 &4492445027066356325 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1421813871961629159, guid: 77897433510af974a8025ae78f610617, type: 3}
-  m_PrefabInstance: {fileID: 8695233445497030757}
+  m_PrefabInstance: {fileID: 3306507295268815746}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &5989505777556108351 stripped
+--- !u!224 &456624598867230680 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3149515300258708570, guid: 77897433510af974a8025ae78f610617, type: 3}
-  m_PrefabInstance: {fileID: 8695233445497030757}
+  m_PrefabInstance: {fileID: 3306507295268815746}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &300686994968911117 stripped
+--- !u!114 &5865093370514085610 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8973401939224155496, guid: 77897433510af974a8025ae78f610617, type: 3}
-  m_PrefabInstance: {fileID: 8695233445497030757}
+  m_PrefabInstance: {fileID: 3306507295268815746}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -470,3 +472,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &653803914597954304 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2662144079640572034, guid: 77897433510af974a8025ae78f610617, type: 3}
+  m_PrefabInstance: {fileID: 3306507295268815746}
+  m_PrefabAsset: {fileID: 0}
