@@ -17,6 +17,9 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect, IKnockbackable
     public Image staminaBar;
     public Image healthBar;
 
+    [SerializeField] private List<AudioClip> swordSwing;
+    [SerializeField] private List<AudioClip> stepAudio;
+
     public List<GameObject> hitBoxes;
     public Attribute health;
     public Attribute stamina;
@@ -36,6 +39,7 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect, IKnockbackable
     private TextMeshProUGUI speedTimer;
     private Rigidbody2D rB;
     private PlayerAnimator anim;
+    private AudioPlayer audioPlayer;
     private GameObject door;
     private DoorOpening doorScript;
     private Vector2 inputMovement;
@@ -54,6 +58,7 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect, IKnockbackable
     private float damage;
     private bool isInvencible;
     private bool isKnockbacked;
+    private bool isMoving;
 
 
 
@@ -61,6 +66,7 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect, IKnockbackable
     {
         rB = GetComponent<Rigidbody2D>();
         anim = GetComponent<PlayerAnimator>();
+        audioPlayer = GetComponent<AudioPlayer>();
 
         staminaBar = GameObject.FindGameObjectWithTag("StaminaBar").GetComponent<Image>();
         healthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Image>();
@@ -80,7 +86,6 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect, IKnockbackable
         staminaPerAttack = 30;
         isDied = false;
 
-
         RefreshScripObj();
         RefreshHitBoxDamage();
     }
@@ -91,7 +96,6 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect, IKnockbackable
         {
             if (!isDied)
             {
-                Actions();
                 StaminaRefresh();
                 //EffectRefresh();
             }
@@ -116,40 +120,44 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect, IKnockbackable
             return;
         }
         //inputMovement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        isMoving = true;
         moveVelocity = inputMovement * speed.curValue;
-        if ((inputMovement.x != 0 || inputMovement.y != 0))
-        {
-            anim.SetState(true, "Run");
+        anim.SetState(true, "Run");
 
-            if (inputMovement.y > 0)
-                anim.ChangeFaceTo(PlayerFaceTo.back);
-            else if (inputMovement.y < 0)
-                anim.ChangeFaceTo(PlayerFaceTo.front);
-            else if (inputMovement.x > 0)
-                anim.ChangeFaceTo(PlayerFaceTo.right);
-            else if (inputMovement.x < 0)
-                anim.ChangeFaceTo(PlayerFaceTo.left);
+        if (inputMovement.y > 0)
+            anim.ChangeFaceTo(PlayerFaceTo.back);
+        else if (inputMovement.y < 0)
+            anim.ChangeFaceTo(PlayerFaceTo.front);
+        else if (inputMovement.x > 0)
+            anim.ChangeFaceTo(PlayerFaceTo.right);
+        else if (inputMovement.x < 0)
+            anim.ChangeFaceTo(PlayerFaceTo.left);
 
-            rB.MovePosition(rB.position + moveVelocity * Time.deltaTime);
-        }
-        else
-        {
+        rB.MovePosition(rB.position + moveVelocity * Time.deltaTime);
+        audioPlayer.PlayDoubleSound(stepAudio[0], stepAudio[1], 0.2f);
+
+    }
+
+    public void Stop() {
+        if(isMoving) {
+            isMoving = false;
             anim.SetState(false);
+            audioPlayer.StopPlayer();
         }
     }
 
-    private void Actions()
-    {
-        if (Input.GetKeyDown("f") && doorScript != null)
-        {
+    public void ActWithDoor() {
+        if (Input.GetKeyDown("f") && doorScript != null) {
             doorScript.ChangeDoorState();
         }
     }
-
     public void Attack() {
         if(stamina.curValue >= staminaPerAttack && anim.isActing == false && !isDied) {
+            int audioInd = Random.Range(0, swordSwing.Count);
+
             stamina.curValue -= 30;
             anim.SetActing("Attack");
+            audioPlayer.PlayOneShot(swordSwing[audioInd]);
         }
     }
     public void Blocking() {
@@ -378,7 +386,6 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect, IKnockbackable
             hB.damage = damage;
             hB.thrust = strength.curValue;
             hB.owner = "Player";
-            Debug.Log(hB.damage);
         }
     }
 

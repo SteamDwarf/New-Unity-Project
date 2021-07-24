@@ -26,4 +26,7 @@ public class MenuState : InputState
             stateSwitcher.SwitchState<InGameState>();
         }
     }
+    public void PlayerAction(KeyCode key, Player player) {
+        return;
+    }
 }

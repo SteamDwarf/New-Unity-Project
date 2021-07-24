@@ -15,7 +15,11 @@ public class ChooseTargetState : InputState
     }
 
     public void PlayerMove(Vector2 inputVector, Player player) {
-        player.Move(inputVector);
+        if(inputVector.x != 0 || inputVector.y != 0) {
+            player.Move(inputVector);//Передать Vector2
+        } else {
+            player.Stop();
+        }
     }
     public void MouseClick(Player player) {
         if (Input.GetMouseButtonDown(0)){
@@ -29,5 +33,8 @@ public class ChooseTargetState : InputState
         if(key == KeyCode.Escape) {
             targetManager.ExitState();
         }
+    }
+    public void PlayerAction(KeyCode key, Player player) {
+        return;
     }
 }

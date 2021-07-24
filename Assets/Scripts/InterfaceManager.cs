@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class InterfaceManager : MonoBehaviour
 {
+    [SerializeField] private GameObject settingsMenu;
     private GameObject inventory;
     private GameObject pauseMenu;
     private GameManager gm;
     private Inventory inventoryScript;
     private bool inventoryShowed = false;
     private bool pauseMenuShowed = false;
+    private bool settingsMenuShowed = false;
 
-    void Start()
-    {
+    void Start() {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         inventory = GameObject.FindGameObjectWithTag("Inventory");
         pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
@@ -20,30 +21,24 @@ public class InterfaceManager : MonoBehaviour
         pauseMenu.SetActive(false);
     }
 
-    private void ShowHideMenu(GameObject menu, ref bool menuStatus)
-    {
-        if(!menuStatus)
-        {
+    private void ShowHideMenu(GameObject menu, ref bool menuStatus) {
+        if(!menuStatus) {
             menuStatus = true;
             gm.isPaused = true;
             menu.SetActive(true);
-        } else
-        {
+        } else {
             menuStatus = false;
             gm.isPaused = false;
             menu.SetActive(false);
         }
     }
-    private void ShowHideMenu(GameObject menu, ref bool menuStatus, IMenu menuInterface)
-    {
-        if(!menuStatus)
-        {
+    private void ShowHideMenu(GameObject menu, ref bool menuStatus, IMenu menuInterface) {
+        if(!menuStatus) {
             menuStatus = true;
             gm.isPaused = true;
             menu.SetActive(true);
             menuInterface.OpenMenu();
-        } else
-        {
+        } else {
             menuStatus = false;
             gm.isPaused = false;
             menu.SetActive(false);
@@ -66,5 +61,8 @@ public class InterfaceManager : MonoBehaviour
             return;
         }
         ShowHideMenu(pauseMenu, ref pauseMenuShowed);
+    }
+    public void ShowHideSettingsMenu() {
+        ShowHideMenu(settingsMenu, ref settingsMenuShowed);
     }
 }

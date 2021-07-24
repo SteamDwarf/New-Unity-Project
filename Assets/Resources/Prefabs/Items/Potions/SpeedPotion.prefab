@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 2
+  pickupItemAudio: {fileID: 8300000, guid: ad43d8809e64da94a9ff4d5703e5b96b, type: 3}
   count: 1
   useType: 0
   thisObjectPrefab: {fileID: 3252153750383587771}
@@ -122,3 +123,4 @@ MonoBehaviour:
   type: 3
   effectClass: 1
   effectType: 2
+  useItemAudio: {fileID: 8300000, guid: 192998d3c7b9124408f99f8cdb0e82ca, type: 3}

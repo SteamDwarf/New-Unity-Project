@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DoorOpening : MonoBehaviour
 {
+    [SerializeField] private AudioClip openCloseAudio;
+    private AudioSource audioSource;
     private Animator anim;
     //private LayerMask layerM;
     private SpriteRenderer spriteRend;
@@ -16,6 +18,7 @@ public class DoorOpening : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         colliderDoor = GetComponent<BoxCollider2D>();
         spriteRend = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -45,6 +48,8 @@ public class DoorOpening : MonoBehaviour
             LayerMask.LayerToName(3);
             //layerM.value = 0;
         }
+
+        audioSource.PlayOneShot(openCloseAudio);
     }
 
     private IEnumerator openDoor()

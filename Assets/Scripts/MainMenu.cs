@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private GameObject inputControllerGO;
+
     private GameManager GM;
     private GameObject gameManager;
     private InterfaceManager interfaceManager;
-    [SerializeField] private GameObject inputControllerGO;
     private InputController inputController;
 
     private void Start()
@@ -45,6 +46,10 @@ public class MainMenu : MonoBehaviour
     public void Resume()
     {
        interfaceManager.ShowHidePauseMenu();
-        inputController.SwitchState<InGameState>();
+       inputController.SwitchState<InGameState>();
+    }
+
+    public void Settings() {
+        interfaceManager.ShowHideSettingsMenu();
     }
 }

@@ -35,6 +35,7 @@ public class InputController : MonoBehaviour, IStateSwitcher
         UseCell();
         CallUI();
         MouseClick();
+        PlayerAction();
     }
     private void FixedUpdate() {
         PlayerMove();
@@ -87,6 +88,12 @@ public class InputController : MonoBehaviour, IStateSwitcher
         Vector2 inputVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         currentState.PlayerMove(inputVector, player);
+    }
+
+    private void PlayerAction() {
+        if(Input.GetKeyDown(KeyCode.F)) {
+            currentState.PlayerAction(KeyCode.F, player);
+        }
     }
 
     public void SwitchState<T>() where T : InputState {

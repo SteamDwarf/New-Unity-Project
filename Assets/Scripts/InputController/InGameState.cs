@@ -11,7 +11,11 @@ public class InGameState : InputState
         this.interfaceManager = interfaceManager;
     }
     public void PlayerMove(Vector2 inputVector, Player player) {
-        player.Move(inputVector);//Передать Vector2
+        if(inputVector.x != 0 || inputVector.y != 0) {
+            player.Move(inputVector);//Передать Vector2
+        } else {
+            player.Stop();
+        }
     }
     public void MouseClick(Player player) {
         if (Input.GetMouseButtonDown(0)){
@@ -37,6 +41,12 @@ public class InGameState : InputState
         if (key == KeyCode.I){
             interfaceManager.ShowHideInventory();
             stateSwitcher.SwitchState<InventoryState>();
+        }
+    }
+
+    public void PlayerAction(KeyCode key, Player player) {
+        if(key == KeyCode.F) {
+            player.ActWithDoor();
         }
     }
 }

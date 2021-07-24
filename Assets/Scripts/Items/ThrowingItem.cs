@@ -11,11 +11,15 @@ public class ThrowingItem : Item
     [SerializeField] protected bool afterLaunchDestroyable;
     [SerializeField] protected bool afterActionDistroyable;
     [SerializeField] protected bool hasActionAfterTime;
+    [SerializeField] protected AudioClip ricochetAudio;
+    [SerializeField] protected AudioClip swishAudio;
     [SerializeField] protected float time;
     [SerializeField] protected bool actionAfterConnect;
+
     protected Rigidbody2D rb;
     protected Player player;
     protected Animator anim;
+    protected AudioPlayer audioPlayer;
     protected bool isLaunched;
     protected float currentPower;
 
@@ -23,11 +27,19 @@ public class ThrowingItem : Item
     protected MakeAction actionDel;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
+    private void Update() {
+        if(isLaunched) {
+            if(audioPlayer == null) {
+                audioPlayer = GetComponent<AudioPlayer>();
+            }
+
+            audioPlayer.PlayContiniousSound(swishAudio, 0.3f);
+        }
+    }
 
     public override void UseItem() {}
 
@@ -70,6 +82,11 @@ public class ThrowingItem : Item
         rb.velocity = new Vector2(0, 0);
         currentPower = currentPower / 2;
         rb.AddForce(distanceNorm * currentPower);
+
+        if(audioPlayer == null) {
+            audioPlayer = GetComponent<AudioPlayer>();
+        }
+        audioPlayer.PlayOneShot(ricochetAudio);
 
         StopCoroutine(LaunchCorutine());
         StopCoroutine(RicochetCorutine());

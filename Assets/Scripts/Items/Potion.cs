@@ -9,11 +9,14 @@ public class Potion : Item
     [SerializeField] protected AttributeType type;
     [SerializeField] protected EffectClass effectClass;
     [SerializeField] protected EffectType effectType;
-    Player player;
+    [SerializeField] private AudioClip useItemAudio;
 
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+    private GameObject playerGO;
+    private Player player;
+
+    void Start() {
+        playerGO = GameObject.FindGameObjectWithTag("Player");
+        player = playerGO.GetComponent<Player>();
     }
 
     public override void UseItem()
@@ -21,28 +24,10 @@ public class Potion : Item
         if(effectClass == EffectClass.none) {
             //player.UpdateHealth(increase);
             player.GetIncrease(type, increase);
-            return;
-        }
-
-        if(effectClass != EffectClass.none) {
+        } else if(effectClass != EffectClass.none) {
             player.GetEffect(effectClass,effectType, increase, timeEffect);
         }
 
-        /* switch (type)
-        {
-            case PotionType.health:
-                player.UpdateHealth(increase);
-                break;
-            case PotionType.stamina:
-                player.GetContiniousEffect(increase, timeEffect, type);
-                break;
-            case PotionType.strength:
-                player.GetContiniousEffect(increase, timeEffect, type);
-                break;
-            case PotionType.speed:
-                player.GetContiniousEffect(increase, timeEffect, type);
-                break;
-        } */
-
+        player.GetComponent<AudioPlayer>().PlayOneShot(useItemAudio);
     }
 }    

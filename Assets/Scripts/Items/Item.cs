@@ -5,18 +5,14 @@ using UnityEngine;
 public abstract class Item : MonoBehaviour
 {
     [SerializeField] protected int id;
-    //[SerializeField] protected string description;
-    //[SerializeField] protected string itemName;
+    [SerializeField] protected AudioClip pickupItemAudio;
     [SerializeField] protected int count;
+
     protected bool isPicked;
     public ItemUseType useType;
     private Inventory inventory;
 
     public GameObject thisObjectPrefab;
-
-/*     protected void Start() {
-        isPicked = false;
-    } */
 
     protected virtual void OnTriggerEnter2D(Collider2D collision) {
 
@@ -29,6 +25,10 @@ public abstract class Item : MonoBehaviour
             inventory.GetItem(this.gameObject);
             this.gameObject.SetActive(false);
             isPicked = true;
+
+            if(collision.GetComponent<AudioPlayer>() != null) {
+                collision.GetComponent<AudioPlayer>().PlayOneShot(pickupItemAudio);
+            }
         }
     }
 

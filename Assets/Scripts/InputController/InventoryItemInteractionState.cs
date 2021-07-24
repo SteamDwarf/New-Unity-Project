@@ -26,4 +26,7 @@ public class InventoryItemInteractionState : InputState
             stateSwitcher.SwitchState<InGameState>();
         }
     }
+    public void PlayerAction(KeyCode key, Player player) {
+        return;
+    }
 }

@@ -31,6 +31,8 @@ public class Enemy : MonoBehaviour, IGetDamage, IKnockbackable
     [SerializeField] protected bool isBig;
     [SerializeField] protected float nextWaypiontDistance;
 
+    [SerializeField] private AudioClip hurtAudio;
+
     public bool isDied {get; protected set;}
 
     protected Rigidbody2D rB;
@@ -45,7 +47,7 @@ public class Enemy : MonoBehaviour, IGetDamage, IKnockbackable
     protected Path path;
     protected Seeker seeker;
     protected SortingGroup sortGr;
-
+    protected AudioPlayer audioPlayer;
 
     protected int xCord;
     protected int yCord;
@@ -77,6 +79,7 @@ public class Enemy : MonoBehaviour, IGetDamage, IKnockbackable
         mapDrawer = gameManager.GetComponent<MapDrawer>();
         enemyCollider = gameObject.GetComponent<Collider2D>();
         sortGr = GetComponent<SortingGroup>();
+        audioPlayer = GetComponent<AudioPlayer>();
         mapk = mapDrawer.GetMapScaler();
 
         startPosition = transform.position;
@@ -269,6 +272,7 @@ public class Enemy : MonoBehaviour, IGetDamage, IKnockbackable
         }
 
         anim.SetActing("Hurt");
+        audioPlayer.PlayOneShot(hurtAudio);
 
         health -= damage;
         currentAgroTime = startAgroTime;
