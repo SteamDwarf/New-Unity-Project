@@ -352,7 +352,7 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect, IKnockbackable
 
     public void GetDamage(float damage)
     {
-        if (isDied || isInvencible)
+        if (isDied || isInvencible || anim.isActing)
             return;
 
         if (isDefending)
@@ -370,9 +370,9 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect, IKnockbackable
         else
             health.curValue -= damage;
 
-        /* if(health.curValue <= 0)
+        if(health.curValue <= 0)
             StartCoroutine(Dying());
-        else */
+        else
             anim.SetActing("Hurt");
             StartCoroutine(InvencibleCoroutine());
     }

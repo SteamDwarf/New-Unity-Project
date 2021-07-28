@@ -88,7 +88,7 @@ public class DungeonGenerator : MonoBehaviour
 
         SpawnPlayer();
         SpawnEnemies();
-        SpawnPotions();
+        SpawnItems();
         MD.Start();
         MD.DrawMap();
     }
@@ -441,7 +441,7 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
-    public void SpawnPotions()
+    public void SpawnItems()
     {
         for (int i = 0; i < allRooms.Count; i++)
         {
@@ -462,16 +462,15 @@ public class DungeonGenerator : MonoBehaviour
                     continue;
                 else if(map.map[spawnPoint.x, spawnPoint.y].hasEnemy)
                     continue;
-                else
-                {
-                    int lucky = Random.Range(1, 17);
+                else {
+                    int lucky = Random.Range(1, 40);
                     int count;
                     RarityType rarity;
 
-                    if(lucky >= 13 && lucky < 17) {
+                    if(lucky >= 35 && lucky < 40) {
                         count = 1;
                         rarity = RarityType.rare;
-                    } else if(lucky >=9 && lucky < 13) {
+                    } else if(lucky >=15 && lucky < 35) {
                         count = Random.Range(1,3);
                         rarity = RarityType.unusual;
                     } else {
