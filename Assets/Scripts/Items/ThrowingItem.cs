@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ThrowingItem : Item
+public class ThrowingItem : Item, IUpdateAudioSettings
 {
     [SerializeField] protected float damage;
     [SerializeField] protected float power;
@@ -15,6 +15,7 @@ public class ThrowingItem : Item
     [SerializeField] protected AudioClip swishAudio;
     [SerializeField] protected float time;
     [SerializeField] protected bool actionAfterConnect;
+    [SerializeField] protected GameObject endActionEffect;
 
     protected Rigidbody2D rb;
     protected Player player;
@@ -38,6 +39,12 @@ public class ThrowingItem : Item
             }
 
             audioPlayer.PlayContiniousSound(swishAudio, 0.3f);
+        }
+    }
+
+    public void UpdateAudioSettings(float volume) {
+        if(endActionEffect != null && endActionEffect.GetComponent<AudioSource>() != null) {
+            endActionEffect.GetComponent<AudioSource>().volume = volume;
         }
     }
 

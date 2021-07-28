@@ -16,7 +16,7 @@ public class BackgroundAudioPlayer : MonoBehaviour
         playedAudio = new List<int>();
         playedAudio.Add(audioInd);
 
-        musicVolume = audioSettingSO.GetSettings();
+        musicVolume = audioSettingSO.GetSettings(AudioSettingsEnum.musicVolume);
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = musicVolume;
         audioSource.clip = audioClips[audioInd];
@@ -45,7 +45,7 @@ public class BackgroundAudioPlayer : MonoBehaviour
     }
 
     public void UpdateVolumeSetting() {
-        this.musicVolume = audioSettingSO.GetSettings();
+        this.musicVolume = audioSettingSO.GetSettings(AudioSettingsEnum.musicVolume);
         audioSource.volume = musicVolume;
     }
 }

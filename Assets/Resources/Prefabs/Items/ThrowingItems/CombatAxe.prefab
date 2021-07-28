@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8412405489458657066}
   m_Layer: 0
   m_Name: CombatAxe
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -310,6 +310,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8360230527823522335}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 828c89620c0a5dd439ffefc51b5ae0f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 15cb9a287e7f15e4c87ec53b5f833cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSettingSO: {fileID: 11400000, guid: ffb933b4e4a65e7458a9b3069b0a8056, type: 2}
+  currentAudioSettings: 4

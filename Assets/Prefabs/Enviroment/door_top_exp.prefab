@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 1745009911124437916}
   - component: {fileID: 175744787488089180}
   - component: {fileID: 3924494523715461745}
+  - component: {fileID: 3999523766923212867}
   m_Layer: 0
   m_Name: door_top_exp
   m_TagString: Door
@@ -380,6 +381,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3999523766923212867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087826751882979179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15cb9a287e7f15e4c87ec53b5f833cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSettingSO: {fileID: 11400000, guid: ffb933b4e4a65e7458a9b3069b0a8056, type: 2}
+  currentAudioSettings: 4
 --- !u!1 &6980371052956396896
 GameObject:
   m_ObjectHideFlags: 0

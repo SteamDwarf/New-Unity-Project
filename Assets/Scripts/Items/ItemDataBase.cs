@@ -63,7 +63,7 @@ public static class ItemDataBase
         {28, new Dictionary<string, object>() {
             {"id", 28},
             {"itemName", "Бомбочка"},
-            {"description", "Делает БУМ!"},
+            {"description", "Вас окружило полчище монстров? Не беда! Эта малышка поможет вам справиться с ними! Только не подорвите себя!"},
             {"useType", ItemUseType.chooseTargetUse},
             {"rarity", RarityType.unusual},
             {"sprite", "Sprites/Items/ThrowingItems/Bomb_v2"},

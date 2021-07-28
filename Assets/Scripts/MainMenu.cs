@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : MonoBehaviour, IMenu
 {
     [SerializeField] private GameObject inputControllerGO;
+    [SerializeField] private GameObject settingsWindow;
 
     private GameManager GM;
     private GameObject gameManager;
@@ -43,13 +44,23 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void Resume()
-    {
-       interfaceManager.ShowHidePauseMenu();
-       inputController.SwitchState<InGameState>();
+    public void Resume() {  
+        interfaceManager.ShowHidePauseMenu();
+        inputController.SwitchState<InGameState>();
     }
 
-    public void Settings() {
-        interfaceManager.ShowHideSettingsMenu();
+    public void ShowSettings() {
+        settingsWindow.SetActive(true);
+    }
+    public void HideSettings() {
+        settingsWindow.SetActive(false);
+        settingsWindow.GetComponent<AudioSettingsManager>().CloseSettings();
+    }
+    public void OpenMenu(){}
+    public void CloseMenu() {
+        if(settingsWindow.activeInHierarchy) {
+            settingsWindow.SetActive(false);
+            settingsWindow.GetComponent<AudioSettingsManager>().CloseSettings();
+        }
     }
 }

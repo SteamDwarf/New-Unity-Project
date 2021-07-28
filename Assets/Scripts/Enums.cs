@@ -1,3 +1,11 @@
+//SetingsEnums
+public enum AudioSettingsEnum {
+    none, musicVolume, playerSoundVolume, enemySoundVolume, environmentSoundVolume
+}
+
+
+
+//Game enums
 public enum TileType {
     wall, floor
 }

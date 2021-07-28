@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class InterfaceManager : MonoBehaviour
 {
-    [SerializeField] private GameObject settingsMenu;
     private GameObject inventory;
     private GameObject pauseMenu;
     private GameManager gm;
     private Inventory inventoryScript;
+    private MainMenu pauseMenuScript;
     private bool inventoryShowed = false;
     private bool pauseMenuShowed = false;
     private bool settingsMenuShowed = false;
@@ -47,9 +47,9 @@ public class InterfaceManager : MonoBehaviour
     }
 
     public void ShowHideInventory() {
-        if(pauseMenuShowed) {
+/*         if(pauseMenuShowed) {
             return;
-        }
+        } */
 
         if(inventoryScript == null) {
             inventoryScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
@@ -57,12 +57,13 @@ public class InterfaceManager : MonoBehaviour
         ShowHideMenu(inventory, ref inventoryShowed, inventoryScript);
     }
     public void ShowHidePauseMenu() {
-        if (inventoryShowed) {
+  /*       if (inventoryShowed) {
             return;
+        } */
+
+        if(pauseMenuScript == null) {
+            pauseMenuScript = pauseMenu.GetComponentInChildren<MainMenu>();
         }
-        ShowHideMenu(pauseMenu, ref pauseMenuShowed);
-    }
-    public void ShowHideSettingsMenu() {
-        ShowHideMenu(settingsMenu, ref settingsMenuShowed);
+        ShowHideMenu(pauseMenu, ref pauseMenuShowed, pauseMenuScript);
     }
 }

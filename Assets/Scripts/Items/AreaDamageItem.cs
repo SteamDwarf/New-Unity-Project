@@ -6,7 +6,6 @@ using UnityEngine.Events;
 public class AreaDamageItem : ThrowingItem
 {
     [SerializeField] protected ParticleSystem lifeTimeParticles;
-    [SerializeField] protected GameObject endActionEffect;
     [SerializeField] protected float radius;
     [SerializeField] private float knockPower;
 

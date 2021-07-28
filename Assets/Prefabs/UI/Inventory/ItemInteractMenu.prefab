@@ -825,7 +825,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 67.524475, y: 282.9687}
+  m_SizeDelta: {x: 224.4156, y: 282.9687}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2592866708417223249
 Canvas:
@@ -902,6 +902,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputCountBlock: {fileID: 6248563937345842091}
   input: {fileID: 2337657995999019176}
+  inputControllerGO: {fileID: 0}
 --- !u!1 &2592866708483972869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,7 +1027,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.10596001, y: 0.000011444092}
+  m_AnchoredPosition: {x: 0.10595703, y: 0}
   m_SizeDelta: {x: 180.82, y: 94.422}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2592866708621799776
@@ -1084,8 +1085,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13
-  m_fontSizeBase: 13
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1196,8 +1197,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.8, y: -11.3}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0.8, y: 1.696}
+  m_SizeDelta: {x: 200, y: 24.008}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2592866708850676530
 CanvasRenderer:
@@ -1290,7 +1291,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 18.522617}
+  m_margin: {x: 0, y: 0, z: 0, w: 0.27768326}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1517,8 +1518,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.4027, y: -0.6645}
-  m_SizeDelta: {x: 218.3837, y: 269.3972}
+  m_AnchoredPosition: {x: -0.00074291, y: -0.09922}
+  m_SizeDelta: {x: 224.42, y: 282.77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2592866709899545076
 GameObject:
@@ -1712,7 +1713,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter text...
+  m_text: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0447\u0438\u0441\u043B\u043E..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1739,8 +1740,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

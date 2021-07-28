@@ -372,9 +372,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1159044994371163267}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 828c89620c0a5dd439ffefc51b5ae0f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 15cb9a287e7f15e4c87ec53b5f833cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSettingSO: {fileID: 11400000, guid: ffb933b4e4a65e7458a9b3069b0a8056, type: 2}
+  currentAudioSettings: 3
 --- !u!1 &8867547020886713610
 GameObject:
   m_ObjectHideFlags: 0

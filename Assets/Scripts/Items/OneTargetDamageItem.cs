@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class OneTargetDamageItem : ThrowingItem
 {
-    [SerializeField] protected GameObject endActionEffect;
     [SerializeField] private float knockPower;
     protected Collider2D enemyColl;
     public UnityEvent<Collider2D, float> ActionDelegate;

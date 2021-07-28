@@ -197,8 +197,8 @@ GameObject:
   - component: {fileID: 2911409282580579713}
   - component: {fileID: 1682495204359246237}
   - component: {fileID: 8735055253708331635}
-  - component: {fileID: 4522334977683771625}
   - component: {fileID: 7461027867450494411}
+  - component: {fileID: 4522334977683771625}
   m_Layer: 6
   m_Name: Lizard
   m_TagString: Enemy
@@ -446,18 +446,6 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &4522334977683771625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 709441570316782483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 828c89620c0a5dd439ffefc51b5ae0f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &7461027867450494411
 AudioSource:
   m_ObjectHideFlags: 0
@@ -554,6 +542,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4522334977683771625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709441570316782483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15cb9a287e7f15e4c87ec53b5f833cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSettingSO: {fileID: 11400000, guid: ffb933b4e4a65e7458a9b3069b0a8056, type: 2}
+  currentAudioSettings: 3
 --- !u!1 &1648350130003467339
 GameObject:
   m_ObjectHideFlags: 0
