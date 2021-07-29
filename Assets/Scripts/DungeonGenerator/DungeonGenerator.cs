@@ -420,7 +420,7 @@ public class DungeonGenerator : MonoBehaviour
                 {
                     EnemyType enemy = EnemyType.simpleEnemy;
 
-                    if (typeEnemy >= 3 && room.enemyInRoom >= 2)
+                    if (typeEnemy > 3 && room.enemyInRoom >= 2)
                     {
                         enemy = EnemyType.hardEnemy;
                         map.map[spawnPoint.x, spawnPoint.y].SpawnEnemy(enemy);

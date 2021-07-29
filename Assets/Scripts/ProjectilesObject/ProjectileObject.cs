@@ -15,6 +15,7 @@ public class ProjectileObject : MonoBehaviour
     [SerializeField] float increaseEffect;
     [SerializeField] float timeEffect; 
     protected Rigidbody2D rb;
+    private bool isParried;
     public UnityEvent<Collider2D, float> ActionDelegate;
 
 
@@ -28,12 +29,30 @@ public class ProjectileObject : MonoBehaviour
     }
 
     protected void OnTriggerEnter2D(Collider2D other) {
-        
-        if(actionAfterConnect && (other.GetComponent<Player>() != null && !other.GetComponent<Player>().isDied)) {
-            ActionDelegate.Invoke(other, damage);
-            other.GetComponent<Player>().GetEffect(effectClass, effectType, increaseEffect, timeEffect);
-            Destroy(this.gameObject);
+        if(other.GetComponent<HitBox>() != null) {
+            Vector2 hitboxPosition = other.gameObject.transform.position;
+            Vector2 vectorNorm = (rb.position - hitboxPosition).normalized;
+
+            rb.velocity = Vector2.zero;
+            rb.AddForce(vectorNorm * power);
+            isParried = true;
             return;
+        }
+
+
+        if(actionAfterConnect) {
+            if(other.GetComponent<Player>() != null && !other.GetComponent<Player>().isDied) {
+                ActionDelegate.Invoke(other, damage);
+                other.GetComponent<Player>().GetEffect(effectClass, effectType, increaseEffect, timeEffect);
+                Destroy(this.gameObject);
+                return;
+            }
+            if(other.GetComponent<Ghost>() != null && !other.GetComponent<Ghost>().isDied && isParried) {
+                ActionDelegate.Invoke(other, damage);
+                Destroy(this.gameObject);
+                return;
+            }
+            
         }
 
         if(other.CompareTag("Wall")) {

@@ -14,22 +14,18 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect, IKnockbackable
     private GameObject gameManager;
     private GameManager GM;
 
-    public Image staminaBar;
-    public Image healthBar;
-
+    [SerializeField] private List<GameObject> hitBoxes;
     [SerializeField] private List<AudioClip> swordSwing;
-    [SerializeField] private List<AudioClip> stepAudio;
-
-    public List<GameObject> hitBoxes;
-    public Attribute health;
-    public Attribute stamina;
-    public Attribute speed;
-    public Attribute strength;
-    public int noiseRange;
-    public float hitRange;
-    public float weaponDamage;
-    public bool isDied;
-    public float staminaPerSec;
+    [SerializeField] private List<AudioClip> stepAudio;    
+    [SerializeField] private Attribute health;
+    [SerializeField] private Attribute stamina;
+    [SerializeField] private Attribute speed;
+    [SerializeField] private Attribute strength;
+    //public int noiseRange;
+    //public float hitRange;
+    [SerializeField] private float weaponDamage;
+    public bool isDied {get; private set;}
+    [SerializeField] private float staminaPerSec;
 
     private GameObject staminaEffectBar;
     private GameObject strengthEffectBar;
@@ -44,6 +40,9 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect, IKnockbackable
     private DoorOpening doorScript;
     private Vector2 inputMovement;
     private Vector2 moveVelocity;
+    private Image staminaBar;
+    private Image healthBar;
+    
 
     private float mapk;
     private int prevX;

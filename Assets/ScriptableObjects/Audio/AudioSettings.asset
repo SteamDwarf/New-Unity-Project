@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f97d846f8fc2cc04f86ea8f0a384ba67, type: 3}
   m_Name: AudioSettings
   m_EditorClassIdentifier: 
-  musicVolume: 0.25970227
+  musicVolume: 0.27552387
+  playerSoundVolume: 1
+  enemySoundVolume: 1
+  environmentSoundVolume: 1

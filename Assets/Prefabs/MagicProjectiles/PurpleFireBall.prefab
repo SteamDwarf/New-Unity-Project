@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 4
-  power: 1000
+  power: 800
   hasActionAfterTime: 0
   time: 0
   actionAfterConnect: 1
