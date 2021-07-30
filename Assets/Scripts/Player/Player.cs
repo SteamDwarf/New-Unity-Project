@@ -7,10 +7,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IGetDamage, IGetEffect, IKnockbackable
 {
-    private DungeonGenerator dungeon;
     private EffectBarUI effectBarUI;
-
-    private MapDrawer MD;
     private GameObject gameManager;
     private GameManager GM;
 
@@ -21,36 +18,19 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect, IKnockbackable
     [SerializeField] private Attribute stamina;
     [SerializeField] private Attribute speed;
     [SerializeField] private Attribute strength;
-    //public int noiseRange;
-    //public float hitRange;
     [SerializeField] private float weaponDamage;
-    public bool isDied {get; private set;}
+    
     [SerializeField] private float staminaPerSec;
 
-    private GameObject staminaEffectBar;
-    private GameObject strengthEffectBar;
-    private GameObject speedEffectBar;
-    private TextMeshProUGUI staminaTimer;
-    private TextMeshProUGUI strengthTimer;
-    private TextMeshProUGUI speedTimer;
     private Rigidbody2D rB;
     private PlayerAnimator anim;
     private AudioPlayer audioPlayer;
     private GameObject door;
     private DoorOpening doorScript;
-    private Vector2 inputMovement;
     private Vector2 moveVelocity;
     private Image staminaBar;
     private Image healthBar;
     
-
-    private float mapk;
-    private int prevX;
-    private int prevY;
-    private int curX;
-    private int curY;
-    private int mapWidth;
-    private int mapHeight;
     private float staminaPerAttack;
     private float defence;
     private bool isDefending;
@@ -59,10 +39,9 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect, IKnockbackable
     private bool isKnockbacked;
     private bool isMoving;
 
+    public bool isDied {get; private set;}
 
-
-    public void Start()
-    {
+    public void Start() {
         rB = GetComponent<Rigidbody2D>();
         anim = GetComponent<PlayerAnimator>();
         audioPlayer = GetComponent<AudioPlayer>();
@@ -77,8 +56,6 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect, IKnockbackable
         effectBarUI.GetPlayer(this);
 
         GM = gameManager.GetComponent<GameManager>();
-        MD = gameManager.GetComponent<MapDrawer>();
-        dungeon = gameManager.GetComponent<DungeonGenerator>();
 
         damage = strength.curValue + weaponDamage;
         defence = 1;
@@ -89,12 +66,9 @@ public class Player : MonoBehaviour, IGetDamage, IGetEffect, IKnockbackable
         RefreshHitBoxDamage();
     }
 
-    public void Update()
-    {
-        if(!GM.isPaused)
-        {
-            if (!isDied)
-            {
+    public void Update() {
+        if(!GM.isPaused) {
+            if (!isDied) {
                 StaminaRefresh();
                 //EffectRefresh();
             }

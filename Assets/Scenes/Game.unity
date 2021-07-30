@@ -3810,9 +3810,6 @@ MonoBehaviour:
   minEnemiesPerRoom: 4
   maxItemInRoom: 2
   minItemInRoom: 1
-  maxPotionInRoom: 2
-  minPotionInRoom: 0
-  playerSpawnCordinates: {x: 0, y: 0}
 --- !u!4 &1759988303
 Transform:
   m_ObjectHideFlags: 0

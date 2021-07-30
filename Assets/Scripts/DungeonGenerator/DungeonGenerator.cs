@@ -26,16 +26,16 @@ public class DungeonGenerator : MonoBehaviour
     [SerializeField] private int minEnemiesPerRoom;
     [SerializeField] private int maxItemInRoom;
     [SerializeField] private int minItemInRoom;
-    [SerializeField] private int maxPotionInRoom;
-    [SerializeField] private int minPotionInRoom;
+/*     [SerializeField] private int maxPotionInRoom;
+    [SerializeField] private int minPotionInRoom; */
 
     public int aliveEnemiesCount {get; private set;}
     private int countFeatures;
 
-    public List<Feature> allFeatures;
-    public List<Feature> allRooms;
+    private List<Feature> allFeatures;
+    private List<Feature> allRooms;
 
-    public Vector2Int playerSpawnCordinates;
+    private Vector2Int playerSpawnCordinates;
 
 
     public void InitializeDungeon()

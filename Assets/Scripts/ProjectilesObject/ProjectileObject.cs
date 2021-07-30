@@ -39,7 +39,6 @@ public class ProjectileObject : MonoBehaviour
             return;
         }
 
-
         if(actionAfterConnect) {
             if(other.GetComponent<Player>() != null && !other.GetComponent<Player>().isDied) {
                 ActionDelegate.Invoke(other, damage);
@@ -47,7 +46,7 @@ public class ProjectileObject : MonoBehaviour
                 Destroy(this.gameObject);
                 return;
             }
-            if(other.GetComponent<Ghost>() != null && !other.GetComponent<Ghost>().isDied && isParried) {
+            if(other.GetComponent<Enemy>() != null && !other.GetComponent<Enemy>().isDied && isParried) {
                 ActionDelegate.Invoke(other, damage);
                 Destroy(this.gameObject);
                 return;

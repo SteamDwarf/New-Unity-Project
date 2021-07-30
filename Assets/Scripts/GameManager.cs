@@ -7,7 +7,7 @@ using Pathfinding;
 public class GameManager : MonoBehaviour
 {
     private DungeonGenerator dungeonGenerator;
-    private GameObject pauseMenu;
+    //private GameObject pauseMenu;
     private AstarPath pathfinder;
     //public PlayerMovement player;
     public int aliveEnemies;

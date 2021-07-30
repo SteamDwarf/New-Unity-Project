@@ -49,8 +49,8 @@ public class Enemy : MonoBehaviour, IGetDamage, IKnockbackable
     protected SortingGroup sortGr;
     protected AudioPlayer audioPlayer;
 
-    protected int xCord;
-    protected int yCord;
+    /* protected int xCord;
+    protected int yCord; */
     protected string faceTo;
     protected float mapk;
     //protected string enemyName;
