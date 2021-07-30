@@ -162,9 +162,6 @@ public class Inventory : MonoBehaviour, IMenu
     }
 
     public void ShowContextMenu(int id) {
-/*         if(inventoryBlocked) {
-            return;
-        } */
         if(cellSO[id].item == null) {
             return;
         }
@@ -311,8 +308,8 @@ public class Inventory : MonoBehaviour, IMenu
     public void CloseMenu() {
         HideContextMenu();
         HideCurrentItem();
-        saveCell_1.Clear();
-        saveCell_2.Clear();
+        saveCell_1.ClearWithoutDestroyGO();
+        saveCell_2.ClearWithoutDestroyGO();
         copiedCellID = -1;
         //inventoryBlocked = true;
     }
